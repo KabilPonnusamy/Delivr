@@ -1,5 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Delivr</string>
+    <string name="apikey">B668EDFE-4BDA-4684-A075-B04D89E45EAE</string>
+    <string name="apicode">r6!e1Yi4uM</string>
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

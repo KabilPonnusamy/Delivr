@@ -5,17 +5,20 @@ import com.google.gson.annotations.SerializedName;
 
 public class PostDoLogin {
     @Expose
-    @SerializedName("email")
+    @SerializedName("Login")
     private String email;
     @Expose
-    @SerializedName("password")
+    @SerializedName("Password")
     private String password;
-    @Expose @SerializedName("device_type") private String device_type;
-
+    @Expose @SerializedName("APIKEY")
+    private String APIKEY;
+    @Expose @SerializedName("Signature")
+    private String Signature;
     public PostDoLogin(String email,
-                       String password, String device_type) {
+                       String password, String APIKEY, String Signature) {
         this.email = email;
         this.password = password;
-        this.device_type = device_type;
+        this.APIKEY = APIKEY;
+        this.Signature = Signature;
     }
 }

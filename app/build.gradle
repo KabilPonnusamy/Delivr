@@ -29,11 +29,11 @@ android {
         }
         staging {
             initWith debug
-            buildConfigField 'String', 'BASE_URL', '\"http://smitiv.email/rewardsapp_demo/api/\"'
+            buildConfigField 'String', 'BASE_URL', '\"https://delivr.sg/API/\"'
         }
         production {
             initWith release
-            buildConfigField 'String', 'BASE_URL', '\"http://api.eqbenefits.sg/api/\"'
+            buildConfigField 'String', 'BASE_URL', '\"https://delivr.sg/API/\"'
             buildConfigField 'String', 'stripe_publishable_key', '\"pk_live_7Z2IIp1XMxJqEog8YGwJQDJu00CjwLf1Ld\"'
         }
     }

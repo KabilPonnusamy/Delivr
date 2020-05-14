@@ -5,16 +5,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class BaseResponse {
 
+
     @Expose
-    @SerializedName("status")
-    private String status;
-    @Expose
-    @SerializedName("message")
+    @SerializedName("Message")
     private String message;
 
-    public String getStatus() {
-        return status;
-    }
+
 
     public String getMessage() {
         return message;

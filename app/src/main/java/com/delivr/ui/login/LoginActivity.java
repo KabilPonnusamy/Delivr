@@ -1,10 +1,13 @@
 package com.delivr.ui.login;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -17,7 +20,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.delivr.R;
 import com.delivr.backend.APIService;
 import com.delivr.backend.DataEnvelope;
@@ -31,6 +37,8 @@ import com.delivr.utils.Prefs;
 import com.delivr.utils.Utils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.security.MessageDigest;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,13 +47,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextView loginbtn, forgot_pwdbtn, signupbtn;
     EditText ext_username, ext_password;
     String str_useremail, str_user_password;
+    String strerror = "", strresult = "";
     ProgressDialog progressDialog;
     ImageView buttonTogglePasswordVisibility;
-
+    public static String UserId, UserFullName, UserRole, UserStatusMsg;
     private APIService apiService;
     // ArrayList<User_Information> user_informations;
-    private Call<DataEnvelope<ResponseUserLogin>> callLogin;
+    private Call<ResponseUserLogin> callLogin;
     private boolean isShowingPassword;
+    public static PendingIntent pendingIntent;
+    public static AlarmManager manager;
+    public static PendingIntent pendingFBIntent;
     String user_memberid;
 
 
@@ -139,9 +151,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     return;
                 }
 
-              //  insertData_to_Server(str_useremail, str_user_password);
-                Intent loginintent = new Intent(LoginActivity.this, Dashboard.class);
-                startActivity(loginintent);
+                insertData_to_Server(str_useremail, str_user_password);
+               /* Intent loginintent = new Intent(LoginActivity.this, Dashboard.class);
+                startActivity(loginintent);*/
                 break;
             case R.id.forgot_pwd:
                /* Intent forgotpwdIntent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
@@ -166,38 +178,92 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
-
     //    LOGINMETHOD
     public void insertData_to_Server(final String str_usernames, final String str_passwords) {
         progressDialog.show();
+        String Strapikey = getString(R.string.apikey);
+        String Strapicode = getString(R.string.apicode);
+        String sign = str_usernames + str_passwords + Strapikey + Strapicode;
+        String StrSignature = SHA1(sign);
+
         callLogin = RetrofitClient.getInstance().getApiInterface().checkLogin(
                 new PostDoLogin(
                         str_useremail,
                         str_user_password,
-                        Constants.DEVICE_TYPE));
+                        Strapikey, StrSignature));
 
-        callLogin.enqueue(new Callback<DataEnvelope<ResponseUserLogin>>() {
+        callLogin.enqueue(new Callback<ResponseUserLogin>() {
             @Override
-            public void onResponse(Call<DataEnvelope<ResponseUserLogin>> call,
-                                   final Response<DataEnvelope<ResponseUserLogin>> response) {
+            public void onResponse(Call<ResponseUserLogin> call,
+                                   final Response<ResponseUserLogin> response) {
                 progressDialog.dismiss();
                 if (response.body() != null) {
-                    if (response.body().getStatus().equalsIgnoreCase("success")) {
-                        user_memberid = response.body().getData().getMember_id();
-                       /* Prefs.setMemberId(user_memberid);
-                        MaterialDialog materialDialog = new MaterialDialog.Builder(LoginActivity.this)
-                                .title("Success")
-                                .content(response.body().getMessage())
-                                .positiveText(R.string.btn_ok)
-                                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                                    @Override
-                                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                        Intent intent = new Intent(LoginActivity.this, LoginOTPVerificationActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                })
-                                .show();*/
+                    if (response.body().getMessage().equalsIgnoreCase("success")) {
+                        UserFullName = response.body().getFullname();
+
+                        UserId = response.body().getUserId();
+                        UserRole = response.body().getRole();
+                        UserStatusMsg = response.body().getMessage();
+                        if (UserStatusMsg.equalsIgnoreCase("Success")) {
+                            Toast.makeText(LoginActivity.this, "User Role"+UserRole, Toast.LENGTH_LONG).show();
+                            if (UserRole.equals("Client")) {
+                                //getprofile();
+
+                            }
+                        } else {
+                            strerror = UserStatusMsg;
+                        }
+                        if (strerror.toString().length() > 0) {
+                            Toast.makeText(getApplicationContext(), strerror, Toast.LENGTH_LONG).show();
+                            /*lblerrmessage = (TextView) findViewById(R.id.lblerrmessage);
+                            lblerrmessage.setText(strerror);
+                            lblerrmessage.setVisibility(View.VISIBLE);*/
+                            Utils.showMessageDialog(LoginActivity.this,
+                                    getString(R.string.dialog_title_sorry),
+                                    response.body().getMessage());
+                        } else {
+                            if (UserRole.equals("Rider")) {
+
+                                /*if (GeoLocation.isProviderEmpty(getApplicationContext()))
+                                    GeoLocation.displayPromptForEnablingGPS(MainActivity.this);
+
+                                GeoLocation.LocationHelper(MainActivity.this._context);
+
+                                // Retrieve a PendingIntent that will perform a broadcast
+                                Intent alarmIntent = new Intent(MainActivity.this, AlarmService.class);
+                                MainActivity.pendingIntent = PendingIntent.getService(MainActivity.this, 0, alarmIntent, 0);
+
+                                MainActivity.manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                int interval = 180000;
+                                MainActivity.manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, MainActivity.pendingIntent);
+
+                                Intent i = new Intent(getApplicationContext(), MenuTile.class);
+                                startActivity(i);*/
+                                Intent i = new Intent(getApplicationContext(), Dashboard.class);
+                                startActivity(i);
+                            } else if (UserRole.equals("Client")) {
+
+                                /*Intent alarmFBIntent = new Intent(MainActivity.this, FeedbackReceiver.class);
+                                pendingFBIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmFBIntent, 0);
+
+                                AlarmManager FBmanager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                int interval = 1800000;
+                                FBmanager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingFBIntent);
+
+                                Intent i = new Intent(getApplicationContext(), CustomerTile.class);
+                                startActivity(i)*/;
+                                Intent i = new Intent(getApplicationContext(), Dashboard.class);
+                                startActivity(i);
+                            } else {
+                                /*lblerrmessage = (TextView) findViewById(R.id.lblerrmessage);
+                                lblerrmessage.setText(strerror);
+                                lblerrmessage.setVisibility(View.VISIBLE);*/
+                                Utils.showMessageDialog(LoginActivity.this,
+                                        getString(R.string.dialog_title_sorry),
+                                        response.body().getMessage());
+                            }
+                        }
+
 
                     } else {
                         Utils.showMessageDialog(LoginActivity.this,
@@ -211,8 +277,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
 
+
             @Override
-            public void onFailure(Call<DataEnvelope<ResponseUserLogin>> call, Throwable t) {
+            public void onFailure(Call<ResponseUserLogin> call, Throwable t) {
                 progressDialog.dismiss();
                 t.printStackTrace();
                 Prefs.setLoginVerified("failure");
@@ -221,6 +288,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
+    public static String SHA1(String text) {
+        byte[] sha1hash = new byte[40];
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            md.update(text.getBytes("iso-8859-1"), 0, text.length());
+            sha1hash = md.digest();
+        } catch (Exception e) {
+        }
+        return convertToHex(sha1hash);
+    }
+    private static String convertToHex(byte[] data) {
+        StringBuilder sb = new StringBuilder(data.length * 2);
+
+        java.util.Formatter fmt = new java.util.Formatter(sb);
+        for (byte b : data) {
+            fmt.format("%02x", b);
+        }
+
+        return sb.toString().toUpperCase();
+    }
 
 
 

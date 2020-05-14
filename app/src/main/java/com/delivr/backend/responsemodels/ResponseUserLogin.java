@@ -8,12 +8,31 @@ import com.google.gson.annotations.SerializedName;
 
 public class ResponseUserLogin extends BaseResponse {
 
-    @Expose
-    @SerializedName("member_id")
-    String member_id;
-
-
-    public String getMember_id() {
-        return member_id;
+    public String getFullname() {
+        return Fullname;
     }
+
+    public String getUserId() {
+        return UserId;
+    }
+
+    public String getRole() {
+        return Role;
+    }
+
+    @Expose
+    @SerializedName("Fullname")
+    String Fullname;
+    @Expose
+    @SerializedName("UserId")
+    String UserId;
+
+    @Expose
+    @SerializedName("Role")
+    String Role;
+
+
+
+
+
 }
