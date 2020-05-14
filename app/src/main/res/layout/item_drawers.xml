@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/userimage"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/icon_jobs"
+                    app:civ_border_color="@color/white"
+                    app:civ_border_width="2dp" />
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/txt_johndoe"
+                    android:layout_below="@+id/userimage"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/myjobs_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/myjobs_img"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/icon_jobs" />
+
+                    <TextView
+                        android:id="@+id/myjobs_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/myjobs_img"
+                        android:text="@string/txt_myjobs"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/view_line_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/jobqueue_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/jobqueue_img"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/icon_compjobs" />
+
+                    <TextView
+                        android:id="@+id/jobqueue_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/jobqueue_img"
+                        android:text="@string/txt_jobqueue"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/view_line_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/comp_jobs_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/comp_jobs_img"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/icon_compjobs" />
+
+                    <TextView
+                        android:id="@+id/comp_jobs_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/comp_jobs_img"
+                        android:text="@string/txt_comp_jobs"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/view_line_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/profile_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/profile_img"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/icon_profile" />
+
+                    <TextView
+                        android:id="@+id/profile_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/profile_img"
+                        android:text="@string/txt_profile"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/view_line_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/logout_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/logout_img"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/icon_logout" />
+
+                    <TextView
+                        android:id="@+id/logout_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/logout_img"
+                        android:text="@string/txt_logout"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
