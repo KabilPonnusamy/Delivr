@@ -24,8 +24,8 @@ public interface APIService {
 
 
     //Login
-    @POST("member/loginnew")
-    Call<DataEnvelope<ResponseUserLogin>> checkLogin(@Body PostDoLogin post);
+    @POST("Users/signup")
+    Call<ResponseUserLogin> checkLogin(@Body PostDoLogin post);
 
 
 
