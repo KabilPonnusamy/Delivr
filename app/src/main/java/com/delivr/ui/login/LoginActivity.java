@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.delivr.Common.GPSTracker;
 import com.delivr.R;
 import com.delivr.backend.APIService;
 import com.delivr.backend.DataEnvelope;
@@ -60,12 +62,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public static PendingIntent pendingFBIntent;
     String user_memberid;
 
+    String strLat, strLon, strIMEI, strMake, strModel, strOSVersion;
+    //Location
+    GPSTracker gpsTracker;
+    public static Double lat, lon;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         initiateView();
+        getLocations();
         if (!CheckNetwork.isInternetAvailable(LoginActivity.this))  //if connection available
         {
             AlertBox(getResources().getString(R.string.error), getResources().getString(R.string.network), ext_username);
@@ -74,6 +82,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog.setMessage("Please wait..");
         progressDialog.setCancelable(false);
 
+    }
+
+    private void getLocations() {
+        gpsTracker = new GPSTracker(this);
+        lat = gpsTracker.getLatitude();
+        lon = gpsTracker.getLongitude();
+        strLat = String.valueOf(lat);
+        strLon = String.valueOf(lon);
+        Log.e("delivrApp" ,"Latitude: " + strLat);
+        Log.e("delivrApp" ,"Longitude: " + strLon);
     }
 
     private void initiateView() {
