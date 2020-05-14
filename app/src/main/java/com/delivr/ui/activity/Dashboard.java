@@ -132,7 +132,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                         return false;
                     }
                 });
-    }
+            }
 
     private void toolbar_init() {
         dash_toolbar = (Toolbar) findViewById(R.id.dash_toolbar);
@@ -142,6 +142,14 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.img_hamburg:
+                if (!drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.openDrawer(GravityCompat.START);
+                } else {
+                    drawer.closeDrawer(GravityCompat.END);
+                }
+                break;
+
             case R.id.myjobs_layout:
                 Fragment jobsfragment = new Frag_MyJobs();
                 FragmentTransaction ftjobs = getSupportFragmentManager().beginTransaction();
