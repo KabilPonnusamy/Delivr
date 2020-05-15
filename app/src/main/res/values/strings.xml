@@ -43,4 +43,10 @@
     <string name="dialog_title_sorry">Sorry</string>
     <string name="btn_ok">@android:string/ok</string>
     <string name="btn_cancel">@android:string/cancel</string>
+    <string name="gps_network_not_enabled">GPS Network not enabled</string>
+    <string name="open_location_settings">Open Location</string>
+    <string name="cancel">Cancel</string>
+    <string name="login_text">Login</string>
+    <string name="loc_required_text">Location required to access Delivr</string>
+    <string name="need_to_allow">You need to allow permissions</string>
 </resources>

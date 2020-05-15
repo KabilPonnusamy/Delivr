@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public static PendingIntent pendingFBIntent;
     String user_memberid;
 
-    String strLat, strLon, strIMEI, strMake, strModel, strOSVersion;
+    String strLat, strLon;
     //Location
     GPSTracker gpsTracker;
     public static Double lat, lon;
