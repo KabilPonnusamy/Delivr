@@ -46,6 +46,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+
     TextView loginbtn, forgot_pwdbtn, signupbtn;
     EditText ext_username, ext_password;
     String str_useremail, str_user_password;
@@ -282,7 +283,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             }
                         }
 
-
                     } else {
                         Utils.showMessageDialog(LoginActivity.this,
                                 getString(R.string.dialog_title_sorry),
@@ -316,6 +316,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         return convertToHex(sha1hash);
     }
+
     private static String convertToHex(byte[] data) {
         StringBuilder sb = new StringBuilder(data.length * 2);
 

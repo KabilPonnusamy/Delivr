@@ -72,7 +72,8 @@ public class SplashActivity extends Activity {
             case REQUEST_LOCATION:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // .. Can now obtain the UUID
-                    launchApp();
+//                    launchApp();
+                    checkLocationEnabled();
                 } else {
                     Toast.makeText(SplashActivity.this, "Unable to continue without granting permission", Toast.LENGTH_SHORT).show();
                     finish();
@@ -87,6 +88,7 @@ public class SplashActivity extends Activity {
                         && grantResults[4] == PackageManager.PERMISSION_GRANTED) {
                     launchApp();
                 } else {
+                    // Case for all the permissions are disabled
                     /*Toast.makeText(getApplicationContext(), "This App required some missing permissions." +
                                     "Please enable from app settings.",
                             Toast.LENGTH_SHORT).show();
@@ -94,6 +96,7 @@ public class SplashActivity extends Activity {
                     launchApp();
                 }
                 break;
+
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0) {
                     boolean locationAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
@@ -156,7 +159,7 @@ public class SplashActivity extends Activity {
 
     private void launchApp() {
         checkForLocationPermission();
-        checkLocationEnabled();
+//        checkLocationEnabled();
 
     }
 
@@ -227,11 +230,13 @@ public class SplashActivity extends Activity {
                             REQUEST_LOCATION);
                 }
             } else {
+                checkLocationEnabled();
                 //... Permission has already been granted, obtain the UUID
 //                startApp();
             }
 
         } else {
+            checkLocationEnabled();
             //... No need to request permission, obtain the UUID
 //            startApp();
         }
@@ -258,22 +263,6 @@ public class SplashActivity extends Activity {
                 } catch (Exception e) {
                     System.out.println("EXc=" + e);
                 } finally {
-                    /**
-                     * Called after splash times up. Do some action after splash
-                     * times up. Here we moved to another main activity class
-                     */
-                    /*Log.i("SPLASH","Log USeerid"+new PreferenceHelper(SplashActivity.this).getUserId());
-                    if (!TextUtils.isEmpty(new PreferenceHelper(SplashActivity.this).getUserId())) {
-                        Log.e("SPLASH","User id avialble");
-                        Intent myIntent = new Intent(SplashActivity.this,FacilityHomeActivity.class);
-                        startActivityForResult(myIntent, 0);
-                        finish();
-
-                    }else{
-                        Intent myIntent = new Intent(SplashActivity.this,MainActivity.class);
-                        startActivityForResult(myIntent, 0);
-                        finish();
-                    }*/
                     Intent myIntent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(myIntent);
 
@@ -300,13 +289,14 @@ public class SplashActivity extends Activity {
     private boolean checkPermission() {
         Log.e("delivrApp", "check_permission");
         int result = ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION);
-        int result1 = ContextCompat.checkSelfPermission(this, CAMERA);
-        return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED;
+//        int result1 = ContextCompat.checkSelfPermission(this, CAMERA);
+//        return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED;
+        return result == PackageManager.PERMISSION_GRANTED;
     }
 
     private void requestPermission() {
         Log.e("delivrApp", "request_permission");
-        ActivityCompat.requestPermissions(SplashActivity.this, new String[]{ACCESS_FINE_LOCATION, CAMERA},
+        ActivityCompat.requestPermissions(SplashActivity.this, new String[]{ACCESS_FINE_LOCATION},
                 PERMISSION_REQUEST_CODE);
     }
 
