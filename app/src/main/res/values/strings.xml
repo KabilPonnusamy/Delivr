@@ -2,6 +2,7 @@
     <string name="app_name">Delivr</string>
     <string name="apikey">B668EDFE-4BDA-4684-A075-B04D89E45EAE</string>
     <string name="apicode">r6!e1Yi4uM</string>
+
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -49,4 +50,7 @@
     <string name="login_text">Login</string>
     <string name="loc_required_text">Location required to access Delivr</string>
     <string name="need_to_allow">You need to allow permissions</string>
+    <string name="wb_no">WB No:</string>
+    <string name="job_type">Job Type:</string>
+    <string name="view_details">View Details</string>
 </resources>

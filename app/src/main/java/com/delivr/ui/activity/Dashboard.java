@@ -50,7 +50,16 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 
         toolbar_init();
         initView();
+        open_Home();
+    }
 
+    private void open_Home() {
+        Fragment fragment = new Frag_MyJobs();
+        if (fragment != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.frame_layout, fragment);
+            ft.commit();
+        }
     }
 
     private void initView() {
@@ -95,14 +104,21 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     }
 
     private void navigation_listener() {
+        bottom_nav.setItemIconTintList(null);
+        bottom_nav.getMenu().getItem(0).setIcon(R.drawable.icon_payment);
+
         bottom_nav.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @SuppressLint("NewApi")
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                         Fragment fragment = null;
+                        bottom_nav.getMenu().getItem(0).setIcon(R.drawable.icon_jobs);
+                        bottom_nav.getMenu().getItem(1).setIcon(R.drawable.icon_compjobs);
+                        bottom_nav.getMenu().getItem(2).setIcon(R.drawable.icon_profile);
                         switch (menuItem.getItemId()) {
                             case R.id.menu_job:
+                                menuItem.setIcon(R.drawable.icon_payment);
                                 fragment = new Frag_MyJobs();
                                 if (fragment != null) {
                                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -112,6 +128,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                                 return true;
 
                             case R.id.menu_profile:
+                                menuItem.setIcon(R.drawable.icon_payment);
                                 fragment = new Frag_MyProfile();
                                 if (fragment != null) {
                                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -121,6 +138,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                                 return true;
 
                             case R.id.menu_queue:
+                                menuItem.setIcon(R.drawable.icon_payment);
                                 fragment = new Frag_MyJobsQueue();
                                 if (fragment != null) {
                                     FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

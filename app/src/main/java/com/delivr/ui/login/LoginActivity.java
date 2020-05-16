@@ -204,6 +204,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String Strapicode = getString(R.string.apicode);
         String sign = str_usernames + str_passwords + Strapikey + Strapicode;
         String StrSignature = SHA1(sign);
+        Log.e("delivrApp", "Signature: " + StrSignature);
+        Log.e("delivrApp", "Sign: " + sign);
+        Log.e("delivrApp", "UserEmail: " + str_useremail);
+        Log.e("delivrApp", "UserPass: " + str_user_password);
+        Log.e("delivrApp", "StraipKey: " + Strapikey);
+        Log.e("delivrApp", "StraipCode: " + Strapicode);
 
         callLogin = RetrofitClient.getInstance().getApiInterface().checkLogin(
                 new PostDoLogin(
