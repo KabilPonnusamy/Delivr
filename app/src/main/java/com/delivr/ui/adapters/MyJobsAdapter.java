@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.delivr.R;
+import com.delivr.backend.responsemodels.ResponseRiderQueue;
 import com.delivr.data.model.MyJobsModel;
 
 import java.util.ArrayList;
@@ -21,11 +22,11 @@ import java.util.List;
 
 public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.ViewHolder>  {
 
-    private List<MyJobsModel> myJobsmodel;
+    private List<ResponseRiderQueue> riderQueues;
     private Context context;
 
-    public MyJobsAdapter(ArrayList<MyJobsModel> myJobsmodel, Context context) {
-        this.myJobsmodel = myJobsmodel;
+    public MyJobsAdapter(ArrayList<ResponseRiderQueue> riderQueues, Context context) {
+        this.riderQueues = riderQueues;
         this.context = context;
     }
 
@@ -37,17 +38,17 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.job_wbno_value.setText(myJobsmodel.get(position).getStr_jobwbno());
-        holder.job_type.setText(myJobsmodel.get(position).getStr_jobtype());
-        holder.job_date.setText(myJobsmodel.get(position).getStr_jobpickdate());
-        holder.job_time.setText(myJobsmodel.get(position).getStr_jobpicktime());
-        holder.job_price.setText("$ " + myJobsmodel.get(position).getStr_jobamount());
+        holder.job_wbno_value.setText(riderQueues.get(position).getWBno());
+        holder.job_type.setText(riderQueues.get(position).getJobType());
+        holder.job_date.setText(riderQueues.get(position).getPickupdatetime());
+        holder.job_time.setText(riderQueues.get(position).getPickupdatetime());
+        holder.job_price.setText("$ " + riderQueues.get(position).getAmount());
 
     }
 
     @Override
     public int getItemCount() {
-        return myJobsmodel.size();
+        return riderQueues.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

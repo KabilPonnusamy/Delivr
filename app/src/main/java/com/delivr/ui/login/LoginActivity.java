@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.delivr.Common.GPSTracker;
+import com.delivr.Common.StoredDatas;
 import com.delivr.R;
 import com.delivr.backend.APIService;
 import com.delivr.backend.DataEnvelope;
@@ -202,7 +203,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog.show();
         String Strapikey = getString(R.string.apikey);
         String Strapicode = getString(R.string.apicode);
-        String sign = str_usernames + str_passwords + Strapikey + Strapicode;
+        String sign = str_useremail + str_user_password + Strapikey + Strapicode;
         String StrSignature = SHA1(sign);
         Log.e("delivrApp", "Signature: " + StrSignature);
         Log.e("delivrApp", "Sign: " + sign);
@@ -227,6 +228,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         UserFullName = response.body().getFullname();
 
                         UserId = response.body().getUserId();
+                        StoredDatas.getInstance().setUserId(UserId);
+
                         UserRole = response.body().getRole();
                         UserStatusMsg = response.body().getMessage();
                         if (UserStatusMsg.equalsIgnoreCase("Success")) {

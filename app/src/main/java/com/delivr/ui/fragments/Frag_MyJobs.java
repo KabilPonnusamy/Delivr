@@ -1,11 +1,15 @@
 package com.delivr.ui.fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -13,20 +17,40 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.delivr.Common.StoredDatas;
 import com.delivr.R;
+import com.delivr.backend.RetrofitClient;
+import com.delivr.backend.postmodels.PostDoRiderQueue;
+import com.delivr.backend.responsemodels.ResponseRiderQueue;
 import com.delivr.data.model.MyJobsModel;
 import com.delivr.ui.adapters.MyJobsAdapter;
+import com.delivr.ui.interfaces.SHAInterface;
+import com.delivr.utils.CheckNetwork;
+import com.delivr.utils.Prefs;
+import com.delivr.utils.Utils;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
-public class Frag_MyJobs extends Fragment implements View.OnClickListener {
+public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAInterface {
+
+    ProgressDialog progressDialog;
+    private Call<ArrayList<ResponseRiderQueue>> callRiderQueue;
+    private boolean isShowingPassword;
 
     Toolbar dash_toolbar;
     TextView toolbar_title;
     RecyclerView jobs_recycler;
     ArrayList<MyJobsModel> myJobsModel;
     MyJobsAdapter myjobsAdapter;
+    String userId;
+    ArrayList<ResponseRiderQueue> riderQueues;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -41,13 +65,83 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener {
 
         toolbarInit();
         initView(view);
+        initiateProgress();
 
         return view;
         }
 
+    private void initiateProgress() {
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Please wait..");
+        progressDialog.setCancelable(false);
+
+        if (!CheckNetwork.isInternetAvailable(getActivity()))  //if connection available
+        {
+            AlertBox(getResources().getString(R.string.error), getResources().getString(R.string.network));
+        }
+
+        gatherRiders();
+    }
+
+    private void gatherRiders() {
+        String Strapikey = getString(R.string.apikey);
+        String Strapicode = getString(R.string.apicode);
+        String sign =  userId + Strapikey + Strapicode;
+        String StrSignature = SHAInterface.SHA1(sign);
+        Log.e("delivrApp", "Signature: " + StrSignature);
+        Log.e("delivrApp", "Sign: " + sign);
+        Log.e("delivrApp", "StraipKey: " + Strapikey);
+        Log.e("delivrApp", "StraipCode: " + Strapicode);
+
+        progressDialog.show();
+        callRiderQueue = RetrofitClient.getInstance().getApiInterface().getRiderQueue(
+                new PostDoRiderQueue( userId, Strapikey, StrSignature));
+
+        callRiderQueue.enqueue(new Callback<ArrayList<ResponseRiderQueue>>() {
+            @Override
+            public void onResponse(Call<ArrayList<ResponseRiderQueue>> call,
+                                   final Response<ArrayList<ResponseRiderQueue>> response) {
+                progressDialog.dismiss();
+                if (response.body() != null) {
+                    riderQueues = response.body();
+                    showAdapters();
+                } else {
+                    Utils.showMessageDialog(getActivity(),
+                            getString(R.string.dialog_title_sorry),
+                            "No Data found");
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<ArrayList<ResponseRiderQueue>> call, Throwable t) {
+                progressDialog.dismiss();
+                t.printStackTrace();
+                Prefs.setLoginVerified("failure");
+                Utils.showGenericErrorDialog(getActivity());
+            }
+        });
+
+    }
+
+    private void showAdapters() {
+        if(riderQueues != null) {
+            if(riderQueues.size() > 0) {
+                jobs_recycler.setHasFixedSize(true);
+                jobs_recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
+                myjobsAdapter = new MyJobsAdapter(riderQueues, getActivity());
+                jobs_recycler.setAdapter(myjobsAdapter);
+            }
+        }
+    }
+
     private void initView(View view) {
+        userId = StoredDatas.getInstance().getUserId();
+        Log.e("delivrApp", "UserId: " + userId);
+
+        riderQueues = new ArrayList<ResponseRiderQueue>();
         jobs_recycler = view.findViewById(R.id.jobs_recycler);
-        myJobsModel = new ArrayList<MyJobsModel>();
+        /*myJobsModel = new ArrayList<MyJobsModel>();
         myJobsModel = getJobsModel();
 
         if(myJobsModel != null) {
@@ -57,7 +151,7 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener {
                 myjobsAdapter = new MyJobsAdapter(myJobsModel, getActivity());
                 jobs_recycler.setAdapter(myjobsAdapter);
             }
-        }
+        }*/
     }
 
     private ArrayList<MyJobsModel> getJobsModel() {
@@ -104,5 +198,44 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
 
         }
+    }
+
+    public void AlertBox(final String head, final String meg) {
+        LayoutInflater in = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View vv = in.inflate(R.layout.alertbox, null);
+        final BottomSheetDialog dialog = new BottomSheetDialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(vv);
+        dialog.setCancelable(false);
+        TextView content = (TextView) vv.findViewById(R.id.content);
+        TextView header = (TextView) vv.findViewById(R.id.header);
+        header.setText(head);
+        TextView no = (TextView) vv.findViewById(R.id.no);
+        TextView yes = (TextView) vv.findViewById(R.id.yes);
+        LinearLayout cancel = (LinearLayout) vv.findViewById(R.id.cancel);
+        cancel.setVisibility(View.GONE);
+        LinearLayout ok = (LinearLayout) vv.findViewById(R.id.ok);
+        content.setText(meg);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                if (head.equalsIgnoreCase("Error")) {
+                    getActivity().finish();
+                } else if (head.equalsIgnoreCase("Alert")) {
+                    dialog.dismiss();
+                } else {
+                    dialog.dismiss();
+                }
+            }
+        });
+        dialog.show();
     }
 }
