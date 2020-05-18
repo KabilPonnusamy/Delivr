@@ -13,12 +13,20 @@ public class Prefs {
                 "com.delivr.app_preferences", Context.MODE_PRIVATE);
     }
 
-    public static String getMemberId() {
-        return getPrefs().getString("member_id", "");
+    public static String getUserId() {
+        return getPrefs().getString("userid", "");
     }
 
-    public static void setMemberId(String emailPendingActivation) {
-        getPrefs().edit().putString("member_id", emailPendingActivation).apply();
+    public static void setUserId(String userid) {
+        getPrefs().edit().putString("userid", userid).apply();
+    }
+
+    public static String getUserRole() {
+        return getPrefs().getString("userrole", "");
+    }
+
+    public static void setUserRole(String userrole) {
+        getPrefs().edit().putString("userrole", userrole).apply();
     }
 
     public static String getLoginVerified() {

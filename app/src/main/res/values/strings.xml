@@ -49,4 +49,19 @@
     <string name="login_text">Login</string>
     <string name="loc_required_text">Location required to access Delivr</string>
     <string name="need_to_allow">You need to allow permissions</string>
+    <string name="prompt_fullname">Full Name</string>
+    <string name="prompt_role">Role</string>
+    <string name="prompt_emailid">Email Id</string>
+    <string name="prompt_address">Address</string>
+    <string name="prompt_mobileno">Mobile No</string>
+    <string name="prompt_phoneno">Phone No</string>
+    <string name="prompt_doj">Date of Join</string>
+    <string name="prompt_fax">Fax</string>
+    <string name="prompt_companyname">Company Name</string>
+    <string name="prompt_nricfin_acra">NRICFIN_ACRA</string>
+    <string name="prompt_ridertype">RiderType</string>
+    <string name="prompt_commission">Commission</string>
+    <string name="prompt_commissiondate">CommissionDate</string>
+    <string name="prompt_zipcode">Zipcode</string>
+    <string name="prompt_message">Message</string>
 </resources>

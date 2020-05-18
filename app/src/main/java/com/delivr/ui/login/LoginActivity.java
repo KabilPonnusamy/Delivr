@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.SQLException;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,15 +31,20 @@ import com.delivr.R;
 import com.delivr.backend.APIService;
 import com.delivr.backend.DataEnvelope;
 import com.delivr.backend.RetrofitClient;
+import com.delivr.backend.models.CAdddress;
 import com.delivr.backend.postmodels.PostDoLogin;
+import com.delivr.backend.postmodels.PostGetProfile;
 import com.delivr.backend.responsemodels.ResponseUserLogin;
+import com.delivr.backend.responsemodels.ResponseUserProfile;
 import com.delivr.ui.activity.Dashboard;
 import com.delivr.utils.CheckNetwork;
 import com.delivr.utils.Constants;
+import com.delivr.utils.DataBaseHelper;
 import com.delivr.utils.Prefs;
 import com.delivr.utils.Utils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 
 import retrofit2.Call;
@@ -57,13 +63,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private APIService apiService;
     // ArrayList<User_Information> user_informations;
     private Call<ResponseUserLogin> callLogin;
+    private Call<ResponseUserProfile> callGetProfile;
     private boolean isShowingPassword;
     public static PendingIntent pendingIntent;
     public static AlarmManager manager;
     public static PendingIntent pendingFBIntent;
     String user_memberid;
-
+    public static double CLat, CLong;
     String strLat, strLon;
+    public static String CSenderName, CContactNo, CCompanyName, CUnitno, CAddress, CPostalCode;
     //Location
     GPSTracker gpsTracker;
     public static Double lat, lon;
@@ -203,7 +211,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String Strapikey = getString(R.string.apikey);
         String Strapicode = getString(R.string.apicode);
         String sign = str_usernames + str_passwords + Strapikey + Strapicode;
-        String StrSignature = SHA1(sign);
+        String StrSignature = Utils.SHA1(sign);
 
         callLogin = RetrofitClient.getInstance().getApiInterface().checkLogin(
                 new PostDoLogin(
@@ -225,8 +233,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         UserStatusMsg = response.body().getMessage();
                         if (UserStatusMsg.equalsIgnoreCase("Success")) {
                             Toast.makeText(LoginActivity.this, "User Role"+UserRole, Toast.LENGTH_LONG).show();
+                            Prefs.setUserId(UserId);
+                            Prefs.setUserRole(UserRole);
                             if (UserRole.equals("Client")) {
-                                //getprofile();
+                                getprofile();
 
                             }
                         } else {
@@ -328,6 +338,71 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return sb.toString().toUpperCase();
     }
 
+    public void getprofile() {
+        String Strapikey = getString(R.string.apikey);
+        String Strapicode = getString(R.string.apicode);
+        String sign = UserId + Strapikey + Strapicode;
+        String StrSignature = SHA1(sign);
+        callGetProfile = RetrofitClient.getInstance().getApiInterface().getProfile(
+                new PostGetProfile(
+                        UserId ,
+                        Strapikey, StrSignature));
+
+        callGetProfile.enqueue(new Callback<ResponseUserProfile>() {
+            @Override
+            public void onResponse(Call<ResponseUserProfile> call,
+                                   final Response<ResponseUserProfile> response) {
+                progressDialog.dismiss();
+                if (response.body() != null) {
+                    if (response.body().getMessage().equalsIgnoreCase("success")) {
+
+                        CSenderName = response.body().getFullname();
+                        CContactNo = response.body().getMobileno();
+                        CCompanyName = response.body().getCompanyName();
+                        CUnitno = "-";
+                        CPostalCode = response.body().getZipcode();
+
+                        DataBaseHelper myDbHelper = new DataBaseHelper(LoginActivity.this);
+                        try {
+                            myDbHelper.createDataBase();
+                        } catch (IOException ioe) {
+                            throw new Error("Unable to create database");
+                        }
+                        try {
+                            myDbHelper.openDataBase();
+                        } catch (SQLException sqle) {
+                            throw sqle;
+                        }
+                        CAdddress cadddress = myDbHelper.getAddress(CPostalCode);
+
+                        CAddress = cadddress.toString();
+
+                        CLat = cadddress.Lat();
+                        CLong = cadddress.Long();
+
+
+                    } else {
+                        Utils.showMessageDialog(LoginActivity.this,
+                                getString(R.string.dialog_title_sorry),
+                                response.body().getMessage());
+                    }
+                } else {
+                    Utils.showMessageDialog(LoginActivity.this,
+                            getString(R.string.dialog_title_sorry),
+                            response.body().getMessage());
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<ResponseUserProfile> call, Throwable t) {
+                progressDialog.dismiss();
+                t.printStackTrace();
+                Prefs.setLoginVerified("failure");
+                Utils.showGenericErrorDialog(LoginActivity.this);
+            }
+        });
+    }
 
 
 }

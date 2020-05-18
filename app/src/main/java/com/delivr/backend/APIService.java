@@ -2,9 +2,9 @@ package com.delivr.backend;
 
 
 import com.delivr.backend.postmodels.PostDoLogin;
+import com.delivr.backend.postmodels.PostGetProfile;
 import com.delivr.backend.responsemodels.ResponseUserLogin;
-
-
+import com.delivr.backend.responsemodels.ResponseUserProfile;
 
 
 import retrofit2.Call;
@@ -26,6 +26,10 @@ public interface APIService {
     //Login
     @POST("Users/signup")
     Call<ResponseUserLogin> checkLogin(@Body PostDoLogin post);
+
+    //Login
+    @POST("Users/GetProfile")
+    Call<ResponseUserProfile> getProfile(@Body PostGetProfile post);
 
 
 

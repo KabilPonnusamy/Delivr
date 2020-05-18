@@ -341,6 +341,7 @@ public class SplashActivity extends Activity {
             strLon = String.valueOf(longitude);
             Log.e("delivrApp", "Splash_Latitude: " + strLat);
             Log.e("delivrApp", "Splash_Longitude: " + strLon);
+            Toast.makeText(SplashActivity.this, "Current Latitude:" +strLat + "Longitude:" + strLon, Toast.LENGTH_LONG).show();
             startApp();
         } else {
             gps.showSettingsAlert();
