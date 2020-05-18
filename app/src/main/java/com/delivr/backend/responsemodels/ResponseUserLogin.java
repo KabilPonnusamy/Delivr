@@ -1,10 +1,8 @@
 package com.delivr.backend.responsemodels;
 
-
 import com.delivr.backend.BaseResponse;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 
 public class ResponseUserLogin extends BaseResponse {
 
@@ -30,9 +28,5 @@ public class ResponseUserLogin extends BaseResponse {
     @Expose
     @SerializedName("Role")
     String Role;
-
-
-
-
 
 }

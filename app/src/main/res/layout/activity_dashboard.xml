@@ -81,6 +81,9 @@
             custom:layout_constraintBottom_toBottomOf="parent"
             design:menu="@menu/menu_dashboard" />
 
+        <!--custom:itemIconTint="@color/bottom_nav_color"
+        custom:itemTextColor="@color/bottom_nav_color"-->
+
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
