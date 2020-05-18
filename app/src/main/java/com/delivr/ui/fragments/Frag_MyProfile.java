@@ -32,9 +32,11 @@ import retrofit2.Response;
 
 public class Frag_MyProfile extends Fragment implements View.OnClickListener {
 
-    TextView toolbar_title, label_fullname, label_role, label_emailid, label_address, label_mobileno, label_phoneno,
-            label_doj, label_fax, label_companyname,label_nric, label_ridertype, label_zipcode;
+    TextView toolbar_title, label_fullname, label_role, label_emailid, label_address, label_mobileno,
+            label_phoneno, label_doj, label_fax, label_companyname, label_nric, label_ridertype,
+            label_zipcode;
     Toolbar dash_toolbar;
+
     EditText edt_fullname_prof;
     EditText edt_role_prof;
     EditText edt_emailid_prof;
@@ -94,6 +96,15 @@ public class Frag_MyProfile extends Fragment implements View.OnClickListener {
         edt_nricacra_prof = (EditText) view.findViewById(R.id.edt_nricacra_prof);
         edt_ridertype_prof = (EditText) view.findViewById(R.id.edt_ridertype_prof);
         edt_zipcode_prof = (EditText) view.findViewById(R.id.edt_zipcode_prof);
+
+        label_companyname = view.findViewById(R.id.label_companyname);
+        label_ridertype = view.findViewById(R.id.label_ridertype);
+        label_phoneno = view.findViewById(R.id.label_phoneno);
+        label_doj = view.findViewById(R.id.label_doj);
+        label_fax = view.findViewById(R.id.label_fax);
+        label_nric = view.findViewById(R.id.label_nric);
+
+
         UserId = Prefs.getUserId();
         getProfile(UserId);
     }
