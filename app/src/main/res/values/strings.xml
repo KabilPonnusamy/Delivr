@@ -64,4 +64,7 @@
     <string name="prompt_commissiondate">CommissionDate</string>
     <string name="prompt_zipcode">Zipcode</string>
     <string name="prompt_message">Message</string>
+    <string name="view_details">View Details</string>
+    <string name="wb_no">WB No:</string>
+    <string name="job_type">Job Type:</string>
 </resources>
