@@ -8,4 +8,5 @@
     <color name="view_line_gray">#d6d6d6</color>
     <color name="shadow">#b0b2b3</color>
     <color name="splash_color">#58595b</color>
+    <color name="red">#e51616</color>
 </resources>

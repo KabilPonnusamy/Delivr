@@ -129,14 +129,15 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAIn
             if(riderQueues.size() > 0) {
                 jobs_recycler.setHasFixedSize(true);
                 jobs_recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-                myjobsAdapter = new MyJobsAdapter(riderQueues, getActivity());
+                myjobsAdapter = new MyJobsAdapter(riderQueues, getActivity(),
+                        Frag_MyJobs.this);
                 jobs_recycler.setAdapter(myjobsAdapter);
             }
         }
     }
 
     private void initView(View view) {
-        userId = StoredDatas.getInstance().getUserId();
+        userId = Prefs.getUserId();
         Log.e("delivrApp", "UserId: " + userId);
 
         riderQueues = new ArrayList<ResponseRiderQueue>();

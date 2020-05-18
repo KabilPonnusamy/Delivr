@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -161,6 +162,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.loginsubmit:
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(ext_username.getWindowToken(), 0);
+
                 str_useremail = ext_username.getText().toString();
                 str_user_password = ext_password.getText().toString();
 
@@ -211,7 +215,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String Strapikey = getString(R.string.apikey);
         String Strapicode = getString(R.string.apicode);
         String sign = str_usernames + str_passwords + Strapikey + Strapicode;
+//        String sign = "1007" + "05e24a10-1e3b-41c8-8079-16efadce3c23" + Strapikey + Strapicode;
         String StrSignature = Utils.SHA1(sign);
+
+        Log.e("delivrApp", "Sign: " + StrSignature);
+        Log.e("delivrApp", "StrapiKey: " + Strapikey);
 
         callLogin = RetrofitClient.getInstance().getApiInterface().checkLogin(
                 new PostDoLogin(

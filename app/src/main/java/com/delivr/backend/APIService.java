@@ -1,10 +1,12 @@
 package com.delivr.backend;
 
 
+import com.delivr.backend.postmodels.PostDoActionAQ;
 import com.delivr.backend.postmodels.PostDoGetRiders;
 import com.delivr.backend.postmodels.PostDoLogin;
 import com.delivr.backend.postmodels.PostDoRiderQueue;
 import com.delivr.backend.postmodels.PostGetProfile;
+import com.delivr.backend.responsemodels.ResponseActionAQ;
 import com.delivr.backend.responsemodels.ResponseGetRiders;
 import com.delivr.backend.responsemodels.ResponseRiderQueue;
 import com.delivr.backend.responsemodels.ResponseUserLogin;
@@ -44,6 +46,9 @@ public interface APIService {
 
     @POST("Users/GetProfile")
     Call<ResponseUserProfile> getProfile(@Body PostGetProfile post);
+
+    @POST("RiderQueue/ActionAQ")
+    Call<ResponseActionAQ> saveActionAQ(@Body PostDoActionAQ post);
 
 
 

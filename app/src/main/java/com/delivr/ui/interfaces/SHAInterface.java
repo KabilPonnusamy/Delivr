@@ -1,6 +1,9 @@
 package com.delivr.ui.interfaces;
 
 import java.security.MessageDigest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public interface SHAInterface {
 
@@ -25,4 +28,21 @@ public interface SHAInterface {
 
         return sb.toString().toUpperCase();
     }
+
+    public static String getDateFormatted(String mydate) throws ParseException {
+        SimpleDateFormat spf=new SimpleDateFormat("MMM  dd yyyy  hh:mma");
+        Date newDate=spf.parse(mydate);
+        spf= new SimpleDateFormat("MMM dd yyyy");
+        String newdate = spf.format(newDate);
+        return newdate;
+    }
+
+    public static String getTimeFormatted(String mydate) throws ParseException {
+        SimpleDateFormat spf=new SimpleDateFormat("MMM  dd yyyy  hh:mma");
+        Date newDate=spf.parse(mydate);
+        spf= new SimpleDateFormat("hh:mm a");
+        String newdate = spf.format(newDate);
+        return newdate;
+    }
+
 }
