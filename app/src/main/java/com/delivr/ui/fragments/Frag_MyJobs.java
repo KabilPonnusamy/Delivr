@@ -2,6 +2,7 @@ package com.delivr.ui.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +26,7 @@ import com.delivr.backend.postmodels.PostDoRiderQueue;
 import com.delivr.backend.responsemodels.ResponseRiderQueue;
 import com.delivr.data.model.MyJobsModel;
 import com.delivr.ui.adapters.MyJobsAdapter;
+import com.delivr.ui.interfaces.Intent_Constants;
 import com.delivr.ui.interfaces.SHAInterface;
 import com.delivr.utils.CheckNetwork;
 import com.delivr.utils.Prefs;
@@ -38,7 +41,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAInterface {
+public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAInterface,
+        Intent_Constants {
 
     ProgressDialog progressDialog;
     private Call<ArrayList<ResponseRiderQueue>> callRiderQueue;
@@ -154,7 +158,7 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAIn
             }
         }*/
     }
-
+/*
     private ArrayList<MyJobsModel> getJobsModel() {
         ArrayList<MyJobsModel> item = new ArrayList<MyJobsModel>();
 
@@ -186,6 +190,7 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAIn
 
         return item;
     }
+*/
 
     private void toolbarInit() {
         dash_toolbar = getActivity().findViewById(R.id.dash_toolbar);
@@ -238,5 +243,19 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAIn
             }
         });
         dialog.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == RIDER_MYJOBS_to_MYJOB_DETAILS) {
+            if(resultCode == MYJOBSAQ_success) {
+                String listAQPos = data.getStringExtra("AQPosition");
+                int position = Integer.parseInt(listAQPos);
+                Log.e("delivrApp", "LostPos: " + position);
+                riderQueues.remove(position);
+                myjobsAdapter.notifyDataSetChanged();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
