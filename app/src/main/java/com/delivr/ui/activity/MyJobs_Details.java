@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,16 +17,12 @@ import com.delivr.Common.StoredDatas;
 import com.delivr.R;
 import com.delivr.backend.RetrofitClient;
 import com.delivr.backend.postmodels.PostDoActionAQ;
-import com.delivr.backend.postmodels.PostDoLogin;
 import com.delivr.backend.responsemodels.ResponseActionAQ;
 import com.delivr.backend.responsemodels.ResponseRiderQueue;
-import com.delivr.backend.responsemodels.ResponseUserLogin;
 import com.delivr.ui.interfaces.Intent_Constants;
-import com.delivr.ui.login.LoginActivity;
 import com.delivr.utils.Prefs;
 import com.delivr.utils.Utils;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import retrofit2.Call;
