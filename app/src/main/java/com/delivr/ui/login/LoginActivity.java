@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.SQLException;
+import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,7 @@ import com.delivr.backend.postmodels.PostDoLogin;
 import com.delivr.backend.postmodels.PostGetProfile;
 import com.delivr.backend.responsemodels.ResponseUserLogin;
 import com.delivr.backend.responsemodels.ResponseUserProfile;
+import com.delivr.service.AlarmService;
 import com.delivr.ui.activity.Dashboard;
 import com.delivr.utils.CheckNetwork;
 import com.delivr.utils.Constants;
@@ -65,6 +67,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Call<ResponseUserLogin> callLogin;
     private Call<ResponseUserProfile> callGetProfile;
     private boolean isShowingPassword;
+    public static Location LastGeoloc;
     public static PendingIntent pendingIntent;
     public static AlarmManager manager;
     public static PendingIntent pendingFBIntent;
@@ -253,23 +256,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         } else {
                             if (UserRole.equals("Rider")) {
 
-                                /*if (GeoLocation.isProviderEmpty(getApplicationContext()))
-                                    GeoLocation.displayPromptForEnablingGPS(MainActivity.this);
 
-                                GeoLocation.LocationHelper(MainActivity.this._context);
 
                                 // Retrieve a PendingIntent that will perform a broadcast
-                                Intent alarmIntent = new Intent(MainActivity.this, AlarmService.class);
-                                MainActivity.pendingIntent = PendingIntent.getService(MainActivity.this, 0, alarmIntent, 0);
+                                Intent alarmIntent = new Intent(LoginActivity.this, AlarmService.class);
+                                LoginActivity.pendingIntent = PendingIntent.getService(LoginActivity.this, 0, alarmIntent, 0);
 
-                                MainActivity.manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                LoginActivity.manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                                 int interval = 180000;
-                                MainActivity.manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, MainActivity.pendingIntent);
+                                LoginActivity.manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, LoginActivity.pendingIntent);
 
-                                Intent i = new Intent(getApplicationContext(), MenuTile.class);
+                               /* Intent i = new Intent(getApplicationContext(), MenuTile.class);
                                 startActivity(i);*/
-                                Intent i = new Intent(getApplicationContext(), Dashboard.class);
-                                startActivity(i);
+                               /* Intent i = new Intent(getApplicationContext(), Dashboard.class);
+                                startActivity(i);*/
                             } else if (UserRole.equals("Client")) {
 
                                 /*Intent alarmFBIntent = new Intent(MainActivity.this, FeedbackReceiver.class);

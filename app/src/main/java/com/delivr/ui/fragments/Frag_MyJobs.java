@@ -136,7 +136,7 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAIn
     }
 
     private void initView(View view) {
-        userId = StoredDatas.getInstance().getUserId();
+        userId = Prefs.getUserId();
         Log.e("delivrApp", "UserId: " + userId);
 
         riderQueues = new ArrayList<ResponseRiderQueue>();

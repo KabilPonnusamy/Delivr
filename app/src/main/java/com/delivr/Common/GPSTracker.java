@@ -18,6 +18,8 @@ import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 
+import com.delivr.ui.login.LoginActivity;
+
 public class GPSTracker extends Service implements LocationListener {
 
 	private final Context mContext;
@@ -197,6 +199,8 @@ public class GPSTracker extends Service implements LocationListener {
 	@Override
 	public void onLocationChanged(Location location) {
 		this.location = location;
+		Log.e("DelivrApp", "Locagtion Changed" + location);
+		LoginActivity.LastGeoloc = location;
 		getLatitude();
 		getLongitude();
 	}
