@@ -1,11 +1,18 @@
 package com.delivr.backend;
 
 
+import com.delivr.backend.postmodels.PostAssignedActionAQ;
+import com.delivr.backend.postmodels.PostAssignedBitAQ;
+import com.delivr.backend.postmodels.PostDoActionAQ;
 import com.delivr.backend.postmodels.PostDoGetRiders;
 import com.delivr.backend.postmodels.PostDoLogin;
 import com.delivr.backend.postmodels.PostDoRiderQueue;
 import com.delivr.backend.postmodels.PostGetProfile;
 import com.delivr.backend.postmodels.PostUpdateLatLong;
+import com.delivr.backend.postmodels.PostgetAssignedQueue;
+import com.delivr.backend.responsemodels.ResponseActionAQ;
+import com.delivr.backend.responsemodels.ResponseAssignedActionAQ;
+import com.delivr.backend.responsemodels.ResponseAssignedQueue;
 import com.delivr.backend.responsemodels.ResponseGetRiders;
 import com.delivr.backend.responsemodels.ResponseRiderQueue;
 import com.delivr.backend.responsemodels.ResponseUserLogin;
@@ -49,6 +56,17 @@ public interface APIService {
     @POST("Schedule/UpdateLatLong")
     Call<BaseResponse> updateLatLong(@Body PostUpdateLatLong post);
 
+    @POST("RiderQueue/ActionAQ")
+    Call<ResponseActionAQ> saveActionAQ(@Body PostDoActionAQ post);
+
+    @POST("RiderQueue/GetAssignedQueue")
+    Call<ArrayList<ResponseAssignedQueue>> getAssignedQueue(@Body PostgetAssignedQueue postgetAssignedQueue);
+
+    @POST("RiderQueue/BidAQ")
+    Call<ResponseAssignedActionAQ> sendactionBidAQ(@Body PostAssignedBitAQ postgetAssignedQueue);
+
+    @POST("RiderQueue/ActionAQ")
+    Call<ResponseAssignedActionAQ> sendassignedActionAQ(@Body PostAssignedActionAQ postgetAssignedQueue);
 
 
 }

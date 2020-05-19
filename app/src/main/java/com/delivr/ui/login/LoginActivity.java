@@ -276,8 +276,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                /* Intent i = new Intent(getApplicationContext(), MenuTile.class);
                                 startActivity(i);*/
-                               /* Intent i = new Intent(getApplicationContext(), Dashboard.class);
-                                startActivity(i);*/
+                                Intent i = new Intent(getApplicationContext(), Dashboard.class);
+                                startActivity(i);
                             } else if (UserRole.equals("Client")) {
 
                                 /*Intent alarmFBIntent = new Intent(MainActivity.this, FeedbackReceiver.class);

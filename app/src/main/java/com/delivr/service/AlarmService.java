@@ -84,7 +84,7 @@ public class AlarmService extends Service {
     @Override
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
-        Toast.makeText(this, "MyAlarmService.onStart()", Toast.LENGTH_LONG).show();
+     //   Toast.makeText(this, "MyAlarmService.onStart()", Toast.LENGTH_LONG).show();
         Log.e("DelivrApp", "Last Geo Location:" +  LoginActivity.LastGeoloc);
         if (Prefs.getUserId().length() > 0 && LoginActivity.LastGeoloc != null) {
             String strRiderid, strLat, strLong;
