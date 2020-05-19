@@ -6,6 +6,7 @@ public interface Intent_Constants {
     int RIDER_DASH_back = 2;
     int RIDER_MYJOBS_to_MYJOB_DETAILS = 3;
     int MYJOB_DETAILS_back = 4;
+    int MYJOBSAQ_success = 5;
 
 
 }
