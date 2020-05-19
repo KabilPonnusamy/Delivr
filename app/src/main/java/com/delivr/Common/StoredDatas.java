@@ -1,5 +1,9 @@
 package com.delivr.Common;
 
+import com.delivr.backend.responsemodels.ResponseRiderQueue;
+
+import java.util.ArrayList;
+
 public class StoredDatas {
 
     public static StoredDatas myObj;
@@ -16,16 +20,22 @@ public class StoredDatas {
         return myObj;
     }
 
-    String userId;
+    ArrayList<ResponseRiderQueue> riderQueues;
+    int rQuePos;
 
-    public String getUserId() {
-        return userId;
+    public ArrayList<ResponseRiderQueue> getRiderQueues() {
+        return riderQueues;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setRiderQueues(ArrayList<ResponseRiderQueue> riderQueues) {
+        this.riderQueues = riderQueues;
     }
 
+    public int getrQuePos() {
+        return rQuePos;
+    }
 
-
+    public void setrQuePos(int rQuePos) {
+        this.rQuePos = rQuePos;
+    }
 }

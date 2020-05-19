@@ -12,22 +12,31 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.delivr.Common.StoredDatas;
 import com.delivr.R;
 import com.delivr.backend.responsemodels.ResponseRiderQueue;
 import com.delivr.data.model.MyJobsModel;
+import com.delivr.ui.activity.MyJobs_Details;
+import com.delivr.ui.fragments.Frag_MyJobs;
+import com.delivr.ui.interfaces.Intent_Constants;
+import com.delivr.ui.interfaces.SHAInterface;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.ViewHolder>  {
+public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.ViewHolder> implements
+        Intent_Constants  {
 
-    private List<ResponseRiderQueue> riderQueues;
+    private ArrayList<ResponseRiderQueue> riderQueues;
     private Context context;
+    private Frag_MyJobs frag_obj;
 
-    public MyJobsAdapter(ArrayList<ResponseRiderQueue> riderQueues, Context context) {
+    public MyJobsAdapter(ArrayList<ResponseRiderQueue> riderQueues, Context context, Frag_MyJobs frag_obj) {
         this.riderQueues = riderQueues;
         this.context = context;
+        this.frag_obj = frag_obj;
     }
 
     @Override
@@ -40,9 +49,31 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.ViewHolder
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.job_wbno_value.setText(riderQueues.get(position).getWBno());
         holder.job_type.setText(riderQueues.get(position).getJobType());
-        holder.job_date.setText(riderQueues.get(position).getPickupdatetime());
-        holder.job_time.setText(riderQueues.get(position).getPickupdatetime());
+
+
         holder.job_price.setText("$ " + riderQueues.get(position).getAmount());
+
+        try {
+            String myDate = SHAInterface.getDateFormatted(riderQueues.get(position).getPickupdatetime());
+            holder.job_date.setText(myDate);
+            String myTime = SHAInterface.getTimeFormatted(riderQueues.get(position).getPickupdatetime());
+            holder.job_time.setText(myTime);
+        } catch (ParseException e) {
+            holder.job_date.setText(riderQueues.get(position).getPickupdatetime());
+            holder.job_time.setText(riderQueues.get(position).getPickupdatetime());
+            e.printStackTrace();
+        }
+
+        holder.viewdetails_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                StoredDatas.getInstance().setrQuePos(position);
+                StoredDatas.getInstance().setRiderQueues(riderQueues);
+                Intent viewIntet = new Intent(context, MyJobs_Details.class);
+                frag_obj.startActivityForResult(viewIntet, RIDER_MYJOBS_to_MYJOB_DETAILS);
+            }
+        });
 
     }
 

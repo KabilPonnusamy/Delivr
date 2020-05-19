@@ -67,4 +67,7 @@
     <string name="view_details">View Details</string>
     <string name="wb_no">WB No:</string>
     <string name="job_type">Job Type:</string>
+    <string name="job_details">Job Details</string>
+    <string name="txt_save">Save</string>
+    <string name="txt_pass">Pass</string>
 </resources>
