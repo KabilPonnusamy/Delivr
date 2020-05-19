@@ -203,11 +203,24 @@ public class MyJobs_Details extends AppCompatActivity implements View.OnClickLis
                 progressDialog.dismiss();
                 if (response.body() != null) {
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
+                        // If The status is Delivered remove from My Job.
+                        if (newstatus.equals("Del")) {
+                            //RiderQueue.RQResult = RemoveJSONArray(RiderQueue.RQResult, MainActivity.arrpos);
+                            Intent resultIntent = new Intent();
+                            resultIntent.putExtra("AQPosition", "" + riderPos);
+                            resultIntent.putExtra("AQStatus", newstatus);
+                            setResult(MYJOBSAQ_success, resultIntent);
+                            finish();
+                        } else {
+                            riderQueues.get(riderPos).setStatus(newstatus);
+                            Intent resultIntent = new Intent();
+                            resultIntent.putExtra("AQPosition", "" + riderPos);
+                            resultIntent.putExtra("AQStatus", newstatus);
+                            setResult(MYJOBSAQ_success, resultIntent);
+                            finish();
+                         //   RiderQueue.RQResult = UpdateJSONArray(RiderQueue.RQResult, MainActivity.arrpos, "Status", newstatus);
+                        }
 
-                        Intent resultIntent = new Intent();
-                        resultIntent.putExtra("AQPosition", "" + riderPos);
-                        setResult(MYJOBSAQ_success, resultIntent);
-                        finish();
                     } else {
                         Utils.showMessageDialog(MyJobs_Details.this,
                                 getString(R.string.dialog_title_sorry),

@@ -53,7 +53,7 @@ public class Frag_MyJobsQueue extends Fragment implements View.OnClickListener {
     String userId;
     ResponseAssignedQueue assignedQueue;
     ArrayList<ResponseAssignedQueue> riderQueues;
-    private int position;
+    private int selectedjobpos;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -156,11 +156,13 @@ public class Frag_MyJobsQueue extends Fragment implements View.OnClickListener {
             @Override
             public void onItemClickListener(String identify, View view, int position, ResponseAssignedQueue riderQueues) {
                 assignedQueue = riderQueues;
-                position = position;
+                selectedjobpos = position;
+                String UserId = Prefs.getUserId();
                 if (identify.equals("ViewDetails")) {
 
                 } else if (identify.equalsIgnoreCase("Accept")) {
-                    String UserId = Prefs.getUserId();
+                    Log.e("DelivrApp", "Selected Job Position after accept:" + selectedjobpos);
+
                     if (assignedQueue.getPassType() == null || assignedQueue.getPassType().equals("")) {
                         // check times senstive and use order bidding
                         if (assignedQueue.getOrderType().equals("TS")) {
@@ -176,7 +178,19 @@ public class Frag_MyJobsQueue extends Fragment implements View.OnClickListener {
                        // ActAsunc.execute(new String[]{MainActivity.UserId, AQdata.getString("OrderWBUid"), "PassAcc", "normal"});
                     }
                 } else if (identify.equalsIgnoreCase("Reject")) {
-
+                    Log.e("DelivrApp", "Selected Job Position after reject:" + selectedjobpos);
+                    if (assignedQueue.getPassType() == null || assignedQueue.getPassType().equals("")) {
+                        if (assignedQueue.getOrderType().equals("TS")) {
+                            SendRidersAction(UserId,assignedQueue.getWBno(),"RidRej", "TS");
+                           // ActAsunc.execute(new String[]{MainActivity.UserId, AQdata.getString("WBno"), "RidRej", "TS"});
+                        } else {
+                            SendRidersAction(UserId,assignedQueue.getOrderWBUid(),"RidRej", "normal");
+                         //   ActAsunc.execute(new String[]{MainActivity.UserId, AQdata.getString("OrderWBUid"), "RidRej", "normal"});
+                        }
+                    } else {
+                           SendRidersAction(UserId,assignedQueue.getOrderWBUid(),"PassRej", "normal");
+                       // ActAsunc.execute(new String[]{MainActivity.UserId, AQdata.getString("OrderWBUid"), "PassRej", "normal"});
+                    }
                 }
 
             }
@@ -217,9 +231,9 @@ public class Frag_MyJobsQueue extends Fragment implements View.OnClickListener {
                 progressDialog.dismiss();
                 if (response.body() != null) {
                     if(response.body().getStatus().equalsIgnoreCase("Success")) {
-                        riderQueues.remove(position);
-                        jobsQueueAdapter.notifyItemRemoved(position);
-                        jobsQueueAdapter.notifyItemRangeChanged(position, riderQueues.size());
+                        Log.e("DelivrApp", "Selected Position before remove:" + selectedjobpos);
+                        riderQueues.remove(selectedjobpos);
+                        jobsQueueAdapter.notifyDataSetChanged();
                     }
                    /* riderQueues = response.body();
                     setAdapter(riderQueues);*/

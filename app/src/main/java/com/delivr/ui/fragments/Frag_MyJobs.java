@@ -250,10 +250,17 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAIn
         if(requestCode == RIDER_MYJOBS_to_MYJOB_DETAILS) {
             if(resultCode == MYJOBSAQ_success) {
                 String listAQPos = data.getStringExtra("AQPosition");
+                String jobstatus = data.getStringExtra("AQStatus");
                 int position = Integer.parseInt(listAQPos);
                 Log.e("delivrApp", "LostPos: " + position);
-                riderQueues.remove(position);
-                myjobsAdapter.notifyDataSetChanged();
+
+                if (jobstatus.equalsIgnoreCase("Del")) {
+                    riderQueues.remove(position);
+                    myjobsAdapter.notifyDataSetChanged();
+                } else {
+                    riderQueues.get(position).setStatus(jobstatus);
+                    myjobsAdapter.notifyDataSetChanged();
+                }
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
