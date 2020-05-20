@@ -1,6 +1,7 @@
 package com.delivr.ui.activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -10,6 +11,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import com.delivr.R;
+import com.delivr.ui.login.LoginActivity;
+import com.delivr.utils.Prefs;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.delivr.ui.fragments.Frag_MyJobs;
 import com.delivr.ui.fragments.Frag_MyJobsQueue;
@@ -201,9 +206,33 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                 break;
 
             case R.id.logout_layout:
-                Toast.makeText(getApplicationContext(), "Will implement Later", Toast.LENGTH_SHORT).show();
+                showLogoutDialog();
                 drawer.closeDrawer(GravityCompat.START);
                 break;
         }
+    }
+
+    private void showLogoutDialog() {
+        new AlertDialog.Builder(Dashboard.this)
+                .setTitle("Alert!")
+                .setMessage("Are you want to Logout?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Prefs.setUserId("");
+                        Intent intent = new Intent(Dashboard.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setCancelable(false)
+                .show();
     }
 }

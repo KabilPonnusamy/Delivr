@@ -22,6 +22,15 @@ public class StoredDatas {
 
     ArrayList<ResponseRiderQueue> riderQueues;
     int rQuePos;
+    String screenValidation;
+
+    public String getScreenValidation() {
+        return screenValidation;
+    }
+
+    public void setScreenValidation(String screenValidation) {
+        this.screenValidation = screenValidation;
+    }
 
     public ArrayList<ResponseRiderQueue> getRiderQueues() {
         return riderQueues;

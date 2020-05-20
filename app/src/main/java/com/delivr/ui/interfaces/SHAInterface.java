@@ -45,4 +45,20 @@ public interface SHAInterface {
         return newdate;
     }
 
+    public static String getDateFormattedTwo(String mydate) throws ParseException {
+        SimpleDateFormat spf=new SimpleDateFormat("MMM dd yyyy  hh:mma");
+        Date newDate=spf.parse(mydate);
+        spf= new SimpleDateFormat("MMM dd yyyy");
+        String newdate = spf.format(newDate);
+        return newdate;
+    }
+
+    public static String getTimeFormattedTwo(String mydate) throws ParseException {
+        SimpleDateFormat spf=new SimpleDateFormat("MMM dd yyyy  hh:mma");
+        Date newDate=spf.parse(mydate);
+        spf= new SimpleDateFormat("hh:mm a");
+        String newdate = spf.format(newDate);
+        return newdate;
+    }
+
 }

@@ -20,7 +20,10 @@ import android.widget.Toast;
 
 import com.delivr.Common.GPSTracker;
 import com.delivr.Common.PermissionManager;
+import com.delivr.Common.StoredDatas;
+import com.delivr.ui.activity.Dashboard;
 import com.delivr.ui.login.LoginActivity;
+import com.delivr.utils.Prefs;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.CAMERA;
@@ -34,6 +37,7 @@ public class SplashActivity extends Activity {
     //Location
     GPSTracker gps;
     public static Double lat, lon;
+    String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -263,9 +267,17 @@ public class SplashActivity extends Activity {
                 } catch (Exception e) {
                     System.out.println("EXc=" + e);
                 } finally {
-                    Intent myIntent = new Intent(SplashActivity.this, LoginActivity.class);
-                    startActivity(myIntent);
-
+                    userId = Prefs.getUserId();
+                    if(!userId.equalsIgnoreCase("")) {
+                        StoredDatas.getInstance().setScreenValidation("Splash");
+                        Intent i = new Intent(getApplicationContext(), Dashboard.class);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        Intent myIntent = new Intent(SplashActivity.this, LoginActivity.class);
+                        startActivity(myIntent);
+                        finish();
+                    }
                 }
             }
         };

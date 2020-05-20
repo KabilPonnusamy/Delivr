@@ -142,6 +142,7 @@ public class Frag_MyJobsQueue extends Fragment implements View.OnClickListener {
     }
 
     private void setAdapter(ArrayList<ResponseAssignedQueue> jobArrayList) {
+
         progressDialog.dismiss();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         queuedjobs_recycler.setLayoutManager(linearLayoutManager);
@@ -152,6 +153,7 @@ public class Frag_MyJobsQueue extends Fragment implements View.OnClickListener {
         //setting adapter to recyclerview
         queuedjobs_recycler.setAdapter(jobsQueueAdapter);
         queuedjobs_recycler.setNestedScrollingEnabled(true);
+
         jobsQueueAdapter.setOnClickListener(new JobsQueueAdapter.JobQueueListItem() {
             @Override
             public void onItemClickListener(String identify, View view, int position, ResponseAssignedQueue riderQueues) {

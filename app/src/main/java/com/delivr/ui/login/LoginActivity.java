@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.delivr.Common.GPSTracker;
+import com.delivr.Common.StoredDatas;
 import com.delivr.R;
 import com.delivr.backend.APIService;
 import com.delivr.backend.DataEnvelope;
@@ -40,6 +41,7 @@ import com.delivr.backend.responsemodels.ResponseUserLogin;
 import com.delivr.backend.responsemodels.ResponseUserProfile;
 import com.delivr.service.AlarmService;
 import com.delivr.ui.activity.Dashboard;
+import com.delivr.ui.interfaces.Intent_Constants;
 import com.delivr.utils.CheckNetwork;
 import com.delivr.utils.Constants;
 import com.delivr.utils.DataBaseHelper;
@@ -54,7 +56,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener,
+        Intent_Constants {
 
     TextView loginbtn, forgot_pwdbtn, signupbtn;
     EditText ext_username, ext_password;
@@ -276,8 +279,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                /* Intent i = new Intent(getApplicationContext(), MenuTile.class);
                                 startActivity(i);*/
+                                StoredDatas.getInstance().setScreenValidation("Login");
                                 Intent i = new Intent(getApplicationContext(), Dashboard.class);
-                                startActivity(i);
+                                startActivityForResult(i, LOGIN_to_RIDER_DASH);
+                                finish();
                             } else if (UserRole.equals("Client")) {
 
                                 /*Intent alarmFBIntent = new Intent(MainActivity.this, FeedbackReceiver.class);
@@ -289,8 +294,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                 Intent i = new Intent(getApplicationContext(), CustomerTile.class);
                                 startActivity(i)*/;
+                                StoredDatas.getInstance().setScreenValidation("Login");
                                 Intent i = new Intent(getApplicationContext(), Dashboard.class);
-                                startActivity(i);
+                                startActivityForResult(i, LOGIN_to_RIDER_DASH);
+                                finish();
                             } else {
                                 /*lblerrmessage = (TextView) findViewById(R.id.lblerrmessage);
                                 lblerrmessage.setText(strerror);
