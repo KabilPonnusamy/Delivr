@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import com.delivr.R;
+import com.delivr.ui.fragments.Frag_CompletedJobs;
 import com.delivr.ui.login.LoginActivity;
 import com.delivr.utils.Prefs;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -190,7 +191,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                 break;
 
             case R.id.comp_jobs_layout:
-                Fragment compfragment = new Frag_MyJobs();
+                Fragment compfragment = new Frag_CompletedJobs();
                 FragmentTransaction ftcomp = getSupportFragmentManager().beginTransaction();
                 ftcomp.replace(R.id.frame_layout, compfragment);
                 ftcomp.commit();

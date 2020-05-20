@@ -1,5 +1,6 @@
 package com.delivr.Common;
 
+import com.delivr.backend.responsemodels.ResponseCompletedJobs;
 import com.delivr.backend.responsemodels.ResponseRiderQueue;
 
 import java.util.ArrayList;
@@ -23,6 +24,15 @@ public class StoredDatas {
     ArrayList<ResponseRiderQueue> riderQueues;
     int rQuePos;
     String screenValidation;
+    ArrayList<ResponseCompletedJobs> completedJobs;
+
+    public ArrayList<ResponseCompletedJobs> getCompletedJobs() {
+        return completedJobs;
+    }
+
+    public void setCompletedJobs(ArrayList<ResponseCompletedJobs> completedJobs) {
+        this.completedJobs = completedJobs;
+    }
 
     public String getScreenValidation() {
         return screenValidation;
