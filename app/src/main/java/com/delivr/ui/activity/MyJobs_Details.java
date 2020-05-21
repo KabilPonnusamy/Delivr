@@ -119,7 +119,8 @@ public class MyJobs_Details extends AppCompatActivity implements View.OnClickLis
         } else {
             chkstatus = riderQueues.get(riderPos).getStatusCode();
         }
-
+        Log.e("delivrApp", "Check Status:" + chkstatus + "New Statusd:"  + newstatus + "Status Code:" +
+                riderQueues.get(riderPos).getLastStatusCode() + "Delivery_CO" + riderQueues.get(riderPos).getDelivery_CO());
         if ((riderQueues.get(riderPos).getStatusCode().equals("RidAcc") ||
                 riderQueues.get(riderPos).getStatusCode().equals("PassRej")) && chkstatus.equals("")) {
 //            newst.setText("Pickedup");

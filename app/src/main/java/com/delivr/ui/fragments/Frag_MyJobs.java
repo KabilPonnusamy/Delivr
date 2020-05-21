@@ -252,13 +252,32 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAIn
                 String listAQPos = data.getStringExtra("AQPosition");
                 String jobstatus = data.getStringExtra("AQStatus");
                 int position = Integer.parseInt(listAQPos);
-                Log.e("delivrApp", "LostPos: " + position);
+                Log.e("delivrApp", "LastPos: " + position  + "Job Status:" +  jobstatus);
 
                 if (jobstatus.equalsIgnoreCase("Del")) {
                     riderQueues.remove(position);
                     myjobsAdapter.notifyDataSetChanged();
                 } else {
+                    String chkstatus = "";
+                    progressDialog = new ProgressDialog(getActivity());
+                    progressDialog.setMessage("Please wait..");
+                    progressDialog.setCancelable(false);
+                    if (jobstatus.equalsIgnoreCase("Pic")) {
+                        gatherRiders();
+                    }
                     riderQueues.get(position).setStatus(jobstatus);
+                    StoredDatas.getInstance().setRiderQueues(riderQueues);
+                    riderQueues = StoredDatas.getInstance().getRiderQueues();
+                    Log.e("delivrApp", "Inside My Jobs get current data : Check Status:" + chkstatus + "New Status:"  + riderQueues.get(position).getStatus()+
+                            "Status Code:" +riderQueues.get(position).getStatusCode() + "Delivery_CO" + riderQueues.get(position).getDelivery_CO());
+                    if (riderQueues.get(position).getStatusCode().equals("RidAcc") || riderQueues.get(position).getStatusCode().equals("PassAcc")
+                            || riderQueues.get(position).getStatusCode().equals("PassRej")) {
+                        chkstatus = riderQueues.get(position).getLastStatusCode();
+                    } else {
+                        chkstatus = riderQueues.get(position).getStatusCode();
+                    }
+                    Log.e("delivrApp", "Inside My Jobs else : Check Status:" + chkstatus + "New Statusd:"  + riderQueues.get(position).getStatus() + "Status Code:" +
+                            riderQueues.get(position).getLastStatusCode() + "Delivery_CO" + riderQueues.get(position).getDelivery_CO());
                     myjobsAdapter.notifyDataSetChanged();
                 }
             }
