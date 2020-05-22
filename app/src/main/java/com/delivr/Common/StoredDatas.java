@@ -1,5 +1,6 @@
 package com.delivr.Common;
 
+import com.delivr.backend.responsemodels.ResponseAssignedQueue;
 import com.delivr.backend.responsemodels.ResponseCompletedJobs;
 import com.delivr.backend.responsemodels.ResponseRiderQueue;
 
@@ -26,6 +27,16 @@ public class StoredDatas {
     String screenValidation;
     ArrayList<ResponseCompletedJobs> completedJobs;
 
+    public ResponseAssignedQueue getAssignedjobQueues() {
+        return assignedjobQueues;
+    }
+
+    public void setAssignedjobQueues(ResponseAssignedQueue assignedjobQueues) {
+        this.assignedjobQueues = assignedjobQueues;
+    }
+
+    ResponseAssignedQueue assignedjobQueues;
+
     public ArrayList<ResponseCompletedJobs> getCompletedJobs() {
         return completedJobs;
     }
@@ -49,6 +60,7 @@ public class StoredDatas {
     public void setRiderQueues(ArrayList<ResponseRiderQueue> riderQueues) {
         this.riderQueues = riderQueues;
     }
+
 
     public int getrQuePos() {
         return rQuePos;

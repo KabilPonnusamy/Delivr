@@ -70,7 +70,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="WB No:"
+                        android:text="@string/wb_no"
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -157,7 +157,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="3dp"
                             android:fontFamily="@font/robotbold"
-                            android:text="Pickup Address"
+                            android:text="@string/pickup_addr"
                             android:textColor="@color/black"
                             android:textSize="13sp"
                             android:textStyle="normal" />
@@ -204,7 +204,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="3dp"
                             android:fontFamily="@font/robotbold"
-                            android:text="Delivery Address"
+                            android:text="@string/delivery_addr"
                             android:textColor="@color/black"
                             android:textSize="13sp"
                             android:textStyle="normal" />
@@ -308,7 +308,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/robotbold"
-                    android:text="Consignment Info"
+                    android:text="@string/consignment_info"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="normal" />
@@ -326,7 +326,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="Consigment Type:"
+                        android:text="@string/consignment_type_label"
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -359,7 +359,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="Service Type:"
+                        android:text="@string/service_type_label"
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -392,7 +392,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="Type: "
+                        android:text="@string/del_type_label"
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -425,7 +425,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="WB No:"
+                        android:text="@string/consignment_type"
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -444,14 +444,46 @@
                         android:textStyle="normal" />
 
                 </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp">
 
-                <!--<TextView
+                    <TextView
+                        android:id="@+id/pickupdatetime_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/robotlight"
+                        android:text="@string/pickupdatetime_label"
+                        android:textColor="@color/splash_color"
+                        android:textSize="13sp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:id="@+id/pickupdtime_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_toRightOf="@+id/pickupdatetime_text"
+                        android:fontFamily="@font/robotbold"
+                        android:text="xxxxxxxx"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+
+                </RelativeLayout>
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/robotbold"
-                    android:text="Special Instruction"
+                    android:text="@string/sepcial_inst"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="normal" />
@@ -466,9 +498,9 @@
                     android:text="Special instructions"
                     android:textColor="@color/black"
                     android:textSize="13sp"
-                    android:textStyle="normal" />-->
+                    android:textStyle="normal" />
 
-                <!--<RelativeLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -481,7 +513,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="Status:"
+                        android:text="@string/job_status"
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -499,7 +531,7 @@
                         android:textSize="14sp"
                         android:textStyle="normal" />
 
-                </RelativeLayout>-->
+                </RelativeLayout>
 
             </LinearLayout>
 

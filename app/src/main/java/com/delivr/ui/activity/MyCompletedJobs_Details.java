@@ -37,7 +37,7 @@ public class MyCompletedJobs_Details extends AppCompatActivity implements View.O
     ImageView jbd_back;
 //    Button btn_save, btn_pass;
     TextView wb_no, cpny_name, pickup_address, delivery_address,
-        consig_value, service_type, type_value, job_type_value;
+        consig_value, service_type, type_value, job_type_value,pickupdtime_value , spt_inst, status_value;
     // status_value, spt_inst, sender_name, contact_num
 //    RelativeLayout cpny_layout;
 
@@ -68,8 +68,9 @@ public class MyCompletedJobs_Details extends AppCompatActivity implements View.O
         service_type = findViewById(R.id.service_type);
         type_value = findViewById(R.id.type_value);
         job_type_value = findViewById(R.id.job_type_value);
-//        spt_inst = findViewById(R.id.spt_inst);
-//        status_value = findViewById(R.id.status_value);
+        pickupdtime_value = findViewById(R.id.pickupdtime_value);
+        spt_inst = findViewById(R.id.spt_inst);
+        status_value = findViewById(R.id.status_value);
 
 //        cpny_layout = findViewById(R.id.cpny_layout);
         mycompletedJobs = new ArrayList<ResponseCompletedJobs>();
@@ -94,13 +95,40 @@ public class MyCompletedJobs_Details extends AppCompatActivity implements View.O
             cpny_name.setText(mycompletedJobs.get(riderPos).getSenderCompName());
         }*/
 
-        pickup_address.setText(mycompletedJobs.get(riderPos).getPickupRoadno() + ", " + mycompletedJobs.get(riderPos).getPickupRoadName() + ",\n" +
-                mycompletedJobs.get(riderPos).getPickupBuilding() + ",\n" +
-                mycompletedJobs.get(riderPos).getPickupZipcode() + ".");
-
-        delivery_address.setText(mycompletedJobs.get(riderPos).getDlvyRoadno() + ", " + mycompletedJobs.get(riderPos).getDlvyRoadName() + ",\n" +
-                mycompletedJobs.get(riderPos).getDlvyBuilding() + ",\n" +
-                mycompletedJobs.get(riderPos).getDlvyZipcode() + ".");
+        String deliveryaddr = "";
+        if (mycompletedJobs.get(riderPos).getDlvyRoadno() != null && !mycompletedJobs.get(riderPos).getDlvyRoadno().isEmpty())  {
+            deliveryaddr = mycompletedJobs.get(riderPos).getDlvyRoadno();
+        }
+        if (mycompletedJobs.get(riderPos).getDlvyRoadName() != null && !mycompletedJobs.get(riderPos).getDlvyRoadName().isEmpty())  {
+            deliveryaddr = deliveryaddr + "," + mycompletedJobs.get(riderPos).getDlvyRoadName();
+        }
+        if (mycompletedJobs.get(riderPos).getDlvyBuilding() != null && !mycompletedJobs.get(riderPos).getDlvyBuilding().isEmpty())  {
+            deliveryaddr = deliveryaddr + "," + mycompletedJobs.get(riderPos).getDlvyBuilding();
+        }
+        if (mycompletedJobs.get(riderPos).getDlvyBuildingType() != null && !mycompletedJobs.get(riderPos).getDlvyBuildingType().isEmpty())  {
+            deliveryaddr = deliveryaddr + "," + mycompletedJobs.get(riderPos).getDlvyBuildingType();
+        }
+        if (mycompletedJobs.get(riderPos).getDlvyZipcode() != null && !mycompletedJobs.get(riderPos).getDlvyZipcode().isEmpty())  {
+            deliveryaddr = deliveryaddr + "," + mycompletedJobs.get(riderPos).getDlvyZipcode();
+        }
+        delivery_address.setText(deliveryaddr);
+        String pickupaddr = "";
+        if (mycompletedJobs.get(riderPos).getPickupRoadno() != null && !mycompletedJobs.get(riderPos).getPickupRoadno().isEmpty())  {
+            pickupaddr = mycompletedJobs.get(riderPos).getPickupRoadno();
+        }
+        if (mycompletedJobs.get(riderPos).getPickupRoadName() != null && !mycompletedJobs.get(riderPos).getPickupRoadName().isEmpty())  {
+            pickupaddr = pickupaddr + "," + mycompletedJobs.get(riderPos).getPickupRoadName();
+        }
+        if (mycompletedJobs.get(riderPos).getPickupBuilding() != null && !mycompletedJobs.get(riderPos).getPickupBuilding().isEmpty())  {
+            pickupaddr = pickupaddr + "," + mycompletedJobs.get(riderPos).getPickupBuilding();
+        }
+        if (mycompletedJobs.get(riderPos).getPickupBuildingType() != null && !mycompletedJobs.get(riderPos).getPickupBuildingType().isEmpty())  {
+            pickupaddr = pickupaddr + "," + mycompletedJobs.get(riderPos).getPickupBuildingType();
+        }
+        if (mycompletedJobs.get(riderPos).getPickupZipcode() != null && !mycompletedJobs.get(riderPos).getPickupZipcode().isEmpty())  {
+            pickupaddr = pickupaddr + "," + mycompletedJobs.get(riderPos).getPickupZipcode();
+        }
+        pickup_address.setText(pickupaddr);
 
         consig_value.setText(mycompletedJobs.get(riderPos).getConsignmentType());
         service_type.setText(mycompletedJobs.get(riderPos).getServiceType());
@@ -110,47 +138,13 @@ public class MyCompletedJobs_Details extends AppCompatActivity implements View.O
             type_value.setText("Delivery and Collect Order");
         }
         job_type_value.setText(mycompletedJobs.get(riderPos).getJobType());
+        pickupdtime_value.setText(mycompletedJobs.get(riderPos).getPickupdatetime());
 
-//        spt_inst.setText(mycompletedJobs.get(riderPos).getSpInst());
-//        status_value.setText(mycompletedJobs.get(riderPos).getStatus());
-        if (mycompletedJobs.get(riderPos).getStatusCode().equals("RidAcc") || mycompletedJobs.get(riderPos).getStatusCode().equals("PassAcc")
-                || mycompletedJobs.get(riderPos).getStatusCode().equals("PassRej")) {
-            chkstatus = mycompletedJobs.get(riderPos).getLastStatusCode();
-        } else {
-            chkstatus = mycompletedJobs.get(riderPos).getStatusCode();
-        }
+        spt_inst.setText(mycompletedJobs.get(riderPos).getSpInst());
+        status_value.setText(mycompletedJobs.get(riderPos).getStatus());
 
-        if ((mycompletedJobs.get(riderPos).getStatusCode().equals("RidAcc") ||
-                mycompletedJobs.get(riderPos).getStatusCode().equals("PassRej")) && chkstatus.equals("")) {
-//            newst.setText("Pickedup");
-            newstatus = "Pic";
-//            lblproof1.setText("Picked up Proof");
-//            lblproof2.setVisibility(View.GONE);
-//            btn_save.setText("PickedUp"); //Ragu
 
-        } else if (chkstatus.equals("Pic") && mycompletedJobs.get(riderPos).getDelivery_CO().toString().equals("False")) {
-//            newst.setText("Delivered");
-            newstatus = "Del";
-//            lblproof1.setText("Delivery Proof");
-//            btn_save.setText("Delivered"); //Ragu
-//            lblproof2.setVisibility(View.GONE);
-        } else if (chkstatus.equals("Pic") && mycompletedJobs.get(riderPos).getDelivery_CO().toString().equals("True")) {
-//            newst.setText("Delivered & Pickedup");
-            newstatus = "DelPic";
-            /*lblproof1.setText("Delivery Proof");
-            lblproof2.setText("Picked up Proof");
-            lblproof2.setVisibility(View.VISIBLE);
-            imgv.setVisibility(View.VISIBLE);
-            imgv1.setVisibility(View.VISIBLE);
-            imgv2.setVisibility(View.VISIBLE);*/
-        } else if (chkstatus.equals("DelPic")) {
-//            newst.setText("Delivered");
-            newstatus = "Del";
-        } else {
-//            btn_save.setVisibility(View.GONE);
-        }
 
-        Log.e("delivrApp", "NewStatus: " + newstatus);
 
     }
 
