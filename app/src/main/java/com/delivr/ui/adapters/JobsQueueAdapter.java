@@ -52,7 +52,7 @@ public class JobsQueueAdapter extends RecyclerView.Adapter<JobsQueueAdapter.View
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.job_wbno_value.setText(riderQueues.get(position).getWBno());
-        holder.job_type.setText(riderQueues.get(position).getJobType());
+//        holder.job_type.setText(riderQueues.get(position).getJobType());
 
 
         holder.job_price.setText("$ " + riderQueues.get(position).getAmount());
@@ -111,7 +111,7 @@ public class JobsQueueAdapter extends RecyclerView.Adapter<JobsQueueAdapter.View
             super(itemView);
             itemjob_cardview = (CardView) itemView.findViewById(R.id.cardview);
             job_wbno_value = (TextView) itemView.findViewById(R.id.job_wbno_value);
-            job_type = (TextView) itemView.findViewById(R.id.job_type);
+//            job_type = (TextView) itemView.findViewById(R.id.job_type);
             job_date = (TextView) itemView.findViewById(R.id.job_date);
             job_time = (TextView) itemView.findViewById(R.id.job_time);
             job_price = (TextView) itemView.findViewById(R.id.job_price);

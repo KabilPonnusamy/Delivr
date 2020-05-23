@@ -8,6 +8,8 @@ public interface Intent_Constants {
     int MYJOB_DETAILS_back = 4;
     int MYJOBSAQ_success = 5;
     int RIDER_COMPJOBS_to_COMPJOBS_DETAILS = 6;
+    int RIDER_MYJOBSQUEUE_to_MYJOBQUEUE_DETAILS = 7;
+    int MYJOBSQUEUEAQ_success = 8;
 
 
 

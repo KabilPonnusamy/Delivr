@@ -21,6 +21,14 @@ public class Prefs {
         getPrefs().edit().putString("userid", userid).apply();
     }
 
+    public static String getUserImage() {
+        return getPrefs().getString("userimage", "");
+    }
+
+    public static void setUserImage(String userimage) {
+        getPrefs().edit().putString("userimage", userimage).apply();
+    }
+
     public static String getUserRole() {
         return getPrefs().getString("userrole", "");
     }

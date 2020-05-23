@@ -22,73 +22,145 @@
             android:layout_marginEnd="7dp"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp">
-
-                <TextView
-                    android:id="@+id/wbno_txt"
-                    android:layout_width="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:weightSum="2"
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/robotlight"
-                    android:text="@string/wb_no"
-                    android:textColor="@color/splash_color"
-                    android:textSize="13sp"
-                    android:textStyle="normal" />
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/wbno_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/robotlight"
+                        android:text="@string/wb_no"
+                        android:textColor="@color/splash_color"
+                        android:textSize="13sp"
+                        android:textStyle="normal" />
+                    <TextView
+                        android:id="@+id/job_wbno_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/robotbold"
+                        android:text="XXXX12345"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/job_wbno_value"
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_toRightOf="@+id/wbno_txt"
-                    android:fontFamily="@font/robotbold"
-                    android:text="XXXX12345"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotlight"
+                        android:text="@string/pickupdatetime"
+                        android:textColor="@color/splash_color"
+                        android:textSize="13sp"
+                        android:textStyle="normal"
+                        android:gravity="left"
+                        android:layout_alignParentEnd="true"
+                        ></TextView>
+                    <TextView
+                        android:id="@+id/job_pickupdate_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/robotbold"
+                        android:text="May 21 2020"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp">
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/submission_value"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/robotlight"
-                    android:text="@string/job_type"
-                    android:textColor="@color/splash_color"
-                    android:textSize="13sp"
-                    android:textStyle="normal" />
+                    android:layout_weight="1">
+                    <TextView
+                        android:id="@+id/jobcm_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/robotlight"
+                        android:text="@string/consignment_type"
+                        android:textColor="@color/splash_color"
+                        android:textSize="13sp"
+                        android:textStyle="normal" />
+                    <TextView
+                        android:id="@+id/job_consignmenttype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/robotbold"
+                        android:text="Permanenet Job"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/job_type"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginStart="5dp"
-                    android:layout_toRightOf="@+id/submission_value"
-                    android:fontFamily="@font/robotbold"
-                    android:text="Permanenet Job"
-                    android:textColor="@color/black"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="5dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotlight"
+                        android:text="@string/pickuptime"
+                        android:textColor="@color/splash_color"
+                        android:textSize="13sp"
+                        android:textStyle="normal"
+                        android:gravity="left"
+                        android:layout_alignParentEnd="true"
+                        ></TextView>
+                    <TextView
+                        android:id="@+id/job_pickuptime_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="5dp"
+                        android:fontFamily="@font/robotbold"
+                        android:text="05:00 PM"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -97,7 +169,65 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="7dp"
                 android:background="@color/view_line_gray" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/pickupaddr_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/robotlight"
+                    android:text="@string/pickup_addr"
+                    android:textColor="@color/splash_color"
+                    android:textSize="13sp"
+                    android:textStyle="normal"
+                    android:visibility="visible"
+                    />
 
+                <TextView
+                    android:id="@+id/pickup_address_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/robotbold"
+                    android:text="Permanenet Job"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    />
+
+                <TextView
+                    android:id="@+id/submission_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/robotlight"
+                    android:text="@string/delivery_addr"
+                    android:textColor="@color/splash_color"
+                    android:textSize="13sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/delivery_address_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/robotbold"
+                    android:text="Permanenet Job"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -105,7 +235,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal"
-                android:weightSum="3">
+                android:weightSum="3"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -113,6 +244,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:orientation="vertical">
 
                     <ImageView
@@ -221,7 +353,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/primary_border"
+        android:background="@drawable/button_border_red"
         android:fontFamily="@font/robotbold"
         android:text="@string/txt_reject"
         android:textAllCaps="false"

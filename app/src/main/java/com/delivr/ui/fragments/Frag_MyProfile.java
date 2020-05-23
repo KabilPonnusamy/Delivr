@@ -37,7 +37,7 @@ public class Frag_MyProfile extends Fragment implements View.OnClickListener {
             label_phoneno, label_doj, label_fax, label_companyname, label_nric, label_ridertype,
             label_zipcode;
     Toolbar dash_toolbar;
-
+    View label_company_view;
     EditText edt_fullname_prof;
     EditText edt_role_prof;
     EditText edt_emailid_prof;
@@ -101,6 +101,7 @@ public class Frag_MyProfile extends Fragment implements View.OnClickListener {
         edt_zipcode_prof = (EditText) view.findViewById(R.id.edt_zipcode_prof);
 
         label_companyname = view.findViewById(R.id.label_companyname);
+        label_company_view = view.findViewById(R.id.company_view);
         label_ridertype = view.findViewById(R.id.label_ridertype);
         label_phoneno = view.findViewById(R.id.label_phoneno);
         label_doj = view.findViewById(R.id.label_doj);
@@ -231,7 +232,7 @@ public class Frag_MyProfile extends Fragment implements View.OnClickListener {
         if (role.equalsIgnoreCase("Rider")) {
             label_companyname.setVisibility(View.GONE);
             edt_companyname_prof.setVisibility(View.GONE);
-
+            label_company_view.setVisibility(View.GONE);
             edt_doj_prof.setVisibility(View.VISIBLE);
             label_doj.setVisibility(View.VISIBLE);
             label_ridertype.setVisibility(View.VISIBLE);
@@ -241,6 +242,7 @@ public class Frag_MyProfile extends Fragment implements View.OnClickListener {
         } else {
             label_companyname.setVisibility(View.VISIBLE);
             edt_companyname_prof.setVisibility(View.VISIBLE);
+            label_company_view.setVisibility(View.VISIBLE);
             label_ridertype.setVisibility(View.GONE);
             label_doj.setVisibility(View.GONE);
             edt_doj_prof.setVisibility(View.GONE);

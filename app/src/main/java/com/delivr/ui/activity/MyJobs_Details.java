@@ -36,7 +36,7 @@ public class MyJobs_Details extends AppCompatActivity implements View.OnClickLis
     ImageView jbd_back;
     Button btn_save, btn_pass;
     TextView wb_no, cpny_name, pickup_address, delivery_address, sender_name, contact_num,
-            consig_value, service_type, type_value, job_type_value, spt_inst, status_value;
+            consig_value, service_type, type_value, job_type_value, spt_inst, status_value, pickupdtime_value;
     RelativeLayout cpny_layout;
 
     ArrayList<ResponseRiderQueue> riderQueues;
@@ -66,6 +66,7 @@ public class MyJobs_Details extends AppCompatActivity implements View.OnClickLis
         service_type = findViewById(R.id.service_type);
         type_value = findViewById(R.id.type_value);
         job_type_value = findViewById(R.id.job_type_value);
+        pickupdtime_value = findViewById(R.id.pickupdtime_value);
         spt_inst = findViewById(R.id.spt_inst);
         status_value = findViewById(R.id.status_value);
 
@@ -91,16 +92,49 @@ public class MyJobs_Details extends AppCompatActivity implements View.OnClickLis
         } else {
             cpny_name.setText(riderQueues.get(riderPos).getSenderCompName());
         }
-
-        pickup_address.setText(riderQueues.get(riderPos).getPickupRoadno() + ", " + riderQueues.get(riderPos).getPickupRoadName() + ",\n" +
+        String deliveryaddr = "";
+        if (riderQueues.get(riderPos).getDlvyRoadno() != null && !riderQueues.get(riderPos).getDlvyRoadno().isEmpty())  {
+            deliveryaddr = riderQueues.get(riderPos).getDlvyRoadno();
+        }
+        if (riderQueues.get(riderPos).getDlvyRoadName() != null && !riderQueues.get(riderPos).getDlvyRoadName().isEmpty())  {
+            deliveryaddr = deliveryaddr + "," + riderQueues.get(riderPos).getDlvyRoadName();
+        }
+        if (riderQueues.get(riderPos).getDlvyBuilding() != null && !riderQueues.get(riderPos).getDlvyBuilding().isEmpty())  {
+            deliveryaddr = deliveryaddr + "," + riderQueues.get(riderPos).getDlvyBuilding();
+        }
+        if (riderQueues.get(riderPos).getDlvyBuildingType() != null && !riderQueues.get(riderPos).getDlvyBuildingType().isEmpty())  {
+            deliveryaddr = deliveryaddr + "," + riderQueues.get(riderPos).getDlvyBuildingType();
+        }
+        if (riderQueues.get(riderPos).getDlvyZipcode() != null && !riderQueues.get(riderPos).getDlvyZipcode().isEmpty())  {
+            deliveryaddr = deliveryaddr + "," + riderQueues.get(riderPos).getDlvyZipcode();
+        }
+        delivery_address.setText(deliveryaddr);
+        String pickupaddr = "";
+        if (riderQueues.get(riderPos).getPickupRoadno() != null && !riderQueues.get(riderPos).getPickupRoadno().isEmpty())  {
+            pickupaddr = riderQueues.get(riderPos).getPickupRoadno();
+        }
+        if (riderQueues.get(riderPos).getPickupRoadName() != null && !riderQueues.get(riderPos).getPickupRoadName().isEmpty())  {
+            pickupaddr = pickupaddr + "," + riderQueues.get(riderPos).getPickupRoadName();
+        }
+        if (riderQueues.get(riderPos).getPickupBuilding() != null && !riderQueues.get(riderPos).getPickupBuilding().isEmpty())  {
+            pickupaddr = pickupaddr + "," + riderQueues.get(riderPos).getPickupBuilding();
+        }
+        if (riderQueues.get(riderPos).getPickupBuildingType() != null && !riderQueues.get(riderPos).getPickupBuildingType().isEmpty())  {
+            pickupaddr = pickupaddr + "," + riderQueues.get(riderPos).getPickupBuildingType();
+        }
+        if (riderQueues.get(riderPos).getPickupZipcode() != null && !riderQueues.get(riderPos).getPickupZipcode().isEmpty())  {
+            pickupaddr = pickupaddr + "," + riderQueues.get(riderPos).getPickupZipcode();
+        }
+        pickup_address.setText(pickupaddr);
+        /*pickup_address.setText(riderQueues.get(riderPos).getPickupRoadno() + ", " + riderQueues.get(riderPos).getPickupRoadName() + ",\n" +
                 riderQueues.get(riderPos).getPickupBuilding() + ",\n" +
-                riderQueues.get(riderPos).getPickupBuildingType() + ",\n" +
+              //  riderQueues.get(riderPos).getPickupBuildingType() + ",\n" +
                 riderQueues.get(riderPos).getPickupUnitNo() + ", " + riderQueues.get(riderPos).getPickupZipcode() + ".");
 
         delivery_address.setText(riderQueues.get(riderPos).getDlvyRoadno() + ", " + riderQueues.get(riderPos).getDlvyRoadName() + ",\n" +
                 riderQueues.get(riderPos).getDlvyBuilding() + ",\n" +
-                riderQueues.get(riderPos).getDlvyBuildingType() + ",\n" +
-                riderQueues.get(riderPos).getDlvyUnitNo() + ", " + riderQueues.get(riderPos).getDlvyZipcode() + ".");
+             //   riderQueues.get(riderPos).getDlvyBuildingType() + ",\n" +
+                riderQueues.get(riderPos).getDlvyUnitNo() + ", " + riderQueues.get(riderPos).getDlvyZipcode() + ".");*/
 
         consig_value.setText(riderQueues.get(riderPos).getConsignmentType());
         service_type.setText(riderQueues.get(riderPos).getServiceType());
@@ -110,6 +144,7 @@ public class MyJobs_Details extends AppCompatActivity implements View.OnClickLis
             type_value.setText("Delivery and Collect Order");
         }
         job_type_value.setText(riderQueues.get(riderPos).getJobType());
+        pickupdtime_value.setText(riderQueues.get(riderPos).getPickupdatetime());
 
         spt_inst.setText(riderQueues.get(riderPos).getSpInst());
         status_value.setText(riderQueues.get(riderPos).getStatus());
@@ -119,7 +154,8 @@ public class MyJobs_Details extends AppCompatActivity implements View.OnClickLis
         } else {
             chkstatus = riderQueues.get(riderPos).getStatusCode();
         }
-
+        Log.e("delivrApp", "Check Status:" + chkstatus + "New Statusd:"  + newstatus + "Status Code:" +
+                riderQueues.get(riderPos).getLastStatusCode() + "Delivery_CO" + riderQueues.get(riderPos).getDelivery_CO());
         if ((riderQueues.get(riderPos).getStatusCode().equals("RidAcc") ||
                 riderQueues.get(riderPos).getStatusCode().equals("PassRej")) && chkstatus.equals("")) {
 //            newst.setText("Pickedup");

@@ -70,7 +70,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="@string/wb_no"
+                        android:text="WB No:"
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -104,7 +104,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="@string/prompt_companyname"
+                        android:text="Company Name:"
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -157,7 +157,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="3dp"
                             android:fontFamily="@font/robotbold"
-                            android:text="@string/pickup_addr"
+                            android:text="Pickup Address"
                             android:textColor="@color/black"
                             android:textSize="13sp"
                             android:textStyle="normal" />
@@ -204,7 +204,7 @@
                             android:layout_gravity="center"
                             android:layout_marginStart="3dp"
                             android:fontFamily="@font/robotbold"
-                            android:text="@string/delivery_addr"
+                            android:text="Delivery Address"
                             android:textColor="@color/black"
                             android:textSize="13sp"
                             android:textStyle="normal" />
@@ -237,7 +237,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/robotbold"
-                    android:text="@string/sender_info"
+                    android:text="Sender Info"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="normal" />
@@ -308,7 +308,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/robotbold"
-                    android:text="@string/consignment_info"
+                    android:text="Consignment Info"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="normal" />
@@ -326,7 +326,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="@string/consignment_type_label"
+                        android:text="Consigment Type:"
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -357,9 +357,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
-                        android:layout_centerHorizontal="true"
+                        android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="@string/service_type_label"
+                        android:text="Service Type:"
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -383,7 +383,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:visibility="gone"
+                    >
 
                     <TextView
                         android:id="@+id/type_text"
@@ -392,7 +394,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="@string/del_type_label"
+                        android:text="Type: "
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -411,6 +413,7 @@
                         android:textStyle="normal" />
 
                 </RelativeLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -424,7 +427,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="@string/consignment_type"
+                        android:text="Job Type:"
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -437,7 +440,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_toRightOf="@+id/jobtype_text"
                         android:fontFamily="@font/robotbold"
-                        android:text="xxxxxx"
+                        android:text="xxxxxxxx"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:textStyle="normal" />
@@ -482,7 +485,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/robotbold"
-                    android:text="@string/sepcial_inst"
+                    android:text="Special Instruction"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:textStyle="normal" />
@@ -503,7 +506,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone"
+                    >
 
                     <TextView
                         android:id="@+id/status_txt_val"
@@ -512,7 +517,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/robotlight"
-                        android:text="@string/job_status"
+                        android:text="Status:"
                         android:textColor="@color/splash_color"
                         android:textSize="13sp"
                         android:textStyle="normal" />
@@ -552,7 +557,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="15dp">
 
@@ -563,31 +567,31 @@
                     android:weightSum="2">
 
                     <Button
-                        android:id="@+id/btn_save"
+                        android:id="@+id/btn_accept_det"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="5dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/button_border"
+                        android:layout_weight="1"
+                        android:background="@drawable/primary_border"
                         android:fontFamily="@font/robotbold"
-                        android:text="@string/txt_save"
+                        android:text="@string/txt_accept"
                         android:textAllCaps="false"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <Button
-                        android:id="@+id/btn_pass"
+                        android:id="@+id/btn_reject_det"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="5dp"
                         android:layout_weight="1"
-                        android:background="@drawable/button_border"
+                        android:background="@drawable/button_border_red"
                         android:fontFamily="@font/robotbold"
-                        android:text="@string/txt_pass"
-                        android:visibility="gone"
+                        android:text="@string/txt_reject"
+                        android:visibility="visible"
                         android:textAllCaps="false"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold" />
                 </LinearLayout>

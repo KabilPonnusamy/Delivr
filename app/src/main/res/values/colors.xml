@@ -9,4 +9,7 @@
     <color name="shadow">#b0b2b3</color>
     <color name="splash_color">#58595b</color>
     <color name="red">#e51616</color>
+    <color name="lightblue">#D2E6F5</color>
+    <color name="lightblue2">#BBDBF5</color>
+    <color name="lightblue3">#E3F1FC</color>
 </resources>
