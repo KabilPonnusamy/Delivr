@@ -50,7 +50,7 @@ public class Frag_CompletedJobs extends Fragment implements View.OnClickListener
     MyCompletedJobsAdapter mycompjobsAdapter;
     private Call<ArrayList<ResponseCompletedJobs>> callCompJobs;
     ArrayList<ResponseCompletedJobs> completedJobs;
-    BottomNavigationView bottom_nav;
+    //BottomNavigationView bottom_nav;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -139,8 +139,8 @@ public class Frag_CompletedJobs extends Fragment implements View.OnClickListener
         Log.e("delivrApp", "UserId: " + userId);
         compjobs_recycler = view.findViewById(R.id.compjobs_recycler);
         completedJobs = new ArrayList<ResponseCompletedJobs>();
-        bottom_nav = getActivity().findViewById(R.id.bottom_nav);
-        bottom_nav.setVisibility(View.GONE);
+       // bottom_nav = getActivity().findViewById(R.id.bottom_nav);
+       // bottom_nav.setVisibility(View.GONE);
     }
 
     private void toolbar_Init() {

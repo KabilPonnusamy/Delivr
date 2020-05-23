@@ -249,6 +249,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             Toast.makeText(LoginActivity.this, "User Role"+UserRole, Toast.LENGTH_LONG).show();
                             Prefs.setUserId(UserId);
                             Prefs.setUserRole(UserRole);
+                            Prefs.setUserFullname(UserFullName);
                             if (UserRole.equals("Client")) {
                                 getprofile();
 

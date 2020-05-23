@@ -29,6 +29,14 @@ public class Prefs {
         getPrefs().edit().putString("userrole", userrole).apply();
     }
 
+    public static String getUserFullname() {
+        return getPrefs().getString("fullname", "");
+    }
+
+    public static void setUserFullname(String fullname) {
+        getPrefs().edit().putString("fullname", fullname).apply();
+    }
+
     public static String getLoginVerified() {
         return getPrefs().getString("loginsuccess", "");
     }

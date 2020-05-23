@@ -27,7 +27,7 @@
     <string name="txt_johndoe">John Doe</string>
     <string name="jobs_txt">Jobs</string>
     <string name="queue_txt">Queue</string>
-    <string name="txt_myjobs_queue">My Jobs Queue</string>
+    <string name="txt_myjobs_queue">Jobs Queue</string>
     <string name="txt_myprofile">My Profile</string>
     <string name="error">Error</string>
     <string name="network">Please check your internet connection.</string>

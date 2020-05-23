@@ -20,6 +20,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.delivr.R;
 import com.delivr.ui.fragments.Frag_CompletedJobs;
@@ -30,14 +31,18 @@ import com.delivr.ui.fragments.Frag_MyJobs;
 import com.delivr.ui.fragments.Frag_MyJobsQueue;
 import com.delivr.ui.fragments.Frag_MyProfile;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static android.view.View.VISIBLE;
 
 public class Dashboard extends AppCompatActivity implements View.OnClickListener {
 
     Activity activity = this;
     ImageView img_hamburg;
+    TextView username;
+    CircleImageView userimage;
     DrawerLayout drawer;
-    BottomNavigationView bottom_nav;
+   // BottomNavigationView bottom_nav;
     Toolbar dash_toolbar;
 
     RelativeLayout myjobs_layout, jobqueue_layout, comp_jobs_layout, profile_layout,
@@ -75,12 +80,14 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         profile_layout = findViewById(R.id.profile_layout);
         logout_layout = findViewById(R.id.logout_layout);
 
-        bottom_nav = findViewById(R.id.bottom_nav);
+       // bottom_nav = findViewById(R.id.bottom_nav);
         drawer = findViewById(R.id.drawer_layout);
         img_hamburg = (ImageView) findViewById(R.id.img_hamburg);
+        username = (TextView) findViewById(R.id.username);
+        userimage = (CircleImageView) findViewById(R.id.userimage);
 
         setListeners();
-        navigation_listener();
+       // navigation_listener();
     }
 
     private void setListeners() {
@@ -90,6 +97,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         profile_layout.setOnClickListener(this);
         logout_layout.setOnClickListener(this);
         img_hamburg.setOnClickListener(this);
+        username.setText(Prefs.getUserFullname());
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
@@ -109,7 +117,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         });
     }
 
-    private void navigation_listener() {
+    /*private void navigation_listener() {
         bottom_nav.setItemIconTintList(null);
         bottom_nav.getMenu().getItem(0).setIcon(R.drawable.icon_payment);
 
@@ -156,7 +164,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                         return false;
                     }
                 });
-            }
+            }*/
 
     private void toolbar_init() {
         dash_toolbar = (Toolbar) findViewById(R.id.dash_toolbar);
