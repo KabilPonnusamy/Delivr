@@ -2,6 +2,7 @@ package com.delivr.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,7 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.ViewHolder
             String myTime = SHAInterface.getTimeFormatted(riderQueues.get(position).getPickupdatetime());
             holder.job_time.setText(myTime);
         } catch (ParseException e) {
+            Log.e("delivrApp", "Exception: " + e.getMessage());
             holder.job_date.setText(riderQueues.get(position).getPickupdatetime());
             holder.job_time.setText(riderQueues.get(position).getPickupdatetime());
             e.printStackTrace();

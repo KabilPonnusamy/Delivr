@@ -58,9 +58,9 @@ public class JobsQueueAdapter extends RecyclerView.Adapter<JobsQueueAdapter.View
         holder.job_price.setText("$ " + riderQueues.get(position).getAmount());
         ResponseAssignedQueue responseRiderQueue = riderQueues.get(position);
         try {
-            String myDate = SHAInterface.getDateFormattedTwo(riderQueues.get(position).getPickupdatetime());
+            String myDate = SHAInterface.getDateFormatted(riderQueues.get(position).getPickupdatetime());
             holder.job_date.setText(myDate);
-            String myTime = SHAInterface.getTimeFormattedTwo(riderQueues.get(position).getPickupdatetime());
+            String myTime = SHAInterface.getTimeFormatted(riderQueues.get(position).getPickupdatetime());
             holder.job_time.setText(myTime);
         } catch (ParseException e) {
             holder.job_date.setText(riderQueues.get(position).getPickupdatetime());
