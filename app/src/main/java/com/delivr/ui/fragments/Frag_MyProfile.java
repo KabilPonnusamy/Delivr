@@ -23,6 +23,7 @@ import com.delivr.backend.responsemodels.ResponseUserProfile;
 import com.delivr.utils.CheckNetwork;
 import com.delivr.utils.Prefs;
 import com.delivr.utils.Utils;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import retrofit2.Call;
@@ -54,6 +55,8 @@ public class Frag_MyProfile extends Fragment implements View.OnClickListener {
     Context context;
     private Call<ResponseUserProfile> callGetProfile;
     View view;
+    BottomNavigationView bottom_nav;
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -104,7 +107,8 @@ public class Frag_MyProfile extends Fragment implements View.OnClickListener {
         label_doj = view.findViewById(R.id.label_doj);
         label_fax = view.findViewById(R.id.label_fax);
         label_nric = view.findViewById(R.id.label_nric);
-
+        bottom_nav = getActivity().findViewById(R.id.bottom_nav);
+        bottom_nav.setVisibility(View.VISIBLE);
 
         UserId = Prefs.getUserId();
         getProfile(UserId);

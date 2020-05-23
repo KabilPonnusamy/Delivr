@@ -7,7 +7,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public interface SHAInterface {
 
@@ -40,7 +39,6 @@ public interface SHAInterface {
         int year = c.get(Calendar.YEAR);
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
-
         String tdyDate =  day + "-" +  month + "-" +  year;
 
         c.add(Calendar.DAY_OF_MONTH, 1);
@@ -86,19 +84,12 @@ public interface SHAInterface {
     }
 
     public static String getDateFormattedTwo(String mydate) throws ParseException {
-        Log.e("delivrApp", "Inside Date conversion");
-       /* String newdate = "";
-        try {*/
-            SimpleDateFormat spf = new SimpleDateFormat("MMM dd yyyy  hh:mma", Locale.ENGLISH);
-            Date newDate = spf.parse(mydate);
-            spf = new SimpleDateFormat("MMM dd yyyy");
-            String newdate = spf.format(newDate);
-       /* } catch (Exception e) {
-            Log.e("delivrApp", e.getMessage());
-        }*/
+        SimpleDateFormat spf=new SimpleDateFormat("MMM dd yyyy  hh:mma");
+        Date newDate=spf.parse(mydate);
+        spf= new SimpleDateFormat("MMM dd yyyy");
+        String newdate = spf.format(newDate);
         return newdate;
     }
-
 
     public static String getTimeFormattedTwo(String mydate) throws ParseException {
         SimpleDateFormat spf=new SimpleDateFormat("MMM dd yyyy  hh:mma");

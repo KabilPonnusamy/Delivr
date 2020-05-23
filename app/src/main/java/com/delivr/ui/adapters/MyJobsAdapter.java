@@ -104,6 +104,7 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.ViewHolder
             Log.e("delivrApp", "Pickup  & Time:"+ myTime);
             holder.pickuptime_value.setText(myTime);
         } catch (ParseException e) {
+            Log.e("delivrApp", "Exception: " + e.getMessage());
             holder.job_date.setText(riderQueues.get(position).getPickupdatetime());
             holder.job_time.setText(riderQueues.get(position).getPickupdatetime());
             e.printStackTrace();

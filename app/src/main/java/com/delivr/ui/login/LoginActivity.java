@@ -5,7 +5,9 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -40,6 +42,8 @@ import com.delivr.backend.postmodels.PostGetProfile;
 import com.delivr.backend.responsemodels.ResponseUserLogin;
 import com.delivr.backend.responsemodels.ResponseUserProfile;
 import com.delivr.service.AlarmService;
+import com.delivr.ui.LocalDB.DbContract;
+import com.delivr.ui.LocalDB.DbHelper;
 import com.delivr.ui.activity.Dashboard;
 import com.delivr.ui.interfaces.Intent_Constants;
 import com.delivr.utils.CheckNetwork;
@@ -268,8 +272,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         } else {
                             if (UserRole.equals("Rider")) {
 
-
-
                                 // Retrieve a PendingIntent that will perform a broadcast
                                 Intent alarmIntent = new Intent(LoginActivity.this, AlarmService.class);
                                 LoginActivity.pendingIntent = PendingIntent.getService(LoginActivity.this, 0, alarmIntent, 0);
@@ -278,12 +280,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 int interval = 180000;
                                 LoginActivity.manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, LoginActivity.pendingIntent);
 
-                               /* Intent i = new Intent(getApplicationContext(), MenuTile.class);
-                                startActivity(i);*/
-                                StoredDatas.getInstance().setScreenValidation("Login");
-                                Intent i = new Intent(getApplicationContext(), Dashboard.class);
-                                startActivityForResult(i, LOGIN_to_RIDER_DASH);
-                                finish();
+                                checkUserData(UserId);
+
+
                             } else if (UserRole.equals("Client")) {
 
                                 /*Intent alarmFBIntent = new Intent(MainActivity.this, FeedbackReceiver.class);
@@ -330,6 +329,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Utils.showGenericErrorDialog(LoginActivity.this);
             }
         });
+    }
+
+    private void checkUserData(String userId) {
+        String userimage = "";
+        DbHelper dbHelper = new DbHelper(LoginActivity.this);
+        SQLiteDatabase database = dbHelper.getReadableDatabase();
+        Cursor cursor = dbHelper.readProfile(database, userId);
+        int count = 0;
+        while(cursor.moveToNext()) {
+            userimage = cursor.getString(cursor.getColumnIndex(DbContract.P_IMAGE_PATH));
+            count++;
+        }
+
+        if(count > 0) {
+            Prefs.setUserImage(userimage);
+        } else {
+            database = dbHelper.getWritableDatabase();
+            dbHelper.saveProfile(database, userId, "", "");
+        }
+
+        /* Intent i = new Intent(getApplicationContext(), MenuTile.class);
+        startActivity(i);*/
+        StoredDatas.getInstance().setScreenValidation("Login");
+        Intent i = new Intent(getApplicationContext(), Dashboard.class);
+        startActivityForResult(i, LOGIN_to_RIDER_DASH);
+        finish();
+
     }
 
     public static String SHA1(String text) {

@@ -37,6 +37,7 @@ import com.delivr.ui.interfaces.SHAInterface;
 import com.delivr.utils.CheckNetwork;
 import com.delivr.utils.Prefs;
 import com.delivr.utils.Utils;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
@@ -63,6 +64,7 @@ public class Frag_MyJobsQueue extends Fragment implements View.OnClickListener {
     ResponseAssignedQueue assignedQueue;
     ArrayList<ResponseAssignedQueue> riderQueues;
     private int selectedjobpos;
+    BottomNavigationView bottom_nav;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -103,12 +105,13 @@ public class Frag_MyJobsQueue extends Fragment implements View.OnClickListener {
     }
     private void initView(View view) {
         userId = Prefs.getUserId();
-        Log.e("delivrApp", "UserId: " + userId);
 
         riderQueues = new ArrayList<ResponseAssignedQueue>();
         queuedjobs_recycler = view.findViewById(R.id.jobsqueue_recycler);
-
+        bottom_nav = getActivity().findViewById(R.id.bottom_nav);
+        bottom_nav.setVisibility(View.VISIBLE);
     }
+
     private void gatherRiders() {
         String Strapikey = getString(R.string.apikey);
         String Strapicode = getString(R.string.apicode);
