@@ -85,6 +85,8 @@
     <string name="txt_pass">Pass</string>
     <string name="txt_accept">Accept</string>
     <string name="txt_reject">Reject</string>
+    <string name="txt_jobstatus">Job Status:</string>
     <string name="device_dont_have_camera">Sorry! Your device doesn\'t support camera</string>
     <string name="some_issues_text">Some issues occured, please wait few minutes</string>
+    <string name="nojbosfound">No Jobs Found</string>
 </resources>

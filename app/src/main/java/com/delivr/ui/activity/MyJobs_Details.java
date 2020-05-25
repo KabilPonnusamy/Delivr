@@ -106,7 +106,12 @@ public class MyJobs_Details extends AppCompatActivity implements View.OnClickLis
             deliveryaddr = deliveryaddr + "," + riderQueues.get(riderPos).getDlvyBuildingType();
         }
         if (riderQueues.get(riderPos).getDlvyZipcode() != null && !riderQueues.get(riderPos).getDlvyZipcode().isEmpty())  {
-            deliveryaddr = deliveryaddr + "," + riderQueues.get(riderPos).getDlvyZipcode();
+            if (!deliveryaddr.isEmpty()) {
+                deliveryaddr = deliveryaddr + "," + riderQueues.get(riderPos).getDlvyZipcode();
+            } else {
+                deliveryaddr = riderQueues.get(riderPos).getDlvyZipcode();
+            }
+
         }
         delivery_address.setText(deliveryaddr);
         String pickupaddr = "";
@@ -123,7 +128,12 @@ public class MyJobs_Details extends AppCompatActivity implements View.OnClickLis
             pickupaddr = pickupaddr + "," + riderQueues.get(riderPos).getPickupBuildingType();
         }
         if (riderQueues.get(riderPos).getPickupZipcode() != null && !riderQueues.get(riderPos).getPickupZipcode().isEmpty())  {
-            pickupaddr = pickupaddr + "," + riderQueues.get(riderPos).getPickupZipcode();
+            if (!pickupaddr.isEmpty()) {
+                pickupaddr = pickupaddr + "," + riderQueues.get(riderPos).getPickupZipcode();
+            } else {
+                pickupaddr = riderQueues.get(riderPos).getPickupZipcode();
+            }
+
         }
         pickup_address.setText(pickupaddr);
         /*pickup_address.setText(riderQueues.get(riderPos).getPickupRoadno() + ", " + riderQueues.get(riderPos).getPickupRoadName() + ",\n" +

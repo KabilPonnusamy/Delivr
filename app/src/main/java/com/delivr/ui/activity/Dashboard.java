@@ -23,6 +23,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -72,8 +73,9 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 
     Activity activity = this;
     ImageView img_hamburg;
+    TextView username;
     DrawerLayout drawer;
-    BottomNavigationView bottom_nav;
+  //  BottomNavigationView bottom_nav;
     Toolbar dash_toolbar;
     CircleImageView userimage;
     ProgressDialog progressDialog;
@@ -127,15 +129,15 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         profile_layout = findViewById(R.id.profile_layout);
         logout_layout = findViewById(R.id.logout_layout);
 
-        bottom_nav = findViewById(R.id.bottom_nav);
+     //   bottom_nav = findViewById(R.id.bottom_nav);
         drawer = findViewById(R.id.drawer_layout);
         img_hamburg = (ImageView) findViewById(R.id.img_hamburg);
-
+        username = (TextView) findViewById(R.id.username);
         animation = new AlphaAnimation(0.3f, 1.0f);
         animation.setDuration(500);
 
         setListeners();
-        navigation_listener();
+      //  navigation_listener();
     }
 
     private void setListeners() {
@@ -146,6 +148,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         profile_layout.setOnClickListener(this);
         logout_layout.setOnClickListener(this);
         img_hamburg.setOnClickListener(this);
+        username.setText(Prefs.getUserFullname());
         drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
@@ -191,8 +194,8 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
             }
         }
     }
-
-    private void navigation_listener() {
+   // as per request bottom navigation removed on 23-may-2020
+   /* private void navigation_listener() {
         bottom_nav.setItemIconTintList(null);
         bottom_nav.getMenu().getItem(0).setIcon(R.drawable.icon_payment);
 
@@ -239,7 +242,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                         return false;
                     }
                 });
-            }
+            }*/
 
     private void toolbar_init() {
         dash_toolbar = (Toolbar) findViewById(R.id.dash_toolbar);
@@ -352,7 +355,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     private void showLogoutDialog() {
         new AlertDialog.Builder(Dashboard.this)
                 .setTitle("Alert!")
-                .setMessage("Are you want to Logout?")
+                .setMessage("Are you sure want to Logout?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

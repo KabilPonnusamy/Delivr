@@ -112,7 +112,11 @@ public class MyJobsQueue_Details extends AppCompatActivity implements View.OnCli
             pickupaddr = pickupaddr + "," + riderQueues.getPickupBuildingType();
         }
         if (riderQueues.getPickupZipcode() != null && !riderQueues.getPickupZipcode().isEmpty())  {
-            pickupaddr = pickupaddr + "," + riderQueues.getPickupZipcode();
+            if (!pickupaddr.isEmpty()) {
+                pickupaddr = pickupaddr + "," + riderQueues.getPickupZipcode();
+            } else {
+                pickupaddr = riderQueues.getPickupZipcode();
+            }
         }
 
         pickup_address.setText(pickupaddr);
@@ -130,7 +134,11 @@ public class MyJobsQueue_Details extends AppCompatActivity implements View.OnCli
             deliveryaddr = deliveryaddr + "," + riderQueues.getDlvyBuildingType();
         }
         if (riderQueues.getDlvyZipcode() != null && !riderQueues.getDlvyZipcode().isEmpty())  {
-            deliveryaddr = deliveryaddr + "," + riderQueues.getDlvyZipcode();
+            if (!deliveryaddr.isEmpty()) {
+                deliveryaddr = deliveryaddr + "," + riderQueues.getDlvyZipcode();
+            } else {
+                deliveryaddr = riderQueues.getDlvyZipcode();
+            }
         }
         delivery_address.setText(deliveryaddr);
 

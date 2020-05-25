@@ -43,7 +43,7 @@ public class MyCompletedJobsAdapter extends RecyclerView.Adapter<MyCompletedJobs
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.myjobs_items, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.mycompletedjob_items, parent, false);
         return new ViewHolder(v);
     }
 
@@ -69,7 +69,11 @@ public class MyCompletedJobsAdapter extends RecyclerView.Adapter<MyCompletedJobs
             deliveryaddr = deliveryaddr + "," + completedJobs.get(position).getDlvyBuildingType();
         }
         if (completedJobs.get(position).getDlvyZipcode() != null && !completedJobs.get(position).getDlvyZipcode().isEmpty())  {
-            deliveryaddr = deliveryaddr + "," + completedJobs.get(position).getDlvyZipcode();
+            if (!deliveryaddr.isEmpty()) {
+                deliveryaddr = deliveryaddr + "," + completedJobs.get(position).getDlvyZipcode();
+            } else {
+                deliveryaddr = completedJobs.get(position).getDlvyZipcode();
+            }
         }
         holder.delivery_address.setText(deliveryaddr);
         String pickupaddr = "";
@@ -86,7 +90,12 @@ public class MyCompletedJobsAdapter extends RecyclerView.Adapter<MyCompletedJobs
             pickupaddr = pickupaddr + "," + completedJobs.get(position).getPickupBuildingType();
         }
         if (completedJobs.get(position).getPickupZipcode() != null && !completedJobs.get(position).getPickupZipcode().isEmpty())  {
-            pickupaddr = pickupaddr + "," + completedJobs.get(position).getPickupZipcode();
+            if (!pickupaddr.isEmpty()) {
+                pickupaddr = pickupaddr + "," + completedJobs.get(position).getPickupZipcode();
+            } else {
+                pickupaddr = completedJobs.get(position).getPickupZipcode();
+            }
+
         }
         holder.pickup_address.setText(pickupaddr);
         try {

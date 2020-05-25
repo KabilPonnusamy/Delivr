@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -63,8 +64,9 @@ public class Frag_MyJobsQueue extends Fragment implements View.OnClickListener {
     String userId;
     ResponseAssignedQueue assignedQueue;
     ArrayList<ResponseAssignedQueue> riderQueues;
+    TextView label_empty_myjobsqueue;
     private int selectedjobpos;
-    BottomNavigationView bottom_nav;
+   // BottomNavigationView bottom_nav;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -108,8 +110,9 @@ public class Frag_MyJobsQueue extends Fragment implements View.OnClickListener {
 
         riderQueues = new ArrayList<ResponseAssignedQueue>();
         queuedjobs_recycler = view.findViewById(R.id.jobsqueue_recycler);
-        bottom_nav = getActivity().findViewById(R.id.bottom_nav);
-        bottom_nav.setVisibility(View.VISIBLE);
+        label_empty_myjobsqueue = view.findViewById(R.id.label_empty_myjobsqueue);
+        /*bottom_nav = getActivity().findViewById(R.id.bottom_nav);
+        bottom_nav.setVisibility(View.VISIBLE);*/
     }
 
     private void gatherRiders() {
@@ -159,6 +162,13 @@ public class Frag_MyJobsQueue extends Fragment implements View.OnClickListener {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         queuedjobs_recycler.setLayoutManager(linearLayoutManager);
         queuedjobs_recycler.setHasFixedSize(true);
+        if (riderQueues.size() > 0) {
+            queuedjobs_recycler.setVisibility(View.VISIBLE);
+            label_empty_myjobsqueue.setVisibility(View.GONE);
+        } else {
+            queuedjobs_recycler.setVisibility(View.GONE);
+            label_empty_myjobsqueue.setVisibility(View.VISIBLE);
+        }
         //creating recyclerview adapter
         jobsQueueAdapter = new JobsQueueAdapter(jobArrayList, getActivity(),Frag_MyJobsQueue.this);
 
@@ -249,8 +259,15 @@ public class Frag_MyJobsQueue extends Fragment implements View.OnClickListener {
                 if (response.body() != null) {
                     if(response.body().getStatus().equalsIgnoreCase("Success")) {
                         Log.e("DelivrApp", "Selected Position before remove:" + selectedjobpos);
-                        riderQueues.remove(selectedjobpos);
-                        jobsQueueAdapter.notifyDataSetChanged();
+                        if (strAction.equalsIgnoreCase("RidAcc")) {
+                            Fragment jobsfragment = new Frag_MyJobs();
+                            FragmentTransaction ftjobs = getActivity().getSupportFragmentManager().beginTransaction();
+                            ftjobs.replace(R.id.frame_layout, jobsfragment);
+                            ftjobs.commit();
+                        } else {
+                            riderQueues.remove(selectedjobpos);
+                            jobsQueueAdapter.notifyDataSetChanged();
+                        }
                     }
                    /* riderQueues = response.body();
                     setAdapter(riderQueues);*/

@@ -10,6 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:scrollbars="none" />
+        android:scrollbars="none"
+        android:visibility="visible"
+        />
+    <TextView
+        android:id="@+id/label_empty_completedjobs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/nojbosfound"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        />
+
 
 </LinearLayout>

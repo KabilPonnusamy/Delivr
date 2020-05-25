@@ -51,7 +51,12 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.ViewHolder
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         holder.job_wbno_value.setText(riderQueues.get(position).getWBno());
         holder.job_type.setText(riderQueues.get(position).getConsignmentType());
-
+        holder.status_job_item.setText(riderQueues.get(position).getStatus());
+        if (riderQueues.get(position).getStatus().equalsIgnoreCase("Pickedup")) {
+            holder.status_job_item.setBackground(context.getResources().getDrawable(R.drawable.filled_box_green));
+        } else {
+            holder.status_job_item.setBackground(context.getResources().getDrawable(R.drawable.filled_box_orange));
+        }
 
         holder.job_price.setText("$ " + riderQueues.get(position).getAmount());
        // holder.pickupdatetime.setText(riderQueues.get(position).getPickupdatetime().trim());
@@ -73,7 +78,11 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.ViewHolder
             deliveryaddr = deliveryaddr + "," + riderQueues.get(position).getDlvyBuildingType();
         }
         if (riderQueues.get(position).getDlvyZipcode() != null && !riderQueues.get(position).getDlvyZipcode().isEmpty())  {
-            deliveryaddr = deliveryaddr + "," + riderQueues.get(position).getDlvyZipcode();
+            if (!deliveryaddr.isEmpty()) {
+                deliveryaddr = deliveryaddr + "," + riderQueues.get(position).getDlvyZipcode();
+            } else {
+                deliveryaddr = riderQueues.get(position).getDlvyZipcode();
+            }
         }
         holder.delivery_address.setText(deliveryaddr);
         String pickupaddr = "";
@@ -90,7 +99,11 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.ViewHolder
             pickupaddr = pickupaddr + "," + riderQueues.get(position).getPickupBuildingType();
         }
         if (riderQueues.get(position).getPickupZipcode() != null && !riderQueues.get(position).getPickupZipcode().isEmpty())  {
-            pickupaddr = pickupaddr + "," + riderQueues.get(position).getPickupZipcode();
+            if (!pickupaddr.isEmpty()) {
+                pickupaddr = pickupaddr + "," + riderQueues.get(position).getPickupZipcode();
+            } else {
+                pickupaddr = riderQueues.get(position).getPickupZipcode();
+            }
         }
         holder.pickup_address.setText(pickupaddr);
 // +riderQueues.get(position).getDlvyBuildingType()+","+
@@ -140,7 +153,7 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.ViewHolder
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView job_wbno_value, job_type, job_date, job_time, job_price, pickupdatetime, delivery_address,
-                pickup_address, pickupdate_value,pickuptime_value ;
+                pickup_address, pickupdate_value,pickuptime_value , status_job_item;
         Button viewdetails_btn;
         CardView cardview_myjobs;
         ViewHolder(View itemView) {
@@ -158,6 +171,7 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.ViewHolder
             cardview_myjobs = (CardView) itemView.findViewById(R.id.cardview_myjobs);
             pickupdate_value = (TextView) itemView.findViewById(R.id.job_pickupdate_value);
             pickuptime_value = (TextView) itemView.findViewById(R.id.job_pickuptime_value);
+            status_job_item = (TextView) itemView.findViewById(R.id.status_job_item);
         }
     }
 }

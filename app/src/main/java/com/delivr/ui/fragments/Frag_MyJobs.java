@@ -56,7 +56,8 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAIn
     MyJobsAdapter myjobsAdapter;
     String userId;
     ArrayList<ResponseRiderQueue> riderQueues;
-    BottomNavigationView bottom_nav;
+    TextView label_empty_myjobs;
+    //BottomNavigationView bottom_nav;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -133,11 +134,17 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAIn
     private void showAdapters() {
         if(riderQueues != null) {
             if(riderQueues.size() > 0) {
+                jobs_recycler.setVisibility(View.VISIBLE);
+                label_empty_myjobs.setVisibility(View.GONE);
                 jobs_recycler.setHasFixedSize(true);
                 jobs_recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
                 myjobsAdapter = new MyJobsAdapter(riderQueues, getActivity(),
                         Frag_MyJobs.this);
                 jobs_recycler.setAdapter(myjobsAdapter);
+
+            } else {
+                jobs_recycler.setVisibility(View.GONE);
+                label_empty_myjobs.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -147,8 +154,9 @@ public class Frag_MyJobs extends Fragment implements View.OnClickListener, SHAIn
 
         riderQueues = new ArrayList<ResponseRiderQueue>();
         jobs_recycler = view.findViewById(R.id.jobs_recycler);
-        bottom_nav = getActivity().findViewById(R.id.bottom_nav);
-        bottom_nav.setVisibility(View.VISIBLE);
+        label_empty_myjobs = view.findViewById(R.id.label_empty_myjobs);
+        /*bottom_nav = getActivity().findViewById(R.id.bottom_nav);
+        bottom_nav.setVisibility(View.VISIBLE);*/
     }
 
     private void toolbarInit() {

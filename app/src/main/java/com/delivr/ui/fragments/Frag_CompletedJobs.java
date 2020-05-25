@@ -32,6 +32,8 @@ import com.delivr.utils.Utils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -50,6 +52,7 @@ public class Frag_CompletedJobs extends Fragment implements View.OnClickListener
     MyCompletedJobsAdapter mycompjobsAdapter;
     private Call<ArrayList<ResponseCompletedJobs>> callCompJobs;
     ArrayList<ResponseCompletedJobs> completedJobs;
+    TextView label_empty_completedjobs;
     //BottomNavigationView bottom_nav;
 
     @Override
@@ -125,11 +128,16 @@ public class Frag_CompletedJobs extends Fragment implements View.OnClickListener
     private void showAdapters() {
         if(completedJobs != null) {
             if(completedJobs.size() > 0) {
+                compjobs_recycler.setVisibility(View.VISIBLE);
+                label_empty_completedjobs.setVisibility(View.GONE);
                 compjobs_recycler.setHasFixedSize(true);
                 compjobs_recycler.setLayoutManager(new LinearLayoutManager(getActivity()));
                 mycompjobsAdapter = new MyCompletedJobsAdapter(completedJobs, getActivity(),
                         Frag_CompletedJobs.this);
                 compjobs_recycler.setAdapter(mycompjobsAdapter);
+            } else {
+                compjobs_recycler.setVisibility(View.GONE);
+                label_empty_completedjobs.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -139,6 +147,7 @@ public class Frag_CompletedJobs extends Fragment implements View.OnClickListener
         Log.e("delivrApp", "UserId: " + userId);
         compjobs_recycler = view.findViewById(R.id.compjobs_recycler);
         completedJobs = new ArrayList<ResponseCompletedJobs>();
+        label_empty_completedjobs = view.findViewById(R.id.label_empty_completedjobs);
        // bottom_nav = getActivity().findViewById(R.id.bottom_nav);
        // bottom_nav.setVisibility(View.GONE);
     }
