@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1020765512921",
+    "firebase_url": "https://delivr-68973.firebaseio.com",
+    "project_id": "delivr-68973",
+    "storage_bucket": "delivr-68973.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020765512921:android:ab2059562cdd7375094ac8",
+        "android_client_info": {
+          "package_name": "com.delivr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020765512921-8uq2qj6d8mp1puu8qgl005391kvji7qp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZR_-B9QpgVeudRay1GtnPWttUJ1XcCLc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020765512921-8uq2qj6d8mp1puu8qgl005391kvji7qp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

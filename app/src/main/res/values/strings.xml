@@ -89,4 +89,8 @@
     <string name="device_dont_have_camera">Sorry! Your device doesn\'t support camera</string>
     <string name="some_issues_text">Some issues occured, please wait few minutes</string>
     <string name="nojbosfound">No Jobs Found</string>
+    <string name="default_notification_channel_id">sg_delivr_channel</string>
+    <string name="channel_name_promonotify">delivr_notify</string>
+    <string name="fcm_message">FCM Message</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
 </resources>
