@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.delivr"
+        applicationId "sg.delivr"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -87,7 +87,7 @@ dependencies {
     // Add the SDK for Firebase Cloud Messaging
     implementation 'com.google.firebase:firebase-messaging:20.2.0'
     implementation 'com.microsoft.azure:notification-hubs-android-sdk:0.6@aar'
-    implementation 'com.microsoft.azure:azure-notifications-handler:1.0.1@aar'
+   // implementation 'com.microsoft.azure:azure-notifications-handler:1.0.1@aar'
 }
 repositories {
     maven {

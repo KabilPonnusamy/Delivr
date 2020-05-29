@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.delivr">
+    package="sg.delivr">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,7 +15,7 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
-        android:name=".Application"
+        android:name="sg.delivr.Application"
         android:allowBackup="true"
         android:icon="@mipmap/app_logo"
         android:label="@string/app_name"
@@ -43,20 +43,20 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
-        <service android:name="com.delivr.service.AlarmService" />
+        <service android:name="sg.delivr.service.AlarmService" />
         <service
-            android:name="com.delivr.pushmessaging.RegistrationIntentService"
+            android:name="sg.delivr.pushmessaging.RegistrationIntentService"
             android:exported="false">
         </service>
         <service
-            android:name="com.delivr.pushmessaging.FirebaseService"
+            android:name="sg.delivr.pushmessaging.FirebaseService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <provider
-            android:name=".ui.provider.GenericFileProvider"
+            android:name="sg.delivr.ui.provider.GenericFileProvider"
             android:authorities="${applicationId}.silicompressor.provider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -75,10 +75,10 @@
         </provider>
 
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name="sg.delivr.ui.login.LoginActivity"
             ></activity>
 
-        <activity android:name=".SplashActivity">
+        <activity android:name="sg.delivr.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -87,24 +87,24 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.Dashboard"
+            android:name="sg.delivr.ui.activity.Dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".ui.activity.MyJobs_Details"
+            android:name="sg.delivr.ui.activity.MyJobs_Details"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".ui.activity.MyCompletedJobs_Details"
+            android:name="sg.delivr.ui.activity.MyCompletedJobs_Details"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".ui.activity.MyJobsQueue_Details"
+            android:name="sg.delivr.ui.activity.MyJobsQueue_Details"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
