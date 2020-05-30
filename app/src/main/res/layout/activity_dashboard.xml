@@ -64,10 +64,9 @@
             android:id="@+id/frame_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/bottom_nav"
             android:layout_below="@+id/dash_toolbar"
             android:animateLayoutChanges="true" />
-
+<!-- android:layout_above="@+id/bottom_nav"-->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
@@ -79,7 +78,9 @@
             custom:itemTextColor="@color/bottom_nav_color"
             custom:labelVisibilityMode="labeled"
             custom:layout_constraintBottom_toBottomOf="parent"
-            design:menu="@menu/menu_dashboard" />
+            design:menu="@menu/menu_dashboard"
+            android:visibility="gone"
+            />
 
         <!--custom:itemIconTint="@color/bottom_nav_color"
         custom:itemTextColor="@color/bottom_nav_color"-->

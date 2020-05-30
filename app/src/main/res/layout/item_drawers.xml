@@ -31,16 +31,17 @@
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/icon_jobs"
+                    android:src="@mipmap/app_logo"
                     app:civ_border_color="@color/white"
                     app:civ_border_width="2dp" />
 
                 <TextView
                     android:id="@+id/username"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:layout_centerInParent="true"
                     android:layout_marginTop="10dp"
                     android:text="@string/txt_johndoe"
                     android:layout_below="@+id/userimage"

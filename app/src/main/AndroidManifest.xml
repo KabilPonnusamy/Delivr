@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.delivr">
+    package="sg.delivr">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,19 +12,51 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
     <application
-        android:name=".Application"
+        android:name="sg.delivr.Application"
         android:allowBackup="true"
         android:icon="@mipmap/app_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name="com.delivr.service.AlarmService" />
 
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!--
+   Set custom default icon. This is used when no icon is set for incoming notification messages.
+   See README(https://goo.gl/l4GJaQ) for more.
+      -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/upostloginbg" />
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+        <service android:name="sg.delivr.service.AlarmService" />
+        <service
+            android:name="sg.delivr.pushmessaging.RegistrationIntentService"
+            android:exported="false">
+        </service>
+        <service
+            android:name="sg.delivr.pushmessaging.FirebaseService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <provider
-            android:name=".ui.provider.GenericFileProvider"
+            android:name="sg.delivr.ui.provider.GenericFileProvider"
             android:authorities="${applicationId}.silicompressor.provider"
             android:exported="false"
             android:grantUriPermissions="true">
@@ -43,10 +75,10 @@
         </provider>
 
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name="sg.delivr.ui.login.LoginActivity"
             ></activity>
 
-        <activity android:name=".SplashActivity">
+        <activity android:name="sg.delivr.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,24 +87,24 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.Dashboard"
+            android:name="sg.delivr.ui.activity.Dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".ui.activity.MyJobs_Details"
+            android:name="sg.delivr.ui.activity.MyJobs_Details"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".ui.activity.MyCompletedJobs_Details"
+            android:name="sg.delivr.ui.activity.MyCompletedJobs_Details"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".ui.activity.MyJobsQueue_Details"
+            android:name="sg.delivr.ui.activity.MyJobsQueue_Details"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
