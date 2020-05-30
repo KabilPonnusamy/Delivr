@@ -6,17 +6,6 @@ package com.delivr.ui.LocalDB;
 
 public class DbContract {
 
-    public static final int SYNC_STATUS_OK = 1;
-    public static final int SYNC_STATUS_FAILED = 0;
-
-    public static final int MM_SYNC_STATUS_OK = 1;
-    public static final int MM_SYNC_STATUS_FAILED = 0;
-
-    public static final int MA_SYNC_STATUS_OK = 1;
-    public static final int MA_SYNC_STATUS_FAILED = 0;
-
-    public static final String UI_UPDATE_BROADCASR = "com.delivr.ui.LocalDB.uiupdatebroadcast";
-
     // DB
     public static final String DATABASE_NAME = "delivr_database"; // DB name
 
