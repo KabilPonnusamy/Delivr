@@ -40,7 +40,7 @@ import sg.delivr.backend.responsemodels.ResponseUserProfile;
 import sg.delivr.service.AlarmService;
 import sg.delivr.ui.LocalDB.DbContract;
 import sg.delivr.ui.LocalDB.DbHelper;
-import sg.delivr.ui.activity.Dashboard;
+import sg.delivr.ui.activity.Dashboard_Rider;
 import sg.delivr.ui.interfaces.Intent_Constants;
 import sg.delivr.utils.CheckNetwork;
 import sg.delivr.utils.DataBaseHelper;
@@ -188,7 +188,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
 
                 insertData_to_Server(str_useremail, str_user_password);
-               /* Intent loginintent = new Intent(LoginActivity.this, Dashboard.class);
+               /* Intent loginintent = new Intent(LoginActivity.this, Dashboard_Rider.class);
                 startActivity(loginintent);*/
                 break;
             case R.id.forgot_pwd:
@@ -290,7 +290,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Intent i = new Intent(getApplicationContext(), CustomerTile.class);
                                 startActivity(i)*/;
                                 StoredDatas.getInstance().setScreenValidation("Login");
-                                Intent i = new Intent(getApplicationContext(), Dashboard.class);
+                                Intent i = new Intent(getApplicationContext(), Dashboard_Rider.class);
                                 startActivityForResult(i, LOGIN_to_RIDER_DASH);
                                 finish();
                             } else {
@@ -347,7 +347,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         /* Intent i = new Intent(getApplicationContext(), MenuTile.class);
         startActivity(i);*/
         StoredDatas.getInstance().setScreenValidation("Login");
-        Intent i = new Intent(getApplicationContext(), Dashboard.class);
+        Intent i = new Intent(getApplicationContext(), Dashboard_Rider.class);
         startActivityForResult(i, LOGIN_to_RIDER_DASH);
         finish();
 

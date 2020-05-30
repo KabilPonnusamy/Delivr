@@ -17,7 +17,7 @@ import androidx.core.content.FileProvider;
 
 
 import sg.delivr.BuildConfig;
-import sg.delivr.ui.activity.Dashboard;
+import sg.delivr.ui.activity.Dashboard_Rider;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -99,13 +99,13 @@ public class CameraUtils {
         File mediaStorageDir = new File(
                 Environment
                         .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                Dashboard.GALLERY_DIRECTORY_NAME);
+                Dashboard_Rider.GALLERY_DIRECTORY_NAME);
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
-                Log.e(Dashboard.GALLERY_DIRECTORY_NAME, "Oops! Failed create "
-                        + Dashboard.GALLERY_DIRECTORY_NAME + " directory");
+                Log.e(Dashboard_Rider.GALLERY_DIRECTORY_NAME, "Oops! Failed create "
+                        + Dashboard_Rider.GALLERY_DIRECTORY_NAME + " directory");
                 return null;
             }
         }
@@ -115,12 +115,12 @@ public class CameraUtils {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
                 Locale.getDefault()).format(new Date());
         File mediaFile;
-        if (type == Dashboard.MEDIA_TYPE_IMAGE) {
+        if (type == Dashboard_Rider.MEDIA_TYPE_IMAGE) {
             mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                    + "IMG_" + timeStamp + "." + Dashboard.IMAGE_EXTENSION);
-        } else if (type == Dashboard.MEDIA_TYPE_VIDEO) {
+                    + "IMG_" + timeStamp + "." + Dashboard_Rider.IMAGE_EXTENSION);
+        } else if (type == Dashboard_Rider.MEDIA_TYPE_VIDEO) {
             mediaFile = new File(mediaStorageDir.getPath() + File.separator
-                    + "VID_" + timeStamp + "." + Dashboard.VIDEO_EXTENSION);
+                    + "VID_" + timeStamp + "." + Dashboard_Rider.VIDEO_EXTENSION);
         } else {
             return null;
         }

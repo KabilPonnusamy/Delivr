@@ -12,7 +12,7 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import sg.delivr.ui.activity.Dashboard;
+import sg.delivr.ui.activity.Dashboard_Rider;
 import sg.delivr.utils.Prefs;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -89,7 +89,7 @@ public class FirebaseService extends FirebaseMessagingService {
 
     private void sendNotification(String msg) {
 
-        Intent intent = new Intent(ctx, Dashboard.class);
+        Intent intent = new Intent(ctx, Dashboard_Rider.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         mNotificationManager = (NotificationManager)

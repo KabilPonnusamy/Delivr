@@ -41,6 +41,7 @@ import sg.delivr.pushmessaging.RegistrationIntentService;
 import sg.delivr.ui.LocalDB.DbContract;
 import sg.delivr.ui.LocalDB.DbHelper;
 import sg.delivr.ui.fragments.Frag_CompletedJobs;
+import sg.delivr.ui.fragments.Frag_HelpSupport;
 import sg.delivr.ui.fragments.Frag_MyJobs;
 import sg.delivr.ui.fragments.Frag_MyJobsQueue;
 import sg.delivr.ui.fragments.Frag_MyProfile;
@@ -61,7 +62,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.view.View.VISIBLE;
 
-public class Dashboard extends AppCompatActivity implements View.OnClickListener {
+public class Dashboard_Rider extends AppCompatActivity implements View.OnClickListener {
 
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
@@ -74,7 +75,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     private static final int REQUEST_CAMERA_ACCESS_PERMISSION =5674;
     private static final int REQUEST_TAKE_GALLERY_VIDEO = 5675;
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-    public static Dashboard mainActivity;
+    public static Dashboard_Rider mainActivity;
     Activity activity = this;
     ImageView img_hamburg;
     TextView username;
@@ -86,7 +87,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     String profile_str = "";
 
     RelativeLayout myjobs_layout, jobqueue_layout, comp_jobs_layout, profile_layout,
-            logout_layout;
+            help_layout, logout_layout;
 
     File file1;
     Uri file;
@@ -166,6 +167,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         jobqueue_layout = findViewById(R.id.jobqueue_layout);
         comp_jobs_layout = findViewById(R.id.comp_jobs_layout);
         profile_layout = findViewById(R.id.profile_layout);
+        help_layout = findViewById(R.id.help_layout);
         logout_layout = findViewById(R.id.logout_layout);
 
      //   bottom_nav = findViewById(R.id.bottom_nav);
@@ -185,6 +187,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         jobqueue_layout.setOnClickListener(this);
         comp_jobs_layout.setOnClickListener(this);
         profile_layout.setOnClickListener(this);
+        help_layout.setOnClickListener(this);
         logout_layout.setOnClickListener(this);
         img_hamburg.setOnClickListener(this);
         username.setText(Prefs.getUserFullname());
@@ -212,7 +215,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 
     private void validateShowImage() {
         String strUserimage = "";
-        DbHelper dbHelper = new DbHelper(Dashboard.this);
+        DbHelper dbHelper = new DbHelper(Dashboard_Rider.this);
         SQLiteDatabase database = dbHelper.getReadableDatabase();
         Cursor cursor = dbHelper.readProfile(database, Prefs.getUserId());
 
@@ -346,7 +349,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                         .setCropShape(CropImageView.CropShape.OVAL)
                         .setBorderLineColor(getResources().getColor(R.color.colorPrimary))
                         .setGuidelinesColor(getResources().getColor(R.color.white))
-                        .start(Dashboard.this);
+                        .start(Dashboard_Rider.this);
 
 
                 drawer.closeDrawer(GravityCompat.START);
@@ -384,6 +387,14 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
                 drawer.closeDrawer(GravityCompat.START);
                 break;
 
+            case R.id.help_layout:
+                Fragment helpFragment = new Frag_HelpSupport();
+                FragmentTransaction helpFrag = getSupportFragmentManager().beginTransaction();
+                helpFrag.replace(R.id.frame_layout, helpFragment);
+                helpFrag.commit();
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
             case R.id.logout_layout:
                 showLogoutDialog();
                 drawer.closeDrawer(GravityCompat.START);
@@ -392,15 +403,15 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     }
 
     private void showLogoutDialog() {
-        new AlertDialog.Builder(Dashboard.this)
+        new AlertDialog.Builder(Dashboard_Rider.this)
                 .setTitle("Alert!")
-                .setMessage("Are you sure want to Logout?")
+                .setMessage(getResources().getString(R.string.txt_logout_msg))
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         Prefs.setUserId("");
-                        Intent intent = new Intent(Dashboard.this, LoginActivity.class);
+                        Intent intent = new Intent(Dashboard_Rider.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -448,9 +459,6 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 
                         updatePhoto(filePath);
 
-
-
-
 //                        new ImageCompressionAsyncTask(this, filePath).execute(uri.toString(), "" + newFile);
 
                     } catch (URISyntaxException e) {
@@ -467,7 +475,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         Bitmap bmImg = BitmapFactory.decodeFile(filePath);
         userimage.setImageBitmap(bmImg);
 
-        DbHelper dbHelper = new DbHelper(Dashboard.this);
+        DbHelper dbHelper = new DbHelper(Dashboard_Rider.this);
         SQLiteDatabase database = dbHelper.getWritableDatabase();
         dbHelper.updateProfile(Prefs.getUserId(), filePath, database);
         dbHelper.close();
@@ -487,7 +495,7 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog = new ProgressDialog(Dashboard.this);
+            progressDialog = new ProgressDialog(Dashboard_Rider.this);
             progressDialog.show();
             progressDialog.setCancelable(false);
             progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));

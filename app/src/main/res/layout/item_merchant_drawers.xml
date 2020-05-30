@@ -43,7 +43,7 @@
                     android:gravity="center"
                     android:layout_centerInParent="true"
                     android:layout_marginTop="10dp"
-                    android:text="@string/txt_johndoe"
+                    android:text="@string/txt_merchant"
                     android:layout_below="@+id/userimage"
                     android:textColor="@color/black"
                     android:textSize="15sp"
@@ -59,7 +59,7 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/myjobs_layout"
+                    android:id="@+id/mer_myorders_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -67,7 +67,79 @@
                     android:padding="5dp">
 
                     <ImageView
-                        android:id="@+id/myjobs_img"
+                        android:id="@+id/mer_order_img"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/icon_myorders" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/mer_order_img"
+                        android:text="@string/txt_myorders"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/view_line_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/orderdetails_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/orderdetail_img"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/icon_order_details" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/orderdetail_img"
+                        android:text="@string/txt_order_details"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/view_line_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/merchantjobs_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/my_jobs_img"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_alignParentStart="true"
@@ -75,12 +147,11 @@
                         android:src="@drawable/icon_jobs" />
 
                     <TextView
-                        android:id="@+id/myjobs_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@+id/myjobs_img"
+                        android:layout_toEndOf="@+id/my_jobs_img"
                         android:text="@string/txt_myjobs"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -96,7 +167,7 @@
                     android:background="@color/view_line_gray" />
 
                 <RelativeLayout
-                    android:id="@+id/jobqueue_layout"
+                    android:id="@+id/wallet_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -104,58 +175,20 @@
                     android:padding="5dp">
 
                     <ImageView
-                        android:id="@+id/jobqueue_img"
+                        android:id="@+id/wallet_img"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_alignParentStart="true"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/icon_compjobs" />
+                        android:src="@drawable/icon_wallet_topup" />
 
                     <TextView
-                        android:id="@+id/jobqueue_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@+id/jobqueue_img"
-                        android:text="@string/txt_jobqueue"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:textStyle="normal" />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@color/view_line_gray" />
-
-                <RelativeLayout
-                    android:id="@+id/comp_jobs_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:id="@+id/comp_jobs_img"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/icon_compjobs" />
-
-                    <TextView
-                        android:id="@+id/comp_jobs_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@+id/comp_jobs_img"
-                        android:text="@string/txt_comp_jobs"
+                        android:layout_toEndOf="@+id/wallet_img"
+                        android:text="@string/txt_wallet_topup"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:textStyle="normal" />

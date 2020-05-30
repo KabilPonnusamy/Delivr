@@ -93,4 +93,15 @@
     <string name="channel_name_promonotify">delivr_notify</string>
     <string name="fcm_message">FCM Message</string>
     <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+    <string name="txt_help_support">Help &amp; Support</string>
+    <string name="txt_logout_msg">Are you sure want to Logout?</string>
+    <string name="txt_myorders">My orders</string>
+    <string name="txt_order_details">Order details</string>
+    <string name="txt_merchant">Merchant</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_mobile">Mobile</string>
+    <string name="btn_submit">Submit</string>
+    <string name="hint_your_message">Your Message</string>
+    <string name="txt_wallet_topup">Wallet top-up</string>
 </resources>
