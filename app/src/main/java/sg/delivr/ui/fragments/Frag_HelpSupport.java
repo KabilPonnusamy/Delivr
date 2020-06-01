@@ -62,7 +62,7 @@ public class Frag_HelpSupport extends Fragment implements View.OnClickListener, 
     private void toolbarInit() {
         dash_toolbar = getActivity().findViewById(R.id.dash_toolbar);
         toolbar_title = getActivity().findViewById(R.id.toolbar_title);
-        toolbar_title.setText(getResources().getString(R.string.txt_myorders));
+        toolbar_title.setText(getResources().getString(R.string.txt_help_support));
         dash_toolbar.setVisibility(View.VISIBLE);
     }
 

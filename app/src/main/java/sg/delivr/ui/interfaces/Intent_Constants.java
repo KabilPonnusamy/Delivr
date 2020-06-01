@@ -10,6 +10,7 @@ public interface Intent_Constants {
     int RIDER_COMPJOBS_to_COMPJOBS_DETAILS = 6;
     int RIDER_MYJOBSQUEUE_to_MYJOBQUEUE_DETAILS = 7;
     int MYJOBSQUEUEAQ_success = 8;
+    int LOGIN_to_MERCHANT_DASH = 9;
 
 
 

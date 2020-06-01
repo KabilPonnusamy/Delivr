@@ -40,6 +40,7 @@ import sg.delivr.backend.responsemodels.ResponseUserProfile;
 import sg.delivr.service.AlarmService;
 import sg.delivr.ui.LocalDB.DbContract;
 import sg.delivr.ui.LocalDB.DbHelper;
+import sg.delivr.ui.activity.Dashboard_Merchant;
 import sg.delivr.ui.activity.Dashboard_Rider;
 import sg.delivr.ui.interfaces.Intent_Constants;
 import sg.delivr.utils.CheckNetwork;
@@ -292,6 +293,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 StoredDatas.getInstance().setScreenValidation("Login");
                                 Intent i = new Intent(getApplicationContext(), Dashboard_Rider.class);
                                 startActivityForResult(i, LOGIN_to_RIDER_DASH);
+                                finish();
+                            } else if (UserRole.equals("Merchant")) {
+
+                                /*Intent alarmFBIntent = new Intent(MainActivity.this, FeedbackReceiver.class);
+                                pendingFBIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmFBIntent, 0);
+
+                                AlarmManager FBmanager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                                int interval = 1800000;
+                                FBmanager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval, pendingFBIntent);
+
+                                Intent i = new Intent(getApplicationContext(), CustomerTile.class);
+                                startActivity(i)*/;
+                                StoredDatas.getInstance().setScreenValidation("Login");
+                                Intent i = new Intent(getApplicationContext(), Dashboard_Merchant.class);
+                                startActivityForResult(i, LOGIN_to_MERCHANT_DASH);
                                 finish();
                             } else {
                                 /*lblerrmessage = (TextView) findViewById(R.id.lblerrmessage);

@@ -104,4 +104,14 @@
     <string name="btn_submit">Submit</string>
     <string name="hint_your_message">Your Message</string>
     <string name="txt_wallet_topup">Wallet top-up</string>
+    <string name="hint_title_pickupaddr">Pickup Address</string>
+    <string name="hint_title_dlvryaddr">Delivery Address</string>
+    <string name="hint_title_pickupdetails">Pickup Details</string>
+    <string name="hint_contact">Contact</string>
+    <string name="hint_pickup_postaladdr">Pickup Postal Code</string>
+    <string name="hint_dlvry_postaladdr">Delivery Postal Code</string>
+    <string name="hint_unitno">Unit No</string>
+    <string name="hint_pickupdatetime">Pickup Date Time</string>
+    <string name="hint_fooddetails">Food Details</string>
+    <string name="hint_deliveryinstruction">Delivery Instruction</string>
 </resources>

@@ -23,6 +23,7 @@ import sg.delivr.Common.StoredDatas;
 
 import sg.delivr.R;
 
+import sg.delivr.ui.activity.Dashboard_Merchant;
 import sg.delivr.ui.activity.Dashboard_Rider;
 import sg.delivr.ui.login.LoginActivity;
 import sg.delivr.utils.Prefs;
@@ -270,9 +271,14 @@ public class SplashActivity extends Activity {
                     System.out.println("EXc=" + e);
                 } finally {
                     userId = Prefs.getUserId();
-                    if(!userId.equalsIgnoreCase("")) {
+                    if(!userId.equalsIgnoreCase("") && Prefs.getUserRole().equalsIgnoreCase("Rider")) {
                         StoredDatas.getInstance().setScreenValidation("Splash");
                         Intent i = new Intent(getApplicationContext(), Dashboard_Rider.class);
+                        startActivity(i);
+                        finish();
+                    } else if(!userId.equalsIgnoreCase("") && Prefs.getUserRole().equalsIgnoreCase("Merchant")) {
+                        StoredDatas.getInstance().setScreenValidation("Splash");
+                        Intent i = new Intent(getApplicationContext(), Dashboard_Merchant.class);
                         startActivity(i);
                         finish();
                     } else {
