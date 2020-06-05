@@ -60,10 +60,10 @@
                         android:background="@android:color/transparent"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:hint="@string/hint_name"
+                        android:hint="Pizza Faberrica"
                         android:maxLines="1"
                         android:textColor="@color/colorPrimary"
-
+                        android:enabled="false"
                         android:textSize="16sp"
                         android:padding="5dp"
                         />
@@ -90,12 +90,12 @@
                         android:background="@android:color/transparent"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:hint="@string/hint_pickup_postaladdr"
+                        android:hint="8 Haji Lane 189201"
                         android:maxLines="1"
                         android:textColor="@color/colorPrimary"
 
                         android:textSize="16sp"
-                        android:enabled="true"
+                        android:enabled="false"
                         android:padding="5dp"
                         />
                     <View
@@ -121,12 +121,12 @@
                         android:background="@android:color/transparent"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:hint="@string/hint_unitno"
+                        android:hint="8"
                         android:maxLines="1"
                         android:textColor="@color/colorPrimary"
 
                         android:textSize="16sp"
-                        android:enabled="true"
+                        android:enabled="false"
                         android:padding="5dp"
                         />
                     <View
@@ -153,12 +153,12 @@
                         android:background="@android:color/transparent"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:hint="@string/hint_contact"
+                        android:hint="86060405"
                         android:maxLines="1"
                         android:textColor="@color/colorPrimary"
 
                         android:textSize="16sp"
-                        android:enabled="true"
+                        android:enabled="false"
                         android:padding="5dp"
                         />
                     <View
@@ -279,8 +279,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             >
-            <EditText
-                android:id="@+id/edt_dlvryaddr"
+            <TextView
+                android:id="@+id/txt_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"

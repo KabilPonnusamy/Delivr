@@ -46,26 +46,26 @@ public class SearchLocation extends AppCompatActivity implements Intent_Constant
     }
 
     private void gatherDatas() {
-        SearchDatas item = new SearchDatas("1", "Yishun", "04-06-2020");
-        SearchDatas item2 = new SearchDatas("2", "Serangoon", "04-06-2020");
-        SearchDatas item3 = new SearchDatas("3", "Jurong West", "04-06-2020");
-        SearchDatas item4 = new SearchDatas("4", "Clementi", "04-06-2020");
-        SearchDatas item5 = new SearchDatas("5", "Tampines", "04-06-2020");
-        SearchDatas item6 = new SearchDatas("6", "Punggol", "04-06-2020");
-        SearchDatas item7 = new SearchDatas("7", "Woodlands", "04-06-2020");
-        SearchDatas item8 = new SearchDatas("8", "Kampong Glam", "04-06-2020");
-        SearchDatas item9 = new SearchDatas("9", "Jurong East", "04-06-2020");
-        SearchDatas item10 = new SearchDatas("10", "Pasir Ris", "04-06-2020");
-        SearchDatas item11 = new SearchDatas("11", "SengKang", "04-06-2020");
-        SearchDatas item12 = new SearchDatas("12", "Tengah", "04-06-2020");
-        SearchDatas item13 = new SearchDatas("13", "Choa Chu Kang", "04-06-2020");
-        SearchDatas item14 = new SearchDatas("14", "Bukit Batok", "04-06-2020");
-        SearchDatas item15 = new SearchDatas("15", "Ang Mo Kio", "04-06-2020");
-        SearchDatas item16 = new SearchDatas("16", "Rachor", "04-06-2020");
-        SearchDatas item17 = new SearchDatas("17", "China Square", "04-06-2020");
-        SearchDatas item18 = new SearchDatas("18", "ChinaTown", "04-06-2020");
-        SearchDatas item19 = new SearchDatas("19", "Holland Drive", "04-06-2020");
-        SearchDatas item20 = new SearchDatas("20", "Kent Ridge", "04-06-2020");
+        SearchDatas item = new SearchDatas("1", "21  Park Street  Marina Bay MRT (CE2)  018925", "04-06-2020");
+        SearchDatas item2 = new SearchDatas("2", "23  Park Street  Marina Bay MRT (TE20) (U/C - TOP:2021)  018926", "04-06-2020");
+        SearchDatas item3 = new SearchDatas("3", "20A  Park Street    018927", "04-06-2020");
+        SearchDatas item4 = new SearchDatas("4", "51  Marina South Drive   Public Transportation  018930", "04-06-2020");
+        SearchDatas item5 = new SearchDatas("5", "5  Straits View   Commercial Building  018935", "04-06-2020");
+        SearchDatas item6 = new SearchDatas("6", "7  Straits View   Commercial Building  018936", "04-06-2020");
+        SearchDatas item7 = new SearchDatas("7", "9  Straits View   Commercial Building  018937", "04-06-2020");
+        SearchDatas item8 = new SearchDatas("8", "11  Marina Boulevard   Commercial Building  018940", "04-06-2020");
+        SearchDatas item9 = new SearchDatas("9", "71  Marina Coastal Drive  Marina South Wharves   018946", "04-06-2020");
+        SearchDatas item10 = new SearchDatas("10", "33  Marina Coastal Drive  Marina South Pier MRT   018948", "04-06-2020");
+        SearchDatas item11 = new SearchDatas("11", "8  Marina Gardens Drive  Marina Barrage   018951", "04-06-2020");
+        SearchDatas item12 = new SearchDatas("12", "18  Marina Gardens Drive  Gardens By The Bay | Satay by the Bay   018952", "04-06-2020");
+        SearchDatas item13 = new SearchDatas("13", "2  Marina Gardens Drive   Commercial Building  018954", "04-06-2020");
+        SearchDatas item14 = new SearchDatas("14", "8  Bayfront Avenue  Casino | Marina Bay Sands   018955", "04-06-2020");
+        SearchDatas item15 = new SearchDatas("15", "10  Bayfront Avenue  Marina Bay Sands  018956", "04-06-2020");
+        SearchDatas item16 = new SearchDatas("16", "11  Bayfront Avenue  Bayfront MRT   018957", "04-06-2020");
+        SearchDatas item17 = new SearchDatas("17", "2A  Bayfront Avenue   Commercial Building  018958", "04-06-2020");
+        SearchDatas item18 = new SearchDatas("18", "11A  Bayfront Avenue   Commercial Building  018959", "04-06-2020");
+        SearchDatas item19 = new SearchDatas("19", "8  Marina View  Asia Square Tower 1   018960", "04-06-2020");
+        SearchDatas item20 = new SearchDatas("20", "12  Marina View  Asia Square Tower 2   018961", "04-06-2020");
 
 
         searchDatas.add(item);

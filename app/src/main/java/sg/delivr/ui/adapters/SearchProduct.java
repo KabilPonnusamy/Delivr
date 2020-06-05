@@ -66,7 +66,8 @@ public class SearchProduct extends ArrayAdapter<SearchDatas> {
             if (constraint != null) {
                 suggestions.clear();
                 for (SearchDatas people : tempItems) {
-                    if (people.getLoc_name().toLowerCase().contains(constraint.toString().toLowerCase())) {
+
+                    if (people.getLoc_name().contains(constraint.toString())) {
                         suggestions.add(people);
                     }
                 }
