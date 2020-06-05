@@ -47,6 +47,7 @@ import sg.delivr.backend.RetrofitClient;
 import sg.delivr.backend.postmodels.PostDoRiderQueue;
 import sg.delivr.backend.responsemodels.ResponseRiderQueue;
 import sg.delivr.data.model.MyJobsModel;
+import sg.delivr.ui.activity.SearchLocation;
 import sg.delivr.ui.adapters.MyJobsAdapter;
 import sg.delivr.ui.interfaces.Intent_Constants;
 import sg.delivr.ui.interfaces.SHAInterface;
@@ -76,6 +77,8 @@ public class Frag_MyOrders extends Fragment implements View.OnClickListener, SHA
     private static String format = "", pickupdatetime = "", selectedpickupdate = "", selectedpickuptime = "";
 
 
+    TextView txt_address;
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -92,7 +95,7 @@ public class Frag_MyOrders extends Fragment implements View.OnClickListener, SHA
 //        initiateProgress();
 
         return view;
-        }
+    }
 
     /*private void initiateProgress() {
         progressDialog = new ProgressDialog(getActivity());
@@ -165,29 +168,16 @@ public class Frag_MyOrders extends Fragment implements View.OnClickListener, SHA
             }
         }
     }
-*/
+
     private void initView(View view) {
         userId = Prefs.getUserId();
-        edt_pickupaddr_name = view.findViewById(R.id.edt_pickupaddr_name);
-        edt_pickupaddr = view.findViewById(R.id.edt_pickupaddr);
-        edt_pickupaddr_unitno = view.findViewById(R.id.edt_pickupaddr_unitno);
-        edt_pickupaddr_contact = view.findViewById(R.id.edt_pickupaddr_contact);
-        edt_dlvryaddr_name = view.findViewById(R.id.edt_dlvryaddr_name);
-        edt_dlvryaddr = view.findViewById(R.id.edt_dlvryaddr);
-        edt_dlvryaddr_email = view.findViewById(R.id.edt_dlvryaddr_email);
-        edt_dlvryaddr_unitno = view.findViewById(R.id.edt_dlvryaddr_unitno);
-        edt_dlvryaddr_contact = view.findViewById(R.id.edt_dlvryaddr_contact);
-        edt_delivryinstruction = view.findViewById(R.id.edt_delivryinstruction);
-        edt_fooddetails = view.findViewById(R.id.edt_fooddetails);
-        edt_pickupdatetime = view.findViewById(R.id.edt_pickupdatetime);
-        txt_pickuptime = view.findViewById(R.id.txt_pickuptime);
-        submit_createorder = view.findViewById(R.id.submit_createorder);
-        submit_createorder.setOnClickListener(this);
-        edt_pickupdatetime.setOnClickListener(this);
-        txt_pickuptime.setOnClickListener(this);
-        /*bottom_nav = getActivity().findViewById(R.id.bottom_nav);
-        bottom_nav.setVisibility(View.VISIBLE);*/
-    }
+
+        riderQueues = new ArrayList<ResponseRiderQueue>();
+        jobs_recycler = view.findViewById(R.id.jobs_recycler);
+        label_empty_myjobs = view.findViewById(R.id.label_empty_myjobs);
+        *//*bottom_nav = getActivity().findViewById(R.id.bottom_nav);
+        bottom_nav.setVisibility(View.VISIBLE);*//*
+    }*/
 
     private void toolbarInit() {
         dash_toolbar = getActivity().findViewById(R.id.dash_toolbar);
@@ -199,82 +189,7 @@ public class Frag_MyOrders extends Fragment implements View.OnClickListener, SHA
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.submit_createorder:
-                validation();
-                break;
-            case R.id.edt_pickupdatetime:
-                DialogFragment newFragment = new DatePickerFragment();
-                newFragment.show(getFragmentManager(), "datePicker");
-                break;
-            case R.id.txt_pickuptime:
-                DialogFragment newFragment1 = new TimePickerFragment();
-                newFragment1.show(getFragmentManager(), "timePicker");
-                break;
-        }
-    }
 
-    public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
-        @NonNull
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-
-            // Create a new instance of DatePickerDialog and return it
-            DatePickerDialog pickerDialog = new DatePickerDialog(getActivity(), this, year, month, day);
-           // pickerDialog.getDatePicker().setSpinnersShown(true);
-          //  pickerDialog.getDatePicker().setCalendarViewShown(false);
-          //  pickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-           // pickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-            return pickerDialog;
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            // Do something with the date chosen by the user
-            Calendar c = Calendar.getInstance();
-
-            c.set(Calendar.DAY_OF_MONTH, day);
-            c.set(Calendar.YEAR, year);
-            c.set(Calendar.MONTH, month);
-            edt_pickupdatetime.setText("");
-
-            String myFormat = "yyyy-MM-dd"; //In which you need put here
-            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-            selectedpickupdate = "" + sdf.format(c.getTime());
-            Log.e("delivrApp", "Selected PickUp Date" + selectedpickupdate);
-            txt_pickuptime.performClick();
-        }
-    }
-
-    public static class TimePickerFragment extends DialogFragment
-            implements TimePickerDialog.OnTimeSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current time as the default values for the picker
-            final Calendar c = Calendar.getInstance();
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int minute = c.get(Calendar.MINUTE);
-
-            // Create a new instance of TimePickerDialog and return it
-            return new TimePickerDialog(getActivity(), this, hour, minute,
-                    DateFormat.is24HourFormat(getActivity()));
-        }
-
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            // Do something with the time chosen by the user
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            calendar.set(Calendar.MINUTE, minute);
-
-            int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            int min = calendar.get(Calendar.MINUTE);
-            showTime(hour, min);
         }
     }
 
@@ -311,82 +226,16 @@ public class Frag_MyOrders extends Fragment implements View.OnClickListener, SHA
         deliveryinstruction = edt_delivryinstruction.getText().toString().trim();
     }
 
-    /*public void AlertBox(final String head, final String meg) {
-        LayoutInflater in = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View vv = in.inflate(R.layout.alertbox, null);
-        final BottomSheetDialog dialog = new BottomSheetDialog(getActivity());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(vv);
-        dialog.setCancelable(false);
-        TextView content = (TextView) vv.findViewById(R.id.content);
-        TextView header = (TextView) vv.findViewById(R.id.header);
-        header.setText(head);
-        TextView no = (TextView) vv.findViewById(R.id.no);
-        TextView yes = (TextView) vv.findViewById(R.id.yes);
-        LinearLayout cancel = (LinearLayout) vv.findViewById(R.id.cancel);
-        cancel.setVisibility(View.GONE);
-        LinearLayout ok = (LinearLayout) vv.findViewById(R.id.ok);
-        content.setText(meg);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
 
-        ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                if (head.equalsIgnoreCase("Error")) {
-                    getActivity().finish();
-                } else if (head.equalsIgnoreCase("Alert")) {
-                    dialog.dismiss();
-                } else {
-                    dialog.dismiss();
-                }
-            }
-        });
-        dialog.show();
-    }*/
-
-    /*@Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == RIDER_MYJOBS_to_MYJOB_DETAILS) {
-            if(resultCode == MYJOBSAQ_success) {
-                String listAQPos = data.getStringExtra("AQPosition");
-                String jobstatus = data.getStringExtra("AQStatus");
-                int position = Integer.parseInt(listAQPos);
-                Log.e("delivrApp", "LastPos: " + position  + "Job Status:" +  jobstatus);
-
-                if (jobstatus.equalsIgnoreCase("Del")) {
-                    riderQueues.remove(position);
-                    myjobsAdapter.notifyDataSetChanged();
-                } else {
-                    String chkstatus = "";
-                    progressDialog = new ProgressDialog(getActivity());
-                    progressDialog.setMessage("Please wait..");
-                    progressDialog.setCancelable(false);
-                    if (jobstatus.equalsIgnoreCase("Pic")) {
-                        gatherRiders();
-                    }
-                    riderQueues.get(position).setStatus(jobstatus);
-                    StoredDatas.getInstance().setRiderQueues(riderQueues);
-                    riderQueues = StoredDatas.getInstance().getRiderQueues();
-                    Log.e("delivrApp", "Inside My Jobs get current data : Check Status:" + chkstatus + "New Status:"  + riderQueues.get(position).getStatus()+
-                            "Status Code:" +riderQueues.get(position).getStatusCode() + "Delivery_CO" + riderQueues.get(position).getDelivery_CO());
-                    if (riderQueues.get(position).getStatusCode().equals("RidAcc") || riderQueues.get(position).getStatusCode().equals("PassAcc")
-                            || riderQueues.get(position).getStatusCode().equals("PassRej")) {
-                        chkstatus = riderQueues.get(position).getLastStatusCode();
-                    } else {
-                        chkstatus = riderQueues.get(position).getStatusCode();
-                    }
-                    Log.e("delivrApp", "Inside My Jobs else : Check Status:" + chkstatus + "New Statusd:"  + riderQueues.get(position).getStatus() + "Status Code:" +
-                            riderQueues.get(position).getLastStatusCode() + "Delivery_CO" + riderQueues.get(position).getDelivery_CO());
-                    myjobsAdapter.notifyDataSetChanged();
-                }
+        if(requestCode == FRAG_MYORDERS_to_SEARCH_LOCATION) {
+            if(resultCode == SEARCH_success) {
+                String location_value = data.getStringExtra("location_value");
+                Log.e("delivrApp", "Location: " + location_value);
+                txt_address.setText(location_value);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }*/
+    }
 }
