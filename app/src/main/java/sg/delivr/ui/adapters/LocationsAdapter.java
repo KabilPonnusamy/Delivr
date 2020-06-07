@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import sg.delivr.R;
 import sg.delivr.backend.responsemodels.ResponseAssignedQueue;
+import sg.delivr.backend.responsemodels.ResponseLocationDatas;
 import sg.delivr.ui.fragments.Frag_MyJobsQueue;
 import sg.delivr.ui.interfaces.Intent_Constants;
 import sg.delivr.ui.interfaces.SHAInterface;
@@ -25,10 +26,10 @@ import sg.delivr.ui.models.SearchDatas;
 public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.ViewHolder> implements
         Intent_Constants {
 
-    private ArrayList<SearchDatas> searchDatas;
+    private ArrayList<ResponseLocationDatas> searchDatas;
     private Context context;
 
-    public LocationsAdapter(ArrayList<SearchDatas> searchDatas, Context context) {
+    public LocationsAdapter(ArrayList<ResponseLocationDatas> searchDatas, Context context) {
         this.searchDatas = searchDatas;
         this.context = context;
     }
@@ -41,7 +42,7 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.View
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.location_title.setText(searchDatas.get(position).getLoc_name());
+        holder.location_title.setText(searchDatas.get(position).getV());
     }
 
     @Override

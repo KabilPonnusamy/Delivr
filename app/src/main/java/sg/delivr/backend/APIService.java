@@ -16,6 +16,7 @@ import sg.delivr.backend.responsemodels.ResponseAssignedActionAQ;
 import sg.delivr.backend.responsemodels.ResponseAssignedQueue;
 import sg.delivr.backend.responsemodels.ResponseCompletedJobs;
 import sg.delivr.backend.responsemodels.ResponseGetRiders;
+import sg.delivr.backend.responsemodels.ResponseLocationDatas;
 import sg.delivr.backend.responsemodels.ResponseRiderQueue;
 import sg.delivr.backend.responsemodels.ResponseUserLogin;
 import sg.delivr.backend.responsemodels.ResponseUserProfile;
@@ -38,6 +39,8 @@ public interface APIService {
     @GET("member/forgotpwd")
     Call<BaseResponse> forgotPwd(@Query("email") String email);
 
+    @GET("mstAddress.json")
+    Call<ArrayList<ResponseLocationDatas>> getLocations();
 
     //Login
     @POST("Users/signup")
