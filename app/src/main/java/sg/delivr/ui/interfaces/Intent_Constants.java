@@ -13,6 +13,9 @@ public interface Intent_Constants {
     int LOGIN_to_MERCHANT_DASH = 9;
     int FRAG_MYORDERS_to_SEARCH_LOCATION = 10;
     int SEARCH_success = 11;
+    int MYORDERS_to_PICKUP = 12;
+    int MYORDERS_to_DELIVERY = 13;
+    int LOCATION_success = 14;
 
 
 

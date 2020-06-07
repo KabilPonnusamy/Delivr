@@ -117,4 +117,6 @@
     <string name="search_location">Search Location</string>
     <string name="search_hint">Search Location</string>
     <string name="img">Image</string>
+    <string name="txt_pickup">PickUp Location</string>
+    <string name="txt_delivery">Delivery Location</string>
 </resources>

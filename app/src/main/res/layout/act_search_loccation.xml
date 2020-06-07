@@ -66,7 +66,19 @@
                 android:contentDescription="@string/img"
                 android:background="@drawable/new_search" />
 
-            <AutoCompleteTextView
+            <EditText
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"
+                android:singleLine="true"
+                android:textSize="15sp"
+                android:hint="@string/search_hint"
+                android:fontFamily="@font/robotbold"/>
+
+            <!--<AutoCompleteTextView
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -79,10 +91,17 @@
                 android:paddingEnd="0dp"
                 android:singleLine="true"
                 android:textSize="15sp"
-                app:theme="@style/AppSearchView" />
+                app:theme="@style/AppSearchView" />-->
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/location_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbars="none" />
 
 </LinearLayout>
