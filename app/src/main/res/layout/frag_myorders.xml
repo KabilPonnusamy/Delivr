@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:background="@android:color/white"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/transparent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:orientation="vertical">
-
+            >
             <TextView
                 android:id="@+id/title_pickupaddr"
                 android:layout_width="match_parent"
@@ -28,48 +27,46 @@
                 android:text="@string/hint_title_pickupaddr"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
-                android:textStyle="bold" />
-
-
+                android:textStyle="bold"
+                />
         </LinearLayout>
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
             android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             app:cardCornerRadius="10dp"
-            app:cardElevation="10dp">
-
+            app:cardElevation="10dp"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
+                android:orientation="vertical"
+                >
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:orientation="vertical">
-
+                    android:layout_marginRight="10dp">
                     <EditText
                         android:id="@+id/edt_pickupaddr_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
-                        android:hint="@string/hint_name"
                         android:imeOptions="actionNext"
                         android:inputType="text"
+                        android:hint="Pizza Faberrica"
                         android:maxLines="1"
-                        android:padding="5dp"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
-
+                        android:enabled="false"
+                        android:textSize="16sp"
+                        android:padding="5dp"
+                        />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -77,31 +74,30 @@
                         android:layout_marginRight="10dp"
                         android:background="@color/colorPrimary" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
+                    android:orientation="vertical"
                     android:background="@android:color/transparent"
-                    android:orientation="vertical">
-
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    >
                     <EditText
                         android:id="@+id/edt_pickupaddr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
-                        android:enabled="true"
-                        android:hint="@string/hint_pickup_postaladdr"
                         android:imeOptions="actionNext"
                         android:inputType="text"
+                        android:hint="8 Haji Lane 189201"
                         android:maxLines="1"
-
-                        android:padding="5dp"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
 
+                        android:textSize="16sp"
+                        android:enabled="false"
+                        android:padding="5dp"
+                        />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -109,31 +105,30 @@
                         android:layout_marginRight="10dp"
                         android:background="@color/colorPrimary" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
+                    android:orientation="vertical"
                     android:background="@android:color/transparent"
-                    android:orientation="vertical">
-
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    >
                     <EditText
                         android:id="@+id/edt_pickupaddr_unitno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
-                        android:enabled="true"
-                        android:hint="@string/hint_unitno"
                         android:imeOptions="actionNext"
                         android:inputType="text"
+                        android:hint="8"
                         android:maxLines="1"
-
-                        android:padding="5dp"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
 
+                        android:textSize="16sp"
+                        android:enabled="false"
+                        android:padding="5dp"
+                        />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -141,32 +136,31 @@
                         android:layout_marginRight="10dp"
                         android:background="@color/colorPrimary" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical"
+                    android:background="@android:color/transparent"
                     android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@android:color/transparent"
-                    android:orientation="vertical">
-
+                    >
                     <EditText
                         android:id="@+id/edt_pickupaddr_contact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
-                        android:enabled="true"
-                        android:hint="@string/hint_contact"
                         android:imeOptions="actionNext"
                         android:inputType="text"
+                        android:hint="86060405"
                         android:maxLines="1"
-
-                        android:padding="5dp"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="16sp" />
 
+                        android:textSize="16sp"
+                        android:enabled="false"
+                        android:padding="5dp"
+                        />
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -182,38 +176,62 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@android:color/transparent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@android:color/transparent"
-            android:orientation="vertical">
-
+            >
             <TextView
                 android:id="@+id/title_dlvryaddr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/hint_title_dlvryaddr"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
-                android:textStyle="bold" />
-
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
             <EditText
                 android:id="@+id/edt_dlvryaddr_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:enabled="true"
-                android:hint="@string/hint_name"
                 android:imeOptions="actionNext"
                 android:inputType="text"
+                android:hint="@string/hint_name"
                 android:maxLines="1"
-
-                android:padding="5dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
 
+                android:textSize="16sp"
+                android:enabled="true"
+                android:padding="5dp"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -221,29 +239,29 @@
                 android:layout_marginRight="10dp"
                 android:background="@color/colorPrimary" />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:orientation="vertical"
             android:background="@android:color/transparent"
-            android:orientation="vertical">
-
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
             <EditText
-                android:id="@+id/edt_pickupaddr_email"
+                android:id="@+id/edt_dlvryaddr_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:enabled="true"
-                android:hint="@string/hint_email"
                 android:imeOptions="actionNext"
                 android:inputType="text"
+                android:hint="@string/hint_email"
                 android:maxLines="1"
-                android:padding="5dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:enabled="true"
+                android:padding="5dp"
+                />
             <!-- android:textColorHint="@color/black" -->
             <View
                 android:layout_width="match_parent"
@@ -252,28 +270,30 @@
                 android:layout_marginRight="10dp"
                 android:background="@color/colorPrimary" />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:orientation="vertical"
             android:background="@android:color/transparent"
-            android:orientation="vertical">
-
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
             <TextView
                 android:id="@+id/txt_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:enabled="true"
+                android:imeOptions="actionNext"
+                android:inputType="text"
                 android:hint="@string/hint_dlvry_postaladdr"
                 android:maxLines="1"
-                android:padding="5dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
 
+                android:textSize="16sp"
+                android:enabled="true"
+                android:padding="5dp"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -281,30 +301,29 @@
                 android:layout_marginRight="10dp"
                 android:background="@color/colorPrimary" />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:orientation="vertical"
             android:background="@android:color/transparent"
-            android:orientation="vertical">
-
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
             <EditText
                 android:id="@+id/edt_dlvryaddr_unitno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:enabled="true"
-                android:hint="@string/hint_unitno"
                 android:imeOptions="actionNext"
                 android:inputType="text"
+                android:hint="@string/hint_unitno"
                 android:maxLines="1"
-                android:padding="5dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
-
+                android:textSize="16sp"
+                android:enabled="true"
+                android:padding="5dp"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -312,31 +331,30 @@
                 android:layout_marginRight="10dp"
                 android:background="@color/colorPrimary" />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:orientation="vertical"
             android:background="@android:color/transparent"
-            android:orientation="vertical">
-
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
             <EditText
                 android:id="@+id/edt_dlvryaddr_contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:enabled="true"
-                android:hint="@string/hint_contact"
                 android:imeOptions="actionNext"
                 android:inputType="text"
+                android:hint="@string/hint_contact"
                 android:maxLines="1"
-
-                android:padding="5dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
 
+                android:textSize="16sp"
+                android:enabled="true"
+                android:padding="5dp"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -344,16 +362,17 @@
                 android:layout_marginRight="10dp"
                 android:background="@color/colorPrimary" />
         </LinearLayout>
-
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:orientation="vertical"
             android:background="@android:color/transparent"
-            android:orientation="vertical">
-
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            >
             <TextView
                 android:id="@+id/title_pickupdetails"
                 android:layout_width="wrap_content"
@@ -363,57 +382,95 @@
                 android:text="@string/hint_title_pickupdetails"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <EditText
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+            <TextView
                 android:id="@+id/edt_pickupdatetime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:enabled="true"
-                android:hint="@string/hint_pickupdatetime"
                 android:imeOptions="actionNext"
                 android:inputType="text"
+                android:hint="@string/hint_pickupdatetime"
                 android:maxLines="1"
-
-                android:padding="5dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
 
+                android:textSize="16sp"
+                android:enabled="true"
+                android:padding="5dp"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:background="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/txt_pickuptime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:hint="@string/hint_pickupdatetime"
+                android:maxLines="1"
+                android:textColor="@color/colorPrimary"
+                android:visibility="gone"
+                android:textSize="16sp"
+                android:enabled="false"
+                android:padding="5dp"
+                />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:orientation="vertical"
             android:background="@android:color/transparent"
-            android:orientation="vertical">
-
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
             <EditText
                 android:id="@+id/edt_fooddetails"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_gravity="start"
                 android:background="@android:color/transparent"
-                android:enabled="true"
-                android:gravity="start"
-                android:hint="@string/hint_fooddetails"
                 android:imeOptions="actionNext"
                 android:inputType="text"
+                android:layout_gravity="start"
+                android:gravity="start"
+                android:hint="@string/hint_fooddetails"
                 android:maxLines="10"
-
-                android:padding="5dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="16sp" />
 
+                android:textSize="16sp"
+                android:enabled="true"
+                android:padding="5dp"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -421,33 +478,32 @@
                 android:layout_marginRight="10dp"
                 android:background="@color/colorPrimary" />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:orientation="vertical"
             android:background="@android:color/transparent"
-            android:orientation="vertical">
-
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            >
             <EditText
                 android:id="@+id/edt_delivryinstruction"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_gravity="start"
                 android:background="@android:color/transparent"
-                android:enabled="true"
-                android:gravity="start"
-                android:hint="@string/hint_deliveryinstruction"
                 android:imeOptions="actionNext"
                 android:inputType="text"
+                android:layout_gravity="start"
+                android:gravity="start"
+                android:hint="@string/hint_deliveryinstruction"
                 android:maxLines="1"
-
-                android:padding="5dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="18sp" />
 
+                android:textSize="18sp"
+                android:enabled="true"
+                android:padding="5dp"
+                />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -455,16 +511,17 @@
                 android:layout_marginRight="10dp"
                 android:background="@color/colorPrimary" />
         </LinearLayout>
-
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
         <LinearLayout
             android:id="@+id/submit_createorder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
-            android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/box_layout"
             android:gravity="center"
             android:orientation="vertical">
