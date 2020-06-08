@@ -57,6 +57,7 @@ import sg.delivr.ui.fragments.Frag_MerchantJobs;
 import sg.delivr.ui.fragments.Frag_MyJobs;
 import sg.delivr.ui.fragments.Frag_MyJobsQueue;
 import sg.delivr.ui.fragments.Frag_MyOrders;
+import sg.delivr.ui.fragments.Frag_MyOrders_New;
 import sg.delivr.ui.fragments.Frag_MyProfile;
 import sg.delivr.ui.fragments.Frag_OrderDetails;
 import sg.delivr.ui.fragments.Frag_WalletTopUp;
@@ -119,9 +120,9 @@ public class Dashboard_Merchant extends AppCompatActivity implements View.OnClic
 
     private void open_Home() {
         mainActivity = this;
-        registerWithNotificationHubs();
+//        registerWithNotificationHubs();
         FirebaseService.createChannelAndHandleNotifications(getApplicationContext());
-        Fragment fragment = new Frag_MyJobs();
+        Fragment fragment = new Frag_MyOrders_New();
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.frame_layout, fragment);
@@ -182,6 +183,7 @@ public class Dashboard_Merchant extends AppCompatActivity implements View.OnClic
         animation.setDuration(500);
 
         setListeners();
+        open_Home();
       //  navigation_listener();
     }
 
@@ -369,7 +371,7 @@ public class Dashboard_Merchant extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.mer_myorders_layout:
-                Fragment jobsfragment = new Frag_MyOrders();
+                Fragment jobsfragment = new Frag_MyOrders_New();  // Frag_MyOrders
                 FragmentTransaction ftjobs = getSupportFragmentManager().beginTransaction();
                 ftjobs.replace(R.id.frame_layout, jobsfragment);
                 ftjobs.commit();

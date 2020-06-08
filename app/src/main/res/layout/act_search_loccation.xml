@@ -9,7 +9,7 @@
         android:id="@+id/toolbar_view"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary">
+        android:background="@color/white">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -19,34 +19,59 @@
             <ImageView
                 android:id="@+id/sch_back"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:src="@drawable/icon_back"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
                 android:contentDescription="@string/img"
-                android:tint="@color/white" />
+                android:tint="@color/colorPrimary" />
 
-            <TextView
+            <ImageView
+                android:id="@+id/icon_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/img"
+                android:layout_toEndOf="@+id/sch_back"
+                android:tint="@color/colorPrimary"
+                android:background="@drawable/new_search" />
+
+            <EditText
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:layout_toEndOf="@+id/icon_search"
+                android:layout_centerInParent="true"
+                android:singleLine="true"
+                android:textSize="15sp"
+                android:layout_marginStart="10dp"
+                android:hint="@string/search_hint"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:fontFamily="@font/robotbold"/>
+
+            <!--<TextView
                 android:id="@+id/jbd_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:layout_marginEnd="24dp"
-                android:layout_toEndOf="@+id/sch_back"
+                android:layout_marginEnd="35dp"
+                android:layout_toEndOf="@+id/icon_search"
                 android:fontFamily="@font/robotbold"
-                android:gravity="center"
                 android:text="@string/search_location"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold" />-->
 
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
+<!--
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/shadow">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,7 +91,19 @@
                 android:contentDescription="@string/img"
                 android:background="@drawable/new_search" />
 
-            <AutoCompleteTextView
+            <EditText
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:background="@android:color/transparent"
+                android:paddingStart="10dp"
+                android:paddingEnd="0dp"
+                android:singleLine="true"
+                android:textSize="15sp"
+                android:hint="@string/search_hint"
+                android:fontFamily="@font/robotbold"/>
+
+            &lt;!&ndash;<AutoCompleteTextView
                 android:id="@+id/search_view"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
@@ -79,10 +116,24 @@
                 android:paddingEnd="0dp"
                 android:singleLine="true"
                 android:textSize="15sp"
-                app:theme="@style/AppSearchView" />
+                app:theme="@style/AppSearchView" />&ndash;&gt;
 
         </LinearLayout>
 
     </LinearLayout>
+    -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/shadow_color"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/location_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:clipToPadding="false"
+        android:scrollbars="none" />
 
 </LinearLayout>
