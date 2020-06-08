@@ -5,17 +5,23 @@ import sg.delivr.backend.postmodels.PostAssignedActionAQ;
 import sg.delivr.backend.postmodels.PostAssignedBitAQ;
 import sg.delivr.backend.postmodels.PostDoActionAQ;
 import sg.delivr.backend.postmodels.PostDoCompletedJobs;
+import sg.delivr.backend.postmodels.PostDoCreateOrder;
 import sg.delivr.backend.postmodels.PostDoGetRiders;
 import sg.delivr.backend.postmodels.PostDoLogin;
 import sg.delivr.backend.postmodels.PostDoRiderQueue;
 import sg.delivr.backend.postmodels.PostGetProfile;
+import sg.delivr.backend.postmodels.PostMerchantAuth;
+import sg.delivr.backend.postmodels.PostMerchantOrderEntry;
 import sg.delivr.backend.postmodels.PostUpdateLatLong;
 import sg.delivr.backend.postmodels.PostgetAssignedQueue;
 import sg.delivr.backend.responsemodels.ResponseActionAQ;
 import sg.delivr.backend.responsemodels.ResponseAssignedActionAQ;
 import sg.delivr.backend.responsemodels.ResponseAssignedQueue;
 import sg.delivr.backend.responsemodels.ResponseCompletedJobs;
+import sg.delivr.backend.responsemodels.ResponseCreateOrder;
 import sg.delivr.backend.responsemodels.ResponseGetRiders;
+import sg.delivr.backend.responsemodels.ResponseMerchantAuth;
+import sg.delivr.backend.responsemodels.ResponseMerchantOrderEntry;
 import sg.delivr.backend.responsemodels.ResponseRiderQueue;
 import sg.delivr.backend.responsemodels.ResponseUserLogin;
 import sg.delivr.backend.responsemodels.ResponseUserProfile;
@@ -72,7 +78,13 @@ public interface APIService {
     @POST("RiderQueue/GetCompletedQueue")
     Call<ArrayList<ResponseCompletedJobs>> getCompletedJobs(@Body PostDoCompletedJobs postDoCompletedJobs);
 
+    //CreateOrder
+    @POST("Merchant/OrderEntry")
+    Call<ArrayList<ResponseCreateOrder>> doCreateOrder(@Body PostDoCreateOrder postDoCreateOrder);
 
+    @POST("Merchant/MerchOrderEntry")
+    Call<ArrayList<ResponseMerchantOrderEntry>> getMerchantOrderEntry(@Body PostMerchantOrderEntry post);
 
-
+    @POST("Merchant/MerchantAuth")
+    Call<ArrayList<ResponseMerchantAuth>> getMerchantAuth(@Body PostMerchantAuth post);
 }

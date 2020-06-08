@@ -35,6 +35,11 @@ import sg.delivr.backend.RetrofitClient;
 import sg.delivr.backend.models.CAdddress;
 import sg.delivr.backend.postmodels.PostDoLogin;
 import sg.delivr.backend.postmodels.PostGetProfile;
+import sg.delivr.backend.postmodels.PostMerchantOrderEntry;
+import sg.delivr.backend.postmodels.PostgetAssignedQueue;
+import sg.delivr.backend.responsemodels.ResponseAssignedQueue;
+import sg.delivr.backend.responsemodels.ResponseMerchantAuth;
+import sg.delivr.backend.responsemodels.ResponseMerchantOrderEntry;
 import sg.delivr.backend.responsemodels.ResponseUserLogin;
 import sg.delivr.backend.responsemodels.ResponseUserProfile;
 import sg.delivr.service.AlarmService;
@@ -43,6 +48,7 @@ import sg.delivr.ui.LocalDB.DbHelper;
 import sg.delivr.ui.activity.Dashboard_Merchant;
 import sg.delivr.ui.activity.Dashboard_Rider;
 import sg.delivr.ui.interfaces.Intent_Constants;
+import sg.delivr.ui.interfaces.SHAInterface;
 import sg.delivr.utils.CheckNetwork;
 import sg.delivr.utils.DataBaseHelper;
 import sg.delivr.utils.Prefs;
@@ -51,6 +57,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.IOException;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,6 +77,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // ArrayList<User_Information> user_informations;
     private Call<ResponseUserLogin> callLogin;
     private Call<ResponseUserProfile> callGetProfile;
+    private Call<ArrayList<ResponseMerchantOrderEntry>> callMerchantOrderEntry;
+    private Call<ArrayList<ResponseMerchantAuth>> callMerchantAuth;
     private boolean isShowingPassword;
     public static Location LastGeoloc;
     public static PendingIntent pendingIntent;
@@ -78,7 +87,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     String user_memberid;
     public static double CLat, CLong;
     String strLat, strLon;
-    public static String CSenderName, CContactNo, CCompanyName, CUnitno, CAddress, CPostalCode;
+    public static String CSenderName, CContactNo, CCompanyName, CUnitno, CAddress, CPostalCode, CRoadNo, CRoadName,
+    CBuilding, CZipcode, CEmailAddress, CSenderId, CZoneCode;
     //Location
     GPSTracker gpsTracker;
     public static Double lat, lon;
@@ -253,6 +263,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (UserRole.equals("Client")) {
                                 getprofile();
 
+                            } else if (UserRole.equalsIgnoreCase("Merchant")) {
+                                getprofile();
                             }
                         } else {
                             strerror = UserStatusMsg;
@@ -414,7 +426,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         CCompanyName = response.body().getCompanyName();
                         CUnitno = "-";
                         CPostalCode = response.body().getZipcode();
-
+                        CAddress = response.body().getAddress();
+                        String lines[] = CAddress.split("\\r?\\n");
+                        int strlength = lines.length;
+                        String unitno = "";
+                        if (strlength > 0) {
+                          unitno = lines[strlength-1].toString();
+                        }
+                        CUnitno = unitno;
+                        Prefs.setUserName(CSenderName);
+                        Prefs.setUserMobileNo(CContactNo);
+                        Prefs.setUserCompanyName(CCompanyName);
+                        Prefs.setUserUnitNo(CUnitno);
+                        Prefs.setUserPostalCode(CPostalCode);
+                        Prefs.setUserAddress(CAddress);
                         DataBaseHelper myDbHelper = new DataBaseHelper(LoginActivity.this);
                         try {
                             myDbHelper.createDataBase();
@@ -428,7 +453,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                         CAdddress cadddress = myDbHelper.getAddress(CPostalCode);
 
-                        CAddress = cadddress.toString();
+                     //   CAddress = cadddress.toString();
 
                         CLat = cadddress.Lat();
                         CLong = cadddress.Long();
@@ -455,6 +480,54 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 Utils.showGenericErrorDialog(LoginActivity.this);
             }
         });
+    }
+
+    private void getMerchantOrderEntry() {
+        String Strapikey = getString(R.string.apikey);
+        String Strapicode = getString(R.string.apicode);
+        String sign =  UserId + Strapikey + Strapicode;
+        String StrSignature = SHAInterface.SHA1(sign);
+        Log.e("delivrApp", "Signature: " + StrSignature);
+        Log.e("delivrApp", "Sign: " + sign);
+        Log.e("delivrApp", "StraipKey: " + Strapikey);
+        Log.e("delivrApp", "StraipCode: " + Strapicode);
+
+        progressDialog.show();
+        callMerchantOrderEntry = RetrofitClient.getInstance().getApiInterface().getMerchantOrderEntry(
+                new PostMerchantOrderEntry(UserId, Strapikey, StrSignature));
+
+        callMerchantOrderEntry.enqueue(new Callback<ArrayList<ResponseMerchantOrderEntry>>() {
+            @Override
+            public void onResponse(Call<ArrayList<ResponseMerchantOrderEntry>> call,
+                                   final Response<ArrayList<ResponseMerchantOrderEntry>> response) {
+                progressDialog.dismiss();
+                if (response.body() != null) {
+                    CSenderName = response.body().get(0).getSenderName();
+                    CCompanyName = response.body().get(0).getCompanyName();
+                    CRoadNo = response.body().get(0).getRoadNo();
+                    CRoadName = response.body().get(0).getRoadName();
+                    CBuilding = response.body().get(0).getBuilding();
+                    CUnitno = response.body().get(0).getUnitNo();
+                    CZipcode = response.body().get(0).getZipcode();
+
+
+                } else {
+                    Utils.showMessageDialog(LoginActivity.this,
+                            getString(R.string.dialog_title_sorry),
+                            "No Data found");
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<ArrayList<ResponseMerchantOrderEntry>> call, Throwable t) {
+                progressDialog.dismiss();
+                t.printStackTrace();
+                Prefs.setLoginVerified("failure");
+                Utils.showGenericErrorDialog(LoginActivity.this);
+            }
+        });
+
     }
 
 

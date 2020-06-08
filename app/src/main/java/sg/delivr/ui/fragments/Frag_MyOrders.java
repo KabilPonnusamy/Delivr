@@ -1,7 +1,9 @@
 package sg.delivr.ui.fragments;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -21,6 +23,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,13 +47,21 @@ import retrofit2.Response;
 import sg.delivr.Common.StoredDatas;
 import sg.delivr.R;
 import sg.delivr.backend.RetrofitClient;
+import sg.delivr.backend.postmodels.PostDoCreateOrder;
+import sg.delivr.backend.postmodels.PostDoLogin;
 import sg.delivr.backend.postmodels.PostDoRiderQueue;
+import sg.delivr.backend.responsemodels.ResponseCreateOrder;
 import sg.delivr.backend.responsemodels.ResponseRiderQueue;
+import sg.delivr.backend.responsemodels.ResponseUserLogin;
 import sg.delivr.data.model.MyJobsModel;
+import sg.delivr.service.AlarmService;
+import sg.delivr.ui.activity.Dashboard_Merchant;
+import sg.delivr.ui.activity.Dashboard_Rider;
 import sg.delivr.ui.activity.SearchLocation;
 import sg.delivr.ui.adapters.MyJobsAdapter;
 import sg.delivr.ui.interfaces.Intent_Constants;
 import sg.delivr.ui.interfaces.SHAInterface;
+import sg.delivr.ui.login.LoginActivity;
 import sg.delivr.utils.CheckNetwork;
 import sg.delivr.utils.Prefs;
 import sg.delivr.utils.Utils;
@@ -59,9 +70,8 @@ import sg.delivr.utils.Utils;
 public class Frag_MyOrders extends Fragment implements View.OnClickListener, SHAInterface,
         Intent_Constants {
 
-    /*ProgressDialog progressDialog;
-    private Call<ArrayList<ResponseRiderQueue>> callRiderQueue;
-   */
+    ProgressDialog progressDialog;
+    private Call<ArrayList<ResponseCreateOrder>> callCreateOrder;
 
     Toolbar dash_toolbar;
     TextView toolbar_title;
@@ -73,7 +83,7 @@ public class Frag_MyOrders extends Fragment implements View.OnClickListener, SHA
     String pickupadddress_name, pickupadddress, pickupadddress_unitno, pickupadddress_contact, deliveryaddress_name,
             deliveryaddress_email, deliveryaddress, deliveryaddress_unitno, deliveryaddress_contact,
             fooddetails, deliveryinstruction;
-    String userId;
+    String userId, username,userunitno,usercontact, useraddress;
     private static String format = "", pickupdatetime = "", selectedpickupdate = "", selectedpickuptime = "";
 
 
@@ -192,6 +202,18 @@ public class Frag_MyOrders extends Fragment implements View.OnClickListener, SHA
         submit_createorder.setOnClickListener(this);
         edt_pickupdatetime.setOnClickListener(this);
         txt_pickuptime.setOnClickListener(this);
+        pickupdatetime = "";
+        setValues();
+    }
+
+    private void setValues() {
+        Log.e("delivrApp", "Company Name:" + Prefs.getUserCompanyName() + "Address" + Prefs.getUserAddress() +
+                "Unit No:" + Prefs.getUserUnitNo() + "PostalCode:" + Prefs.getUserPostalCode() + "Contact:" + Prefs.getUserMobileNo());
+
+        edt_pickupaddr_name.setText(Prefs.getUserCompanyName());
+        edt_pickupaddr.setText(Prefs.getUserAddress());
+        edt_pickupaddr_unitno.setText(Prefs.getUserUnitNo());
+        edt_pickupaddr_contact.setText(Prefs.getUserMobileNo());
     }
 
     private void toolbarInit() {
@@ -302,6 +324,7 @@ public class Frag_MyOrders extends Fragment implements View.OnClickListener, SHA
         selectedpickuptime = "" + hour + ":" + min + " "+ format;
         Log.e("delivrApp", "Selected PickUp Time" + selectedpickuptime);
         edt_pickupdatetime.setText(selectedpickupdate + " " + selectedpickuptime);
+        pickupdatetime = selectedpickupdate + " " + selectedpickuptime;
         txt_pickuptime.setText(new StringBuilder().append(hour).append(" : ").append(min)
                 .append(" ").append(format));
     }
@@ -318,8 +341,101 @@ public class Frag_MyOrders extends Fragment implements View.OnClickListener, SHA
         //pickupdatetime = edt_pickupdatetime.getText().toString().trim();
         fooddetails = edt_fooddetails.getText().toString().trim();
         deliveryinstruction = edt_delivryinstruction.getText().toString().trim();
+        if (deliveryaddress.isEmpty() && deliveryaddress.equalsIgnoreCase("")) {
+            AlertBox(getResources().getString(R.string.alert), getResources().getString(R.string.enterdlvryaddr), edt_dlvryaddr_name);
+            return;
+        }
+        if (deliveryaddress_name.isEmpty() && deliveryaddress_name.equalsIgnoreCase("")) {
+            AlertBox(getResources().getString(R.string.alert), getResources().getString(R.string.enterdlvryaddrname), edt_dlvryaddr_name);
+            return;
+        }
+        if (pickupdatetime.isEmpty() && pickupdatetime.equalsIgnoreCase("")) {
+            AlertBox(getResources().getString(R.string.alert), getResources().getString(R.string.enterdatetime), edt_dlvryaddr_name);
+            return;
+        }
+        DocreateOrder();
     }
 
+    private void DocreateOrder() {
+        String Strapikey = getString(R.string.apikey);
+        String Strapicode = getString(R.string.apicode);
+        String sign =  userId + Strapikey + Strapicode;
+        String StrSignature = SHAInterface.SHA1(sign);
+        Log.e("delivrApp", "Signature: " + StrSignature);
+        Log.e("delivrApp", "Sign: " + sign);
+        Log.e("delivrApp", "StraipKey: " + Strapikey);
+        Log.e("delivrApp", "StraipCode: " + Strapicode);
+
+        progressDialog.show();
+        callCreateOrder = RetrofitClient.getInstance().getApiInterface().doCreateOrder(
+                new PostDoCreateOrder( userId, Strapikey, StrSignature));
+
+        callCreateOrder.enqueue(new Callback<ArrayList<ResponseCreateOrder>>() {
+            @Override
+            public void onResponse(Call<ArrayList<ResponseCreateOrder>> call,
+                                   final Response<ArrayList<ResponseCreateOrder>> response) {
+                progressDialog.dismiss();
+                if (response.body() != null) {
+                   // riderQueues = response.body();
+                    // showAdapters();
+                } else {
+                    Utils.showMessageDialog(getActivity(),
+                            getString(R.string.dialog_title_sorry),
+                            "No Data found");
+                }
+            }
+
+
+            @Override
+            public void onFailure(Call<ArrayList<ResponseCreateOrder>> call, Throwable t) {
+                progressDialog.dismiss();
+                t.printStackTrace();
+                Prefs.setLoginVerified("failure");
+                Utils.showGenericErrorDialog(getActivity());
+            }
+        });
+
+    }
+
+    public void AlertBox(final String head, final String meg, final EditText ext_field) {
+        LayoutInflater in = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View vv = in.inflate(R.layout.alertbox, null);
+        final BottomSheetDialog dialog = new BottomSheetDialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(vv);
+        dialog.setCancelable(false);
+        TextView content = (TextView) vv.findViewById(R.id.content);
+        TextView header = (TextView) vv.findViewById(R.id.header);
+        header.setText(head);
+        TextView no = (TextView) vv.findViewById(R.id.no);
+        TextView yes = (TextView) vv.findViewById(R.id.yes);
+        LinearLayout cancel = (LinearLayout) vv.findViewById(R.id.cancel);
+        cancel.setVisibility(View.GONE);
+        LinearLayout ok = (LinearLayout) vv.findViewById(R.id.ok);
+        content.setText(meg);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                if (head.equalsIgnoreCase("Error")) {
+                    getActivity().finish();
+                } else if (head.equalsIgnoreCase("Alert")) {
+                    dialog.dismiss();
+                } else {
+                    dialog.dismiss();
+                    ext_field.requestFocus();
+                }
+            }
+        });
+        dialog.show();
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
