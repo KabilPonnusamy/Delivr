@@ -51,15 +51,10 @@ import sg.delivr.pushmessaging.FirebaseService;
 import sg.delivr.pushmessaging.RegistrationIntentService;
 import sg.delivr.ui.LocalDB.DbContract;
 import sg.delivr.ui.LocalDB.DbHelper;
-import sg.delivr.ui.fragments.Frag_CompletedJobs;
 import sg.delivr.ui.fragments.Frag_HelpSupport;
-import sg.delivr.ui.fragments.Frag_MerchantJobs;
-import sg.delivr.ui.fragments.Frag_MyJobs;
-import sg.delivr.ui.fragments.Frag_MyJobsQueue;
-import sg.delivr.ui.fragments.Frag_MyOrders;
 import sg.delivr.ui.fragments.Frag_MyOrders_New;
 import sg.delivr.ui.fragments.Frag_MyProfile;
-import sg.delivr.ui.fragments.Frag_OrderDetails;
+import sg.delivr.ui.fragments.Frag_OrderHistory;
 import sg.delivr.ui.fragments.Frag_WalletTopUp;
 import sg.delivr.ui.login.LoginActivity;
 import sg.delivr.utils.Prefs;
@@ -379,20 +374,20 @@ public class Dashboard_Merchant extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.orderdetails_layout:
-                Fragment queuefragment = new Frag_OrderDetails();
+                Fragment queuefragment = new Frag_OrderHistory();
                 FragmentTransaction ftqueue = getSupportFragmentManager().beginTransaction();
                 ftqueue.replace(R.id.frame_layout, queuefragment);
                 ftqueue.commit();
                 drawer.closeDrawer(GravityCompat.START);
                 break;
-
-            case R.id.merchantjobs_layout:
+            /* my jobs menu removed because both orderhistory and my jobs have same content*/
+           /* case R.id.merchantjobs_layout:
                 Fragment compfragment = new Frag_MerchantJobs();
                 FragmentTransaction ftcomp = getSupportFragmentManager().beginTransaction();
                 ftcomp.replace(R.id.frame_layout, compfragment);
                 ftcomp.commit();
                 drawer.closeDrawer(GravityCompat.START);
-                break;
+                break;*/
 
             case R.id.profile_layout:
                 Fragment profilefragment = new Frag_MyProfile();

@@ -96,14 +96,14 @@
     <string name="txt_help_support">Help &amp; Support</string>
     <string name="txt_logout_msg">Are you sure want to Logout?</string>
     <string name="txt_myorders">My orders</string>
-    <string name="txt_order_details">Order details</string>
+    <string name="txt_order_details">Order History</string>
     <string name="txt_merchant">Merchant</string>
     <string name="hint_name">Name</string>
     <string name="hint_email">Email</string>
     <string name="hint_mobile">Mobile</string>
     <string name="btn_submit">Submit</string>
     <string name="hint_your_message">Your Message</string>
-    <string name="txt_wallet_topup">Wallet top-up</string>
+    <string name="txt_wallet_topup">Wallet Top-up</string>
     <string name="hint_title_pickupaddr">Pickup Address</string>
     <string name="hint_title_dlvryaddr">Delivery Address</string>
     <string name="hint_title_pickupdetails">Pickup Details</string>
@@ -117,6 +117,8 @@
     <string name="search_location">Search Location</string>
     <string name="search_hint">Search Location</string>
     <string name="img">Image</string>
+    <string name="txt_pickup">PickUp Location</string>
+    <string name="txt_delivery">Delivery Location</string>
     <string name="enterdlvryaddr">Please enter your Delivery Address</string>
     <string name="enterdlvryaddrname">Please enter your Delivery Name</string>
     <string name="enterdatetime">Please enter your Pickup Date Time</string>

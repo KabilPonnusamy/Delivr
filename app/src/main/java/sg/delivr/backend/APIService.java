@@ -20,6 +20,7 @@ import sg.delivr.backend.responsemodels.ResponseAssignedQueue;
 import sg.delivr.backend.responsemodels.ResponseCompletedJobs;
 import sg.delivr.backend.responsemodels.ResponseCreateOrder;
 import sg.delivr.backend.responsemodels.ResponseGetRiders;
+import sg.delivr.backend.responsemodels.ResponseLocationDatas;
 import sg.delivr.backend.responsemodels.ResponseMerchantAuth;
 import sg.delivr.backend.responsemodels.ResponseMerchantOrderEntry;
 import sg.delivr.backend.responsemodels.ResponseRiderQueue;
@@ -44,6 +45,8 @@ public interface APIService {
     @GET("member/forgotpwd")
     Call<BaseResponse> forgotPwd(@Query("email") String email);
 
+    @GET("mstAddress.json")
+    Call<ArrayList<ResponseLocationDatas>> getLocations();
 
     //Login
     @POST("Users/signup")
@@ -80,7 +83,7 @@ public interface APIService {
 
     //CreateOrder
     @POST("Merchant/OrderEntry")
-    Call<ArrayList<ResponseCreateOrder>> doCreateOrder(@Body PostDoCreateOrder postDoCreateOrder);
+    Call<ResponseCreateOrder> doCreateOrder(@Body PostDoCreateOrder postDoCreateOrder);
 
     @POST("Merchant/MerchOrderEntry")
     Call<ArrayList<ResponseMerchantOrderEntry>> getMerchantOrderEntry(@Body PostMerchantOrderEntry post);

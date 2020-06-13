@@ -16,7 +16,7 @@ import sg.delivr.ui.interfaces.Intent_Constants;
 import sg.delivr.ui.interfaces.SHAInterface;
 
 
-public class Frag_OrderDetails extends Fragment implements View.OnClickListener, SHAInterface,
+public class Frag_OrderHistory extends Fragment implements View.OnClickListener, SHAInterface,
         Intent_Constants {
 
     /*ProgressDialog progressDialog;

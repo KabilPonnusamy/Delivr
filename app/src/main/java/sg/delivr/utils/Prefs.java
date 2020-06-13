@@ -109,7 +109,69 @@ public class Prefs {
         getPrefs().edit().putString("user_postalcode", user_postalcode).apply();
     }
 
+    public static String getMerchAuthTimeFrom() {
+        return getPrefs().getString("merch_timefrom", "");
+    }
 
+    public static void setMerchAuthTimeFrom(String merch_timefrom) {
+        getPrefs().edit().putString("merch_timefrom", merch_timefrom).apply();
+    }
+
+    public static String getMerchAuthTimeTo() {
+        return getPrefs().getString("merch_timeto", "");
+    }
+
+    public static void setMerchAuthTimeTo(String merch_timeto) {
+        getPrefs().edit().putString("merch_timeto", merch_timeto).apply();
+    }
+
+    public static String getMerchAuthTimeSensitive() {
+        return getPrefs().getString("merch_timesensitive", "");
+    }
+
+    public static void setMerchAuthTimeSensitive(String merch_timesensitive) {
+        getPrefs().edit().putString("merch_timesensitive", merch_timesensitive).apply();
+    }
+
+    public static String getMerchAuthPriceType() {
+        return getPrefs().getString("merch_pricetype", "");
+    }
+
+    public static void setMerchAuthPriceType(String merch_pricetype) {
+        getPrefs().edit().putString("merch_pricetype", merch_pricetype).apply();
+    }
+
+    public static String getMerchAuthPrice() {
+        return getPrefs().getString("merch_price", "");
+    }
+
+    public static void setMerchAuthPrice(String merch_price) {
+        getPrefs().edit().putString("merch_price", merch_price).apply();
+    }
+
+    public static String getMerchAuthConsignmentType() {
+        return getPrefs().getString("merch_consignmenttype", "");
+    }
+
+    public static void setMerchAuthConsignmentType(String merch_consignmenttype) {
+        getPrefs().edit().putString("merch_consignmenttype", merch_consignmenttype).apply();
+    }
+
+    public static String getMerchAuthServiceType() {
+        return getPrefs().getString("merch_servicetype", "");
+    }
+
+    public static void setMerchAuthServiceType(String merch_servicetype) {
+        getPrefs().edit().putString("merch_servicetype", merch_servicetype).apply();
+    }
+
+    public static String getMerchAuthExceptZones() {
+        return getPrefs().getString("merch_exceptzones", "");
+    }
+
+    public static void setMerchAuthExceptZones(String merch_exceptzones) {
+        getPrefs().edit().putString("merch_exceptzones", merch_exceptzones).apply();
+    }
 
     public static String getUserDeliveryAddressLine() {
         return getPrefs().getString("user_deliveryaddr", "");

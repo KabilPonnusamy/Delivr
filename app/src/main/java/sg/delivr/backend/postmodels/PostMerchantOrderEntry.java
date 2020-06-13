@@ -15,9 +15,9 @@ public class PostMerchantOrderEntry {
     private String Signature;
 
     public PostMerchantOrderEntry(String MerchantId, String APIKEY, String signature) {
-        MerchantId = MerchantId;
+        this.MerchantId = MerchantId;
         this.APIKEY = APIKEY;
-        Signature = signature;
+        this.Signature = signature;
     }
 
 }

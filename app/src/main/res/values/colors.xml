@@ -13,4 +13,5 @@
     <color name="lightblue2">#BBDBF5</color>
     <color name="lightblue3">#E3F1FC</color>
     <color name="shadow_color">#8888</color>
+    <color name="loc_iconcolor">#4788c7</color>
 </resources>

@@ -353,10 +353,10 @@ public class Frag_MyOrders extends Fragment implements View.OnClickListener, SHA
             AlertBox(getResources().getString(R.string.alert), getResources().getString(R.string.enterdatetime), edt_dlvryaddr_name);
             return;
         }
-        DocreateOrder();
+       // DocreateOrder();
     }
 
-    private void DocreateOrder() {
+    /*private void DocreateOrder() {
         String Strapikey = getString(R.string.apikey);
         String Strapicode = getString(R.string.apicode);
         String sign =  userId + Strapikey + Strapicode;
@@ -395,7 +395,7 @@ public class Frag_MyOrders extends Fragment implements View.OnClickListener, SHA
             }
         });
 
-    }
+    }*/
 
     public void AlertBox(final String head, final String meg, final EditText ext_field) {
         LayoutInflater in = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);

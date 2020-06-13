@@ -15,9 +15,9 @@ public class PostMerchantAuth {
     private String Signature;
 
     public PostMerchantAuth(String MerchantId, String APIKEY, String signature) {
-        MerchantId = MerchantId;
+        this.MerchantId = MerchantId;
         this.APIKEY = APIKEY;
-        Signature = signature;
+        this.Signature = signature;
     }
 
 }

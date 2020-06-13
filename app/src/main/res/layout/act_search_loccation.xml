@@ -44,7 +44,7 @@
                 android:layout_toEndOf="@+id/icon_search"
                 android:layout_centerInParent="true"
                 android:singleLine="true"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:layout_marginStart="10dp"
                 android:hint="@string/search_hint"
                 android:textColor="@color/colorPrimary"
