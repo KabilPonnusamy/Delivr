@@ -42,7 +42,7 @@ public class Frag_WalletTopUp extends Fragment implements View.OnClickListener, 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frag_myorders, container, false);
+        View view = inflater.inflate(R.layout.frag_wallet_topup, container, false);
 
         toolbarInit();
 //        initView(view);

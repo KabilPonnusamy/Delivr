@@ -251,7 +251,7 @@ public class SearchLocation extends AppCompatActivity implements Intent_Constant
                         Log.e("delivrApp" , "SValue: Has Datas: " + value);
                         for (int i = 0; i < LocationDatasTemp.size(); i++) {
                             if (LocationDatasTemp.get(i).getV().toLowerCase().
-                                    startsWith(value.toLowerCase())) {
+                                    contains(value.toLowerCase())) {
                                 ResponseLocationDatas item = new ResponseLocationDatas();
                                 item.setP(LocationDatasTemp.get(i).getP());
                                 item.setD(LocationDatasTemp.get(i).getD());

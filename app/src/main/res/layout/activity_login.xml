@@ -126,7 +126,7 @@
                     android:textSize="16sp"
                     tools:ignore="MissingPrefix" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -135,15 +135,26 @@
                     <TextView
                         android:id="@+id/forgot_pwd"
                         fontPath="@string/font_regular"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
+                        android:layout_alignParentLeft="true"
                         android:text="@string/label_forgotpwd"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="12sp"
+                        tools:ignore="MissingPrefix"
+                        android:visibility="gone"
+                        />
+                    <TextView
+                        android:id="@+id/helpsupport"
+                        fontPath="@string/font_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="@string/txt_help_support"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="12sp"
                         tools:ignore="MissingPrefix" />
-                </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
 

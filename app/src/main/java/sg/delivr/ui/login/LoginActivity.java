@@ -446,7 +446,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
 
-
             @Override
             public void onFailure(Call<ResponseUserProfile> call, Throwable t) {
                 progressDialog.dismiss();
@@ -456,6 +455,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
-
 
 }
