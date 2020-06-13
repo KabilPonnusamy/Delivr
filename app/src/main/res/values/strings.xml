@@ -96,7 +96,7 @@
     <string name="txt_help_support">Help &amp; Support</string>
     <string name="txt_logout_msg">Are you sure want to Logout?</string>
     <string name="txt_myorders">My orders</string>
-    <string name="txt_order_details">Order details</string>
+    <string name="txt_order_history">Order history</string>
     <string name="txt_merchant">Merchant</string>
     <string name="hint_name">Name</string>
     <string name="hint_email">Email</string>

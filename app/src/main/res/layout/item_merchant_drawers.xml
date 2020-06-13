@@ -116,7 +116,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginStart="10dp"
                         android:layout_toEndOf="@+id/orderdetail_img"
-                        android:text="@string/txt_order_details"
+                        android:text="@string/txt_order_history"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:textStyle="normal" />

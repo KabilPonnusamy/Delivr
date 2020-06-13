@@ -22,4 +22,11 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="Theme2" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <!-- The color of the label in all other text field states (such as resting and disabled) -->
+        <item name="android:textColorHint">@color/selector_hint_text_color</item>
+        <item name="boxStrokeColor">@color/selector_stroke_color</item>
+    </style>
+
 </resources>

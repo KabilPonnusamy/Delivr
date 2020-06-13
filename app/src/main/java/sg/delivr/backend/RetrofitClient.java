@@ -53,4 +53,5 @@ public class RetrofitClient {
     public APIService getApiInterface() {
         return apiService;
     }
+
 }

@@ -51,15 +51,11 @@ import sg.delivr.pushmessaging.FirebaseService;
 import sg.delivr.pushmessaging.RegistrationIntentService;
 import sg.delivr.ui.LocalDB.DbContract;
 import sg.delivr.ui.LocalDB.DbHelper;
-import sg.delivr.ui.fragments.Frag_CompletedJobs;
 import sg.delivr.ui.fragments.Frag_HelpSupport;
 import sg.delivr.ui.fragments.Frag_MerchantJobs;
-import sg.delivr.ui.fragments.Frag_MyJobs;
-import sg.delivr.ui.fragments.Frag_MyJobsQueue;
-import sg.delivr.ui.fragments.Frag_MyOrders;
 import sg.delivr.ui.fragments.Frag_MyOrders_New;
 import sg.delivr.ui.fragments.Frag_MyProfile;
-import sg.delivr.ui.fragments.Frag_OrderDetails;
+import sg.delivr.ui.fragments.Frag_NewOrderHistory;
 import sg.delivr.ui.fragments.Frag_WalletTopUp;
 import sg.delivr.ui.login.LoginActivity;
 import sg.delivr.utils.Prefs;
@@ -379,7 +375,7 @@ public class Dashboard_Merchant extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.orderdetails_layout:
-                Fragment queuefragment = new Frag_OrderDetails();
+                Fragment queuefragment = new Frag_NewOrderHistory();
                 FragmentTransaction ftqueue = getSupportFragmentManager().beginTransaction();
                 ftqueue.replace(R.id.frame_layout, queuefragment);
                 ftqueue.commit();

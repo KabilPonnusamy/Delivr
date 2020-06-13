@@ -353,4 +353,5 @@ public class SearchLocation extends AppCompatActivity implements Intent_Constant
         });
         dialog.show();
     }
+
 }

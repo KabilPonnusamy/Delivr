@@ -7,6 +7,7 @@ import sg.delivr.backend.postmodels.PostDoActionAQ;
 import sg.delivr.backend.postmodels.PostDoCompletedJobs;
 import sg.delivr.backend.postmodels.PostDoGetRiders;
 import sg.delivr.backend.postmodels.PostDoLogin;
+import sg.delivr.backend.postmodels.PostDoOrderHistory;
 import sg.delivr.backend.postmodels.PostDoRiderQueue;
 import sg.delivr.backend.postmodels.PostGetProfile;
 import sg.delivr.backend.postmodels.PostUpdateLatLong;
@@ -17,6 +18,7 @@ import sg.delivr.backend.responsemodels.ResponseAssignedQueue;
 import sg.delivr.backend.responsemodels.ResponseCompletedJobs;
 import sg.delivr.backend.responsemodels.ResponseGetRiders;
 import sg.delivr.backend.responsemodels.ResponseLocationDatas;
+import sg.delivr.backend.responsemodels.ResponseOrderHistory;
 import sg.delivr.backend.responsemodels.ResponseRiderQueue;
 import sg.delivr.backend.responsemodels.ResponseUserLogin;
 import sg.delivr.backend.responsemodels.ResponseUserProfile;
@@ -75,7 +77,8 @@ public interface APIService {
     @POST("RiderQueue/GetCompletedQueue")
     Call<ArrayList<ResponseCompletedJobs>> getCompletedJobs(@Body PostDoCompletedJobs postDoCompletedJobs);
 
-
+    @POST("Merchant/OrderTracking")
+    Call<ArrayList<ResponseOrderHistory>> getOrderHistory(@Body PostDoOrderHistory postDoOrderHistory);
 
 
 }

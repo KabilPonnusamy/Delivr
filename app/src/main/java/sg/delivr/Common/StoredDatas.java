@@ -2,6 +2,7 @@ package sg.delivr.Common;
 
 import sg.delivr.backend.responsemodels.ResponseAssignedQueue;
 import sg.delivr.backend.responsemodels.ResponseCompletedJobs;
+import sg.delivr.backend.responsemodels.ResponseOrderHistory;
 import sg.delivr.backend.responsemodels.ResponseRiderQueue;
 
 import java.util.ArrayList;
@@ -26,6 +27,15 @@ public class StoredDatas {
     int rQuePos;
     String screenValidation;
     ArrayList<ResponseCompletedJobs> completedJobs;
+    ArrayList<ResponseOrderHistory> orderHistoryList;
+
+    public ArrayList<ResponseOrderHistory> getOrderHistoryList() {
+        return orderHistoryList;
+    }
+
+    public void setOrderHistoryList(ArrayList<ResponseOrderHistory> orderHistoryList) {
+        this.orderHistoryList = orderHistoryList;
+    }
 
     public ResponseAssignedQueue getAssignedjobQueues() {
         return assignedjobQueues;
