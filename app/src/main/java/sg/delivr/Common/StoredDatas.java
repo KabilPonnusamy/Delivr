@@ -26,6 +26,7 @@ public class StoredDatas {
     ArrayList<ResponseRiderQueue> riderQueues;
     int rQuePos;
     String screenValidation;
+    String CheckOutAmount;
     ArrayList<ResponseCompletedJobs> completedJobs;
     ArrayList<ResponseOrderHistory> orderHistoryList;
 
@@ -61,6 +62,14 @@ public class StoredDatas {
 
     public void setScreenValidation(String screenValidation) {
         this.screenValidation = screenValidation;
+    }
+
+    public String getCheckOutAmount() {
+        return CheckOutAmount;
+    }
+
+    public void setCheckOutAmount(String checkOutAmount) {
+        this.CheckOutAmount = checkOutAmount;
     }
 
     public ArrayList<ResponseRiderQueue> getRiderQueues() {

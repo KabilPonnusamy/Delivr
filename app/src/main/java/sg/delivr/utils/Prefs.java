@@ -109,6 +109,14 @@ public class Prefs {
         getPrefs().edit().putString("user_postalcode", user_postalcode).apply();
     }
 
+    public static String getWalletTotalCreditAmount() {
+        return getPrefs().getString("wallettotalcredit", "");
+    }
+
+    public static void setWalletTotalCreditAmount(String wallettotalcredit) {
+        getPrefs().edit().putString("wallettotalcredit", wallettotalcredit).apply();
+    }
+
     public static String getMerchAuthTimeFrom() {
         return getPrefs().getString("merch_timefrom", "");
     }

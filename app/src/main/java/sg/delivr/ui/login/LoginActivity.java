@@ -35,14 +35,20 @@ import sg.delivr.backend.RetrofitClient;
 import sg.delivr.backend.models.CAdddress;
 import sg.delivr.backend.postmodels.PostDoLogin;
 import sg.delivr.backend.postmodels.PostGetProfile;
+import sg.delivr.backend.postmodels.PostMerchantAuth;
+import sg.delivr.backend.postmodels.PostMerchantOrderEntry;
+import sg.delivr.backend.responsemodels.ResponseMerchantAuth;
+import sg.delivr.backend.responsemodels.ResponseMerchantOrderEntry;
 import sg.delivr.backend.responsemodels.ResponseUserLogin;
 import sg.delivr.backend.responsemodels.ResponseUserProfile;
 import sg.delivr.service.AlarmService;
 import sg.delivr.ui.LocalDB.DbContract;
 import sg.delivr.ui.LocalDB.DbHelper;
+import sg.delivr.ui.activity.Activity_HelpSupport;
 import sg.delivr.ui.activity.Dashboard_Merchant;
 import sg.delivr.ui.activity.Dashboard_Rider;
 import sg.delivr.ui.interfaces.Intent_Constants;
+import sg.delivr.ui.interfaces.SHAInterface;
 import sg.delivr.utils.CheckNetwork;
 import sg.delivr.utils.DataBaseHelper;
 import sg.delivr.utils.Prefs;
@@ -51,6 +57,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.IOException;
 import java.security.MessageDigest;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,7 +66,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener,
         Intent_Constants {
 
-    TextView loginbtn, forgot_pwdbtn, signupbtn;
+    TextView loginbtn, forgot_pwdbtn, signupbtn, helpsupport;
     EditText ext_username, ext_password;
     String str_useremail, str_user_password;
     String strerror = "", strresult = "";
@@ -70,6 +77,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     // ArrayList<User_Information> user_informations;
     private Call<ResponseUserLogin> callLogin;
     private Call<ResponseUserProfile> callGetProfile;
+    private Call<ArrayList<ResponseMerchantOrderEntry>> callMerchantOrderEntry;
+    private Call<ArrayList<ResponseMerchantAuth>> callMerchantAuth;
     private boolean isShowingPassword;
     public static Location LastGeoloc;
     public static PendingIntent pendingIntent;
@@ -78,7 +87,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     String user_memberid;
     public static double CLat, CLong;
     String strLat, strLon;
-    public static String CSenderName, CContactNo, CCompanyName, CUnitno, CAddress, CPostalCode;
+    public static String CSenderName, CContactNo, CCompanyName, CUnitno, CAddress, CPostalCode, CRoadNo, CRoadName,
+    CBuilding, CZipcode, CEmailAddress, CSenderId, CZoneCode, CTimeFrom, CTimeTo,CTimeSensitive, CPriceType, CPrice,
+    CConsignmentType, CServiceType, CExceptZones;
     //Location
     GPSTracker gpsTracker;
     public static Double lat, lon;
@@ -118,6 +129,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ext_username = findViewById(R.id.edt_loginemail);
         ext_password = findViewById(R.id.edt_loginpwd);
         buttonTogglePasswordVisibility = findViewById(R.id.buttonTogglePasswordVisibility);
+        helpsupport = findViewById(R.id.helpsupport);
+        helpsupport.setOnClickListener(this);
         loginbtn.setOnClickListener(this);
         forgot_pwdbtn.setOnClickListener(this);
 //        signupbtn.setOnClickListener(this);
@@ -213,6 +226,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     isShowingPassword = true;
                 }
                 break;
+            case R.id.helpsupport:
+                Intent help_support = new Intent(LoginActivity.this, Activity_HelpSupport.class);
+                startActivity(help_support);
+                break;
         }
     }
     //    LOGINMETHOD
@@ -305,10 +322,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                                 Intent i = new Intent(getApplicationContext(), CustomerTile.class);
                                 startActivity(i)*/;
-                                StoredDatas.getInstance().setScreenValidation("Login");
-                                Intent i = new Intent(getApplicationContext(), Dashboard_Merchant.class);
-                                startActivityForResult(i, LOGIN_to_MERCHANT_DASH);
-                                finish();
+                                progressDialog = new ProgressDialog(LoginActivity.this);
+                                progressDialog.setMessage("Please wait..");
+                                progressDialog.setCancelable(false);
+                                getMerchantOrderEntry();
+                                getMerchantAuth();
                             } else {
                                 /*lblerrmessage = (TextView) findViewById(R.id.lblerrmessage);
                                 lblerrmessage.setText(strerror);
@@ -455,5 +473,136 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
+
+    private void getMerchantOrderEntry() {
+        String Strapikey = getString(R.string.apikey);
+        String Strapicode = getString(R.string.apicode);
+        String sign =  UserId + Strapikey + Strapicode;
+        String StrSignature = SHAInterface.SHA1(sign);
+        Log.e("delivrApp", "Signature: " + StrSignature);
+        Log.e("delivrApp", "Sign: " + sign);
+        Log.e("delivrApp", "StraipKey: " + Strapikey);
+        Log.e("delivrApp", "StraipCode: " + Strapicode);
+        progressDialog.show();
+        callMerchantOrderEntry = RetrofitClient.getInstance().getApiInterface().getMerchantOrderEntry(
+                new PostMerchantOrderEntry(UserId, Strapikey, StrSignature));
+        callMerchantOrderEntry.enqueue(new Callback<ArrayList<ResponseMerchantOrderEntry>>() {
+            @Override
+            public void onResponse(Call<ArrayList<ResponseMerchantOrderEntry>> call,
+                                   final Response<ArrayList<ResponseMerchantOrderEntry>> response) {
+                if (response.body() != null) {
+                    CSenderName = response.body().get(0).getSenderName();
+                    CCompanyName = response.body().get(0).getCompanyName();
+                    CRoadNo = response.body().get(0).getRoadNo();
+                    CRoadName = response.body().get(0).getRoadName();
+                    CBuilding = response.body().get(0).getBuilding();
+                    CUnitno = response.body().get(0).getUnitNo();
+                    CZipcode = response.body().get(0).getZipcode();
+
+
+                    CContactNo = response.body().get(0).getContactNo();
+                    CEmailAddress = response.body().get(0).getEmailAddress();
+                    CSenderId = response.body().get(0).getSenderId();
+                    CZoneCode = response.body().get(0).getZoneCode();
+                    CAddress = "";
+                    if (CRoadNo != null && !CRoadNo.isEmpty()) {
+                        CAddress = CRoadNo;
+                    }
+                    if (CRoadName != null && !CRoadName.isEmpty()) {
+                        CAddress = CAddress + " " + CRoadName;
+                    }
+                    if (CBuilding != null && !CBuilding.isEmpty()) {
+                        if (!CAddress.isEmpty()) {
+                            CAddress = CAddress + " " + CBuilding;
+                        } else {
+                            CAddress = CBuilding;
+                        }
+                    }
+                    if (CZipcode != null && !CZipcode.isEmpty()) {
+                        CAddress = CAddress + " " + CZipcode;
+                    }
+                    Log.e("delivrApp", "CAddress" + CAddress);
+                    Prefs.setUserName(CSenderName);
+                    Prefs.setUserMobileNo(CContactNo);
+                    Prefs.setUserCompanyName(CCompanyName);
+                    Prefs.setUserUnitNo(CUnitno);
+                    Prefs.setUserPostalCode(CZipcode);
+                    Prefs.setUserAddress(CAddress);
+                } else {
+
+                    Utils.showMessageDialog(LoginActivity.this,
+                            getString(R.string.dialog_title_sorry),
+                            "No Data found");
+                }
+            }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<ResponseMerchantOrderEntry>> call, Throwable t) {
+                        t.printStackTrace();
+                        Prefs.setLoginVerified("failure");
+                        Utils.showGenericErrorDialog(LoginActivity.this);
+                    }
+                });
+
+    }
+    private void getMerchantAuth() {
+        String Strapikey = getString(R.string.apikey);
+        String Strapicode = getString(R.string.apicode);
+        String sign =  UserId + Strapikey + Strapicode;
+        String StrSignature = SHAInterface.SHA1(sign);
+        Log.e("delivrApp", "Signature: " + StrSignature);
+        Log.e("delivrApp", "Sign: " + sign);
+        Log.e("delivrApp", "StraipKey: " + Strapikey);
+        Log.e("delivrApp", "StraipCode: " + Strapicode);
+
+
+        callMerchantAuth = RetrofitClient.getInstance().getApiInterface().getMerchantAuth(
+                new PostMerchantAuth(UserId, Strapikey, StrSignature));
+
+        callMerchantAuth.enqueue(new Callback<ArrayList<ResponseMerchantAuth>>() {
+            @Override
+            public void onResponse(Call<ArrayList<ResponseMerchantAuth>> call,
+                                   final Response<ArrayList<ResponseMerchantAuth>> response) {
+                progressDialog.dismiss();
+                if (response.body() != null) {
+                    CTimeFrom = response.body().get(0).getTimeFrom();
+                    CTimeTo = response.body().get(0).getTimeTo();
+                    CTimeSensitive = response.body().get(0).getTimeSensitive();
+                    CPriceType = response.body().get(0).getPriceType();
+                    CPrice = response.body().get(0).getPrice();
+                    CConsignmentType = response.body().get(0).getConsignmentType();
+                    CServiceType = response.body().get(0).getServiceType();
+                    CExceptZones = response.body().get(0).getExceptZones();
+
+                    Prefs.setMerchAuthTimeFrom(CTimeFrom);
+                    Prefs.setMerchAuthTimeTo(CTimeTo);
+                    Prefs.setMerchAuthTimeSensitive(CTimeSensitive);
+                    Prefs.setMerchAuthPriceType(CPriceType);
+                    Prefs.setMerchAuthPrice(CPrice);
+                    Prefs.setMerchAuthConsignmentType(CConsignmentType);
+                    Prefs.setMerchAuthServiceType(CServiceType);
+                    Prefs.setMerchAuthExceptZones(CExceptZones);
+                    StoredDatas.getInstance().setScreenValidation("Login");
+                    Intent i = new Intent(getApplicationContext(), Dashboard_Merchant.class);
+                    startActivityForResult(i, LOGIN_to_MERCHANT_DASH);
+                    finish();
+                } else {
+                    progressDialog.dismiss();
+                    Utils.showMessageDialog(LoginActivity.this,
+                            getString(R.string.dialog_title_sorry),
+                            "No Data found");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<ResponseMerchantAuth>> call, Throwable t) {
+                progressDialog.dismiss();
+                t.printStackTrace();
+                Utils.showGenericErrorDialog(LoginActivity.this);
+            }
+        });
+
+    }
+
 
 }

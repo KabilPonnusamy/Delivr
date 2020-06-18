@@ -81,6 +81,7 @@
     <string name="job_status">Status:</string>
     <string name="pickup_addr">Pickup Address:</string>
     <string name="job_details">Job Details</string>
+    <string name="wallet_checkout">CheckOut</string>
     <string name="txt_save">Save</string>
     <string name="txt_pass">Pass</string>
     <string name="txt_accept">Accept</string>
@@ -102,6 +103,8 @@
     <string name="hint_email">Email</string>
     <string name="hint_mobile">Mobile</string>
     <string name="btn_submit">Submit</string>
+    <string name="btn_pay">Pay</string>
+    <string name="btn_proceed">Proceed</string>
     <string name="hint_your_message">Your Message</string>
     <string name="txt_wallet_topup">Wallet top-up</string>
     <string name="hint_title_pickupaddr">Pickup Address</string>
@@ -119,4 +122,8 @@
     <string name="img">Image</string>
     <string name="txt_pickup">PickUp Location</string>
     <string name="txt_delivery">Delivery Location</string>
+    <string name="enterdlvryaddr">Please enter your Delivery Address</string>
+    <string name="entertopupamount">Please enter the Amount</string>
+    <string name="enterdlvryaddrname">Please enter your Delivery Name</string>
+    <string name="enterdatetime">Please enter your Pickup Date Time</string>
 </resources>

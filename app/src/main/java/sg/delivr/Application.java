@@ -12,6 +12,8 @@ import android.os.Handler;
 import android.util.Base64;
 import android.util.Log;
 
+import com.stripe.android.PaymentConfiguration;
+
 import sg.delivr.R;
 
 import java.security.MessageDigest;
@@ -114,6 +116,11 @@ public class Application extends android.app.Application {
                 .setDefaultFontPath("fonts/OpenSans_Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build()
+        );
+
+        PaymentConfiguration.init(
+                getApplicationContext(),
+                "pk_test_UUneYjetyYPeNMjd664l4wl300TQYrMirc"
         );
 
         /*Fabric.with(this, new Crashlytics());

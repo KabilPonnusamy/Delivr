@@ -135,7 +135,7 @@ public class PostDoCreateOrder {
         this.InvoiceAmount = InvoiceAmount;
         this.ID = ID;
         this.APIKEY = APIKEY;
-        Signature = signature;
+        this.Signature = signature;
     }
 
 }

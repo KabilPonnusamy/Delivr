@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -34,6 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="7"
+                android:textSize="12sp"
                 android:hint="@string/txt_pickup"
                 android:textColor="@color/black" />
 
@@ -51,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:background="@color/shadow" />
 
@@ -76,6 +77,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="7"
+                android:textSize="12sp"
                 android:hint="@string/txt_delivery"
                 android:textColor="@color/black" />
 
@@ -98,110 +100,304 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:orientation="vertical">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_lname"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                app:boxStrokeColor="@color/colorPrimary"
-                android:theme="@style/Theme2">
-
-                <EditText
-                    android:id="@+id/input_name"
+                android:padding="5dp"
+                android:orientation="vertical"
+                >
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/hint_name"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/robotlight"
+                    android:textColor="@color/colorPrimary"
+                    ></TextView>
+                <EditText
+                    android:id="@+id/edt_dlvryaddr_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/transparent"
                     android:fontFamily="@font/robotlight"
                     android:hint="@string/hint_name"
                     android:inputType="textCapSentences|text"
                     android:maxLength="25"
                     android:singleLine="true"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="15sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_contact"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorPrimary" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                app:boxStrokeColor="@color/colorPrimary"
-                app:hintTextAppearance="@style/MyHintStyle">
-
-                <EditText
-                    android:id="@+id/input_contact"
+                android:padding="5dp"
+                android:orientation="vertical"
+                >
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/hint_contact"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/robotlight"
+                    android:textColor="@color/colorPrimary"
+                    ></TextView>
+                <EditText
+                    android:id="@+id/edt_dlvryaddr_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/transparent"
                     android:fontFamily="@font/robotlight"
                     android:hint="@string/hint_contact"
                     android:inputType="number"
                     android:maxLength="15"
                     android:singleLine="true"
-                    android:textColor="@color/black"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:textColorHint="@color/black"
-                    android:textSize="15sp" />
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorPrimary" />
+            </LinearLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_lemail"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                app:boxStrokeColor="@color/colorPrimary"
-                app:hintTextAppearance="@style/MyHintStyle">
-
-                <EditText
-                    android:id="@+id/input_email"
+                android:padding="5dp"
+                android:orientation="vertical"
+                >
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/hint_email"
+                    android:textSize="12sp"
                     android:fontFamily="@font/robotlight"
+                    android:textColor="@color/colorPrimary"
+                    ></TextView>
+                <EditText
+                    android:id="@+id/edt_dlvryaddr_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/robotlight"
+                    android:background="@android:color/transparent"
                     android:hint="@string/hint_email"
                     android:inputType="textEmailAddress"
                     android:maxLength="30"
                     android:singleLine="true"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="15sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_lunit"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorPrimary" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                app:boxStrokeColor="@color/colorPrimary"
-                app:hintTextAppearance="@style/MyHintStyle">
-
-                <EditText
-                    android:id="@+id/input_unit"
+                android:padding="5dp"
+                android:orientation="vertical"
+                >
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/hint_unitno"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/robotlight"
+                    android:textColor="@color/colorPrimary"
+                    ></TextView>
+                <EditText
+                    android:id="@+id/edt_dlvryaddr_unitno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@android:color/transparent"
                     android:fontFamily="@font/robotlight"
                     android:hint="@string/hint_unitno"
                     android:inputType="number"
                     android:maxLength="30"
                     android:singleLine="true"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    android:textSize="15sp" />
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorPrimary" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_pickupdatetime"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/robotlight"
+                    android:textColor="@color/colorPrimary"
+                    ></TextView>
+                <TextView
+                    android:id="@+id/edt_pickupdatetime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/robotlight"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:hint="@string/hint_pickupdatetime"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:enabled="true"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorPrimary" />
+                <TextView
+                    android:id="@+id/txt_pickuptime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:hint="@string/hint_pickupdatetime"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPrimary"
+                    android:visibility="gone"
+                    android:textSize="12sp"
+                    android:enabled="false"
+                    android:padding="5dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_fooddetails"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/robotlight"
+                    android:textColor="@color/colorPrimary"
+                    ></TextView>
+                <EditText
+                    android:id="@+id/edt_fooddetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/robotlight"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:layout_gravity="start"
+                    android:gravity="start"
+                    android:hint="@string/hint_fooddetails"
+                    android:maxLines="10"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:enabled="true"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorPrimary" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hint_deliveryinstruction"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/robotlight"
+                    android:textColor="@color/colorPrimary"
+                    ></TextView>
+                <EditText
+                    android:id="@+id/edt_delivryinstruction"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/robotlight"
+                    android:background="@android:color/transparent"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:layout_gravity="start"
+                    android:gravity="start"
+                    android:hint="@string/hint_deliveryinstruction"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:enabled="true"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorPrimary" />
+            </LinearLayout>
 
-            </com.google.android.material.textfield.TextInputLayout>
 
 
         </LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/submit_createorder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/box_layout"
+        android:gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotbold"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="@string/btn_submit"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-</LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
