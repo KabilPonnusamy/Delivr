@@ -16,7 +16,7 @@ public interface Intent_Constants {
     int MYORDERS_to_PICKUP = 12;
     int MYORDERS_to_DELIVERY = 13;
     int LOCATION_success = 14;
-
-
-
+    int WALLETTOPUP_to_CHECKOUT = 15;
+    int MYWALLETCHECKOUT_success = 16;
+    int ORDER_HIS_toORDER_HIS_DETAILS = 17;
 }

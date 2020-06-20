@@ -60,6 +60,8 @@ import sg.delivr.backend.responsemodels.ResponseWalletPaymentStatus;
 import sg.delivr.utils.Prefs;
 import sg.delivr.utils.Utils;
 
+import static sg.delivr.ui.interfaces.Intent_Constants.MYWALLETCHECKOUT_success;
+
 public class CheckOutActivity extends AppCompatActivity {
     private static final String BACKEND_URL = "https://delivr.sg/API/";
 
@@ -67,6 +69,7 @@ public class CheckOutActivity extends AppCompatActivity {
     private String paymentIntentClientSecret;
     private Stripe stripe;
     ProgressDialog progressDialog;
+    static ProgressDialog progressDialog_payment;
     public String stripePublishableKey;
     public String userId;
     public String entered_amount;
@@ -93,15 +96,23 @@ public class CheckOutActivity extends AppCompatActivity {
         submit_checkoutpay = findViewById(R.id.submit_checkoutpay);
         cardInputWidget = findViewById(R.id.cardInputWidget);
         jbcheckout_back = findViewById(R.id.jbcheckout_back);
+        progressDialog_payment = new ProgressDialog(CheckOutActivity.this);
+        progressDialog_payment.setMessage("Processing Payment, Please wait..");
+        progressDialog_payment.setCancelable(false);
         jbcheckout_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("PaymentStatus", "backclick");
+                setResult(MYWALLETCHECKOUT_success, resultIntent);
                 finish();
             }
         });
         submit_checkoutpay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog_payment.show();
+                disablepayButton();
                 PaymentMethodCreateParams params = cardInputWidget.getPaymentMethodCreateParams();
                 if (params != null) {
                     ConfirmPaymentIntentParams confirmParams = ConfirmPaymentIntentParams
@@ -112,6 +123,15 @@ public class CheckOutActivity extends AppCompatActivity {
         });
     }
 
+    private void enablepayButton() {
+        submit_checkoutpay.setEnabled(true);
+        submit_checkoutpay.setBackgroundResource(R.drawable.box_layout);
+    }
+
+    private void disablepayButton() {
+        submit_checkoutpay.setEnabled(false);
+        submit_checkoutpay.setBackgroundResource(R.drawable.empty_border_solid);
+    }
 
     private void startCheckout() {
         // Create a PaymentIntent by calling the sample server's /create-payment-intent endpoint.
@@ -176,9 +196,11 @@ public class CheckOutActivity extends AppCompatActivity {
 
 
                     } else {
+                        progressDialog.dismiss();
                         Utils.showGenericErrorDialog(CheckOutActivity.this);
                     }
                 } else {
+                    progressDialog.dismiss();
                     Utils.showGenericErrorDialog(CheckOutActivity.this);
                 }
             }
@@ -196,13 +218,17 @@ public class CheckOutActivity extends AppCompatActivity {
                               boolean restartDemo) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle(title)
+                .setCancelable(false)
                 .setMessage(message);
         if (restartDemo) {
             builder.setPositiveButton("Ok",
                     (DialogInterface dialog, int index) -> {
                         CardInputWidget cardInputWidget = findViewById(R.id.cardInputWidget);
                         cardInputWidget.clear();
-                        startCheckout();
+                        Intent resultIntent = new Intent();
+                        resultIntent.putExtra("PaymentStatus", "success");
+                        setResult(MYWALLETCHECKOUT_success, resultIntent);
+                        finish();
                     });
         } else {
             builder.setPositiveButton("Ok", null);
@@ -312,6 +338,8 @@ public class CheckOutActivity extends AppCompatActivity {
 
             } else if (status == PaymentIntent.Status.RequiresPaymentMethod) {
                 // Payment failed – allow retrying using a different payment method
+                progressDialog_payment.dismiss();
+                activity.enablepayButton();
                 activity.displayAlert(
                         "Payment failed",
                         Objects.requireNonNull(paymentIntent.getLastPaymentError()).message,
@@ -326,7 +354,8 @@ public class CheckOutActivity extends AppCompatActivity {
             if (activity == null) {
                 return;
             }
-
+            progressDialog_payment.dismiss();
+            activity.enablepayButton();
             // Payment request failed – allow retrying using the same payment method
             activity.displayAlert("Error", e.toString(), false);
         }
@@ -347,7 +376,6 @@ public class CheckOutActivity extends AppCompatActivity {
 
     private void sendPaymentStatus(String UserId) {
         Log.e("delivrApp", "Member_Id: " + Prefs.getUserId());
-        progressDialog.show();
         String Strapikey = getString(R.string.apikey);
         String Strapicode = getString(R.string.apicode);
         String sign = UserId + Strapikey + Strapicode;
@@ -363,10 +391,11 @@ public class CheckOutActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseWalletPaymentStatus> call,
                                    Response<ResponseWalletPaymentStatus> response) {
-                progressDialog.dismiss();
-
                 if (response.body() != null) {
                     if (response.body().getStatus().equalsIgnoreCase("success")) {
+
+                        progressDialog_payment.dismiss();
+                        enablepayButton();
                         creditAmount = response.body().getCreditAmt();
                         Prefs.setWalletTotalCreditAmount(creditAmount);
                         displayAlert(
@@ -375,15 +404,17 @@ public class CheckOutActivity extends AppCompatActivity {
                                 true
                         );
                     } else {
+                        progressDialog_payment.dismiss();
                         Utils.showGenericErrorDialog(CheckOutActivity.this);
                     }
                 } else {
+                    progressDialog_payment.dismiss();
                     Utils.showGenericErrorDialog(CheckOutActivity.this);
                 }
             }
             @Override
             public void onFailure(Call<ResponseWalletPaymentStatus> call, Throwable t) {
-                progressDialog.dismiss();
+                progressDialog_payment.dismiss();
                 t.printStackTrace();
                 Utils.showGenericErrorDialog(CheckOutActivity.this);
             }

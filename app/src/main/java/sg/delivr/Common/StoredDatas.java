@@ -29,6 +29,8 @@ public class StoredDatas {
     String CheckOutAmount;
     ArrayList<ResponseCompletedJobs> completedJobs;
     ArrayList<ResponseOrderHistory> orderHistoryList;
+    int oHisPos;
+
 
     public ArrayList<ResponseOrderHistory> getOrderHistoryList() {
         return orderHistoryList;
@@ -36,6 +38,14 @@ public class StoredDatas {
 
     public void setOrderHistoryList(ArrayList<ResponseOrderHistory> orderHistoryList) {
         this.orderHistoryList = orderHistoryList;
+    }
+
+    public int getoHisPos() {
+        return oHisPos;
+    }
+
+    public void setoHisPos(int oHisPos) {
+        this.oHisPos = oHisPos;
     }
 
     public ResponseAssignedQueue getAssignedjobQueues() {

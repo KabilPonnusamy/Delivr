@@ -209,7 +209,7 @@ public class Frag_NewOrderHistory extends Fragment implements View.OnClickListen
                     if(response.body().size() > 0) {
                         ArrayList<ResponseOrderHistory> orderHis = new ArrayList<ResponseOrderHistory>();
                         orderHis = response.body();
-                        orderHistoryList.addAll(orderHis);
+                        orderHistoryList.addAll(orderHistoryList.size(),orderHis);
                         myjobsAdapter.notifyDataSetChanged();
                     } else {
                         endReached = true;

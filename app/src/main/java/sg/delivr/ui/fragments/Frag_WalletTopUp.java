@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -143,11 +144,9 @@ public class Frag_WalletTopUp extends Fragment implements View.OnClickListener, 
                 }
 
                 StoredDatas.getInstance().setCheckOutAmount(checkout_amount);
-                edt_amount.setText("");
                 Intent checkout_intent = new Intent(getActivity(), CheckOutActivity.class);
-                startActivity(checkout_intent);
+                startActivityForResult(checkout_intent, Intent_Constants.WALLETTOPUP_to_CHECKOUT);
                 break;
-
         }
     }
 
@@ -230,43 +229,19 @@ public class Frag_WalletTopUp extends Fragment implements View.OnClickListener, 
         dialog.show();
     }
 
-    /*@Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == RIDER_MYJOBS_to_MYJOB_DETAILS) {
-            if(resultCode == MYJOBSAQ_success) {
-                String listAQPos = data.getStringExtra("AQPosition");
-                String jobstatus = data.getStringExtra("AQStatus");
-                int position = Integer.parseInt(listAQPos);
-                Log.e("delivrApp", "LastPos: " + position  + "Job Status:" +  jobstatus);
-
-                if (jobstatus.equalsIgnoreCase("Del")) {
-                    riderQueues.remove(position);
-                    myjobsAdapter.notifyDataSetChanged();
-                } else {
-                    String chkstatus = "";
-                    progressDialog = new ProgressDialog(getActivity());
-                    progressDialog.setMessage("Please wait..");
-                    progressDialog.setCancelable(false);
-                    if (jobstatus.equalsIgnoreCase("Pic")) {
-                        gatherRiders();
-                    }
-                    riderQueues.get(position).setStatus(jobstatus);
-                    StoredDatas.getInstance().setRiderQueues(riderQueues);
-                    riderQueues = StoredDatas.getInstance().getRiderQueues();
-                    Log.e("delivrApp", "Inside My Jobs get current data : Check Status:" + chkstatus + "New Status:"  + riderQueues.get(position).getStatus()+
-                            "Status Code:" +riderQueues.get(position).getStatusCode() + "Delivery_CO" + riderQueues.get(position).getDelivery_CO());
-                    if (riderQueues.get(position).getStatusCode().equals("RidAcc") || riderQueues.get(position).getStatusCode().equals("PassAcc")
-                            || riderQueues.get(position).getStatusCode().equals("PassRej")) {
-                        chkstatus = riderQueues.get(position).getLastStatusCode();
-                    } else {
-                        chkstatus = riderQueues.get(position).getStatusCode();
-                    }
-                    Log.e("delivrApp", "Inside My Jobs else : Check Status:" + chkstatus + "New Statusd:"  + riderQueues.get(position).getStatus() + "Status Code:" +
-                            riderQueues.get(position).getLastStatusCode() + "Delivery_CO" + riderQueues.get(position).getDelivery_CO());
-                    myjobsAdapter.notifyDataSetChanged();
+        if(requestCode == Intent_Constants.WALLETTOPUP_to_CHECKOUT) {
+            if(resultCode == Intent_Constants.MYWALLETCHECKOUT_success) {
+                String paymentstatus = data.getStringExtra("PaymentStatus");
+                if (paymentstatus.equalsIgnoreCase("success")) {
+                    edt_amount.setText("");
+                    total_amount.setText(Prefs.getWalletTotalCreditAmount());
+                } else if (paymentstatus.equalsIgnoreCase("backclick")){
+                    // no amount change needed.
                 }
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }*/
+    }
 }

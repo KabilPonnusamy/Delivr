@@ -81,6 +81,7 @@
     <string name="job_status">Status:</string>
     <string name="pickup_addr">Pickup Address:</string>
     <string name="job_details">Job Details</string>
+    <string name="order_his_details_txt">Order Details</string>
     <string name="wallet_checkout">CheckOut</string>
     <string name="txt_save">Save</string>
     <string name="txt_pass">Pass</string>

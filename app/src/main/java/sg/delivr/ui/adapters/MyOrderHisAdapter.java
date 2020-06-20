@@ -20,6 +20,7 @@ import sg.delivr.R;
 import sg.delivr.backend.responsemodels.ResponseOrderHistory;
 import sg.delivr.backend.responsemodels.ResponseRiderQueue;
 import sg.delivr.ui.activity.MyJobs_Details;
+import sg.delivr.ui.activity.OrderHistory_Details;
 import sg.delivr.ui.fragments.Frag_NewOrderHistory;
 import sg.delivr.ui.interfaces.Intent_Constants;
 import sg.delivr.ui.interfaces.SHAInterface;
@@ -123,28 +124,16 @@ public class MyOrderHisAdapter extends RecyclerView.Adapter<MyOrderHisAdapter.Vi
             e.printStackTrace();
         }
 
-        /*
-        // Todo  *** Want to check this implementation from Merchant Side By Kabil Dev
-        holder.viewdetails_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                StoredDatas.getInstance().setrQuePos(position);
-                StoredDatas.getInstance().setOrderHistoryList(orderHistoryList);
-                Intent viewIntet = new Intent(context, MyJobs_Details.class);
-                frag_obj.startActivityForResult(viewIntet, RIDER_MYJOBS_to_MYJOB_DETAILS);
-            }
-        });
-
         holder.cardview_myjobs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StoredDatas.getInstance().setrQuePos(position);
+                StoredDatas.getInstance().setoHisPos(position);
                 StoredDatas.getInstance().setOrderHistoryList(orderHistoryList);
-                Intent viewIntet = new Intent(context, MyJobs_Details.class);
-                frag_obj.startActivityForResult(viewIntet, RIDER_MYJOBS_to_MYJOB_DETAILS);
+
+                Intent viewIntet = new Intent(context, OrderHistory_Details.class);
+                frag_obj.startActivityForResult(viewIntet, ORDER_HIS_toORDER_HIS_DETAILS);
             }
-        });*/
+        });
             }
 
     @Override
