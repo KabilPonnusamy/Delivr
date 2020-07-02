@@ -41,6 +41,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import sg.delivr.backend.responsemodels.ResponseWalletHistory;
 import sg.delivr.backend.responsemodels.ResponseWalletPaymentStatus;
 
 public interface APIService {
@@ -109,5 +110,8 @@ public interface APIService {
 
     @POST("Wallet/WalletStatus")
     Call<ResponseWalletPaymentStatus> sendPaymentStatus(@Body PostWalletPaymentStatus post);
+
+    @POST("Wallet/WalletDetails")
+    Call<ArrayList<ResponseWalletHistory>> getWalletHistory(@Body PostMerchantAuth post);
 }
 

@@ -83,10 +83,102 @@ public interface SHAInterface {
         return newdate;
     }
 
-    public static String getDateFormattedTwo(String mydate) throws ParseException {
-        SimpleDateFormat spf=new SimpleDateFormat("MMM dd yyyy  hh:mma");
+    public static String getDateFormatted_order(String mydate) throws ParseException {
+        final Calendar c = Calendar.getInstance();
+        c.add(Calendar.MONTH, 1);
+
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        String tdyDate =  day + "-" +  month + "-" +  year;
+
+        c.add(Calendar.DAY_OF_MONTH, 1);
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
+        String tommDate =  day + "-" +  month + "-" +  year;
+
+        mydate = mydate.replaceAll("\\s+"," ");
+
+        SimpleDateFormat tdyspf = new SimpleDateFormat("dd/MM/yyyy");
+        Date chktdyDate = tdyspf.parse(tdyDate);
+        tdyspf= new SimpleDateFormat("MMM dd yyyy");
+        String tdynewdate = tdyspf.format(chktdyDate);
+
+        SimpleDateFormat tommspf = new SimpleDateFormat("dd/MM/yyyy");
+        Date chktommDate = tommspf.parse(tommDate);
+        tommspf= new SimpleDateFormat("MMM dd yyyy");
+        String tommnewdate = tommspf.format(chktommDate);
+
+        SimpleDateFormat spf=new SimpleDateFormat("MMM dd yyyy hh:mma");
         Date newDate=spf.parse(mydate);
         spf= new SimpleDateFormat("MMM dd yyyy");
+        String newdate = spf.format(newDate);
+
+        if(tdynewdate.equalsIgnoreCase(newdate)) {
+            return "Today";
+        } else if(tommnewdate.equalsIgnoreCase(newdate)) {
+            return "Tomorrow";
+        }
+
+        return newdate;
+    }
+
+    public static String getDateFormatted_wallethis(String mydate) throws ParseException {
+        final Calendar c = Calendar.getInstance();
+        c.add(Calendar.MONTH, 1);
+
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        String tdyDate =  day + "-" +  month + "-" +  year;
+
+        c.add(Calendar.DAY_OF_MONTH, 1);
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
+        String tommDate =  day + "-" +  month + "-" +  year;
+
+        mydate = mydate.replaceAll("\\s+"," ");
+
+        SimpleDateFormat tdyspf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+        Date chktdyDate = tdyspf.parse(tdyDate);
+        tdyspf= new SimpleDateFormat("MMM dd yyyy hh:mm a");
+        String tdynewdate = tdyspf.format(chktdyDate);
+
+        SimpleDateFormat tommspf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+        Date chktommDate = tommspf.parse(tommDate);
+        tommspf= new SimpleDateFormat("MMM dd yyyy hh:mm a");
+        String tommnewdate = tommspf.format(chktommDate);
+
+        SimpleDateFormat spf=new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+        Date newDate=spf.parse(mydate);
+        spf= new SimpleDateFormat("MMM dd yyyy hh:mm a");
+        String newdate = spf.format(newDate);
+
+        if(tdynewdate.equalsIgnoreCase(newdate)) {
+            return "Today";
+        } else if(tommnewdate.equalsIgnoreCase(newdate)) {
+            return "Tomorrow";
+        }
+
+        return newdate;
+    }
+
+    public static String getTimeFormatted_order(String mydate) throws ParseException {
+        mydate = mydate.replaceAll("\\s+"," ");
+
+        SimpleDateFormat spf=new SimpleDateFormat("dd/MM/yyyy hh:mma");
+        Date newDate=spf.parse(mydate);
+        spf= new SimpleDateFormat("hh:mm a");
+        String newdate = spf.format(newDate);
+        return newdate;
+    }
+
+    public static String getDateFormattedTwo(String mydate) throws ParseException {
+        SimpleDateFormat spf=new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a");
+        Date newDate=spf.parse(mydate);
+        spf= new SimpleDateFormat("MMM dd yyyy hh:mm a");
         String newdate = spf.format(newDate);
         return newdate;
     }

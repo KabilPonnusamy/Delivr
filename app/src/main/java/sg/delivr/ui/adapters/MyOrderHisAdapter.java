@@ -47,10 +47,10 @@ public class MyOrderHisAdapter extends RecyclerView.Adapter<MyOrderHisAdapter.Vi
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        holder.job_wbno_value.setText(orderHistoryList.get(position).getOrderNo());
+        holder.job_wbno_value.setText(orderHistoryList.get(position).getWBNo());
         holder.job_type.setText(orderHistoryList.get(position).getConsignmentType());
         holder.status_job_item.setText(orderHistoryList.get(position).getStatus());
-        if (orderHistoryList.get(position).getStatus().equalsIgnoreCase("Pickedup")) {
+        if (orderHistoryList.get(position).getStatus().equalsIgnoreCase("Completed")) {
             holder.status_job_item.setBackground(context.getResources().getDrawable(R.drawable.filled_box_green));
         } else {
             holder.status_job_item.setBackground(context.getResources().getDrawable(R.drawable.filled_box_orange));
@@ -111,10 +111,10 @@ public class MyOrderHisAdapter extends RecyclerView.Adapter<MyOrderHisAdapter.Vi
         try {
             String pdate = orderHistoryList.get(position).getPickupDateTime().replaceAll("\\s+"," ");
             Log.e("delivrApp", "Pickup Date & Time:"+ pdate);
-            String myDate = SHAInterface.getDateFormatted(orderHistoryList.get(position).getPickupDateTime());
+            String myDate = SHAInterface.getDateFormattedNew(pdate);
             Log.e("delivrApp", "Pickup DATE:"+ myDate);
             holder.pickupdate_value.setText(myDate);
-            String myTime = SHAInterface.getTimeFormatted(orderHistoryList.get(position).getPickupDateTime());
+            String myTime = SHAInterface.getTimeFormattedNew(pdate);
             Log.e("delivrApp", "Pickup  & Time:"+ myTime);
             holder.pickuptime_value.setText(myTime);
         } catch (ParseException e) {

@@ -67,8 +67,11 @@
     <string name="view_details">View</string>
     <string name="wb_no">WB No:</string>
     <string name="pickupdatetime">Pickup Date:</string>
+    <string name="transferdate">Date:</string>
     <string name="pickuptime">Pickup Time:</string>
     <string name="job_type">Job Type:</string>
+    <string name="wallet_amount">Amount:</string>
+    <string name="wallet_totalbalance">Total Balance:</string>
     <string name="consignment_type">Job Type:</string>
     <string name="delivery_addr">Delivery Address:</string>
     <string name="sender_info">Sender Info</string>
@@ -83,6 +86,7 @@
     <string name="job_details">Job Details</string>
     <string name="order_his_details_txt">Order Details</string>
     <string name="wallet_checkout">CheckOut</string>
+    <string name="txt_currency">SGD $</string>
     <string name="txt_save">Save</string>
     <string name="txt_pass">Pass</string>
     <string name="txt_accept">Accept</string>
@@ -98,7 +102,8 @@
     <string name="txt_help_support">Help &amp; Support</string>
     <string name="txt_logout_msg">Are you sure want to Logout?</string>
     <string name="txt_myorders">My orders</string>
-    <string name="txt_order_history">Order history</string>
+    <string name="txt_order_history">Order History</string>
+    <string name="txt_wallet_history">Wallet History</string>
     <string name="txt_merchant">Merchant</string>
     <string name="hint_name">Name</string>
     <string name="hint_email">Email</string>

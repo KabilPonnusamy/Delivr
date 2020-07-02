@@ -56,6 +56,7 @@ import sg.delivr.ui.fragments.Frag_MerchantJobs;
 import sg.delivr.ui.fragments.Frag_MyOrders_New;
 import sg.delivr.ui.fragments.Frag_MyProfile;
 import sg.delivr.ui.fragments.Frag_NewOrderHistory;
+import sg.delivr.ui.fragments.Frag_WalletHistory;
 import sg.delivr.ui.fragments.Frag_WalletTopUp;
 import sg.delivr.ui.login.LoginActivity;
 import sg.delivr.utils.Prefs;
@@ -86,7 +87,7 @@ public class Dashboard_Merchant extends AppCompatActivity implements View.OnClic
     ProgressDialog progressDialog;
     String profile_str = "";
 
-    RelativeLayout mer_myorders_layout, orderdetails_layout, merchantjobs_layout, wallet_layout,
+    RelativeLayout mer_myorders_layout, orderdetails_layout, merchantjobs_layout, wallet_layout,wallethistory_layout,
             profile_layout, help_layout, logout_layout;
 
     File file1;
@@ -167,6 +168,7 @@ public class Dashboard_Merchant extends AppCompatActivity implements View.OnClic
         orderdetails_layout = findViewById(R.id.orderdetails_layout);
         merchantjobs_layout = findViewById(R.id.merchantjobs_layout);
         wallet_layout = findViewById(R.id.wallet_layout);
+        wallethistory_layout = findViewById(R.id.wallethistory_layout);
         profile_layout = findViewById(R.id.profile_layout);
         help_layout = findViewById(R.id.help_layout);
         logout_layout = findViewById(R.id.logout_layout);
@@ -189,6 +191,7 @@ public class Dashboard_Merchant extends AppCompatActivity implements View.OnClic
         orderdetails_layout.setOnClickListener(this);
         merchantjobs_layout.setOnClickListener(this);
         wallet_layout.setOnClickListener(this);
+        wallethistory_layout.setOnClickListener(this);
         profile_layout.setOnClickListener(this);
         help_layout.setOnClickListener(this);
         logout_layout.setOnClickListener(this);
@@ -363,6 +366,14 @@ public class Dashboard_Merchant extends AppCompatActivity implements View.OnClic
                 FragmentTransaction walletjobs = getSupportFragmentManager().beginTransaction();
                 walletjobs.replace(R.id.frame_layout, walletfragment);
                 walletjobs.commit();
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
+            case R.id.wallethistory_layout:
+                Fragment wallethistoryfragment = new Frag_WalletHistory();
+                FragmentTransaction wallethistory = getSupportFragmentManager().beginTransaction();
+                wallethistory.replace(R.id.frame_layout, wallethistoryfragment);
+                wallethistory.commit();
                 drawer.closeDrawer(GravityCompat.START);
                 break;
 
